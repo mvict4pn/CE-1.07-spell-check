@@ -1,0 +1,2103 @@
+
+<!-- CE MODIFIED VANILLA SHIP EVENTS -->
+
+<ship name="SQUAT_TRANSPORT" auto_blueprint="C_SHIPS_REBEL_TRANSPORT">
+	<escape timer="40" min="14" max="14" >
+		<text>They look like they don't want to fight. They are trying to escape.</text>
+		<ship hostile="true"/>
+	</escape>
+	<destroyed load="REBEL_TRANSPORT_DESTROYED"/>
+	<deadCrew load="REBEL_TRANSPORT_CAPTURED"/>
+</ship>
+
+<ship name="CIVILIAN_SHIP" auto_blueprint="SHIPS_CIVILIAN">
+	<escape timer="40" min="20" max="20" >
+		<text>They civilian ship is trying to escape.</text>
+		<ship hostile="true"/>
+	</escape>
+	<surrender min="3" max="4">
+		<text load="PIRATE_SURRENDER_TEXT"/>
+		<choice hidden="true">
+			<text>Simply let them go.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. After a time the ship slowly limps away. They refuse all communications. You feel somewhat guilty but are also glad that you didn't went through with this.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event load="C_PIRACY_SUCCESS_LOOT_CIVILIAN"/>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_PIRACY_CIVILIAN"/>
+	<deadCrew load="DEAD_CREW_PIRACY_CIVILIAN"/>
+</ship>
+
+
+
+<!-- END OF CE MODIFIED VANILLA SHIP EVENTS -->
+
+<!-- POLISH KIT MODIFIED VANILLA SHIP EVENTS -->
+
+
+<ship name="PIRATE" auto_blueprint="SHIPS_PIRATE">
+	<surrender  chance="0.5" min="3" max="4" load="PIRATE_SURRENDER"/>
+	<escape  chance="0.5" min="2" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_SHIP_PIRATE"/>
+	<gotaway>
+		<text>The pirate jumped away.</text>
+	</gotaway>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="PIRATE_FUEL" auto_blueprint="SHIPS_PIRATE">
+	<escape timer="80" min="30" max="30"/>
+	<gotaway>
+		<text>The ship jumps away without a word. You hope they didn't leave to get reinforcements.</text>
+	</gotaway>
+	<surrender  chance="0.5" min="3" max="4" load="PIRATE_SURRENDER"/>
+	<destroyed load="DESTROYED_SHIP_PIRATE"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="ROCK_SHIP" auto_blueprint="SHIPS_ROCK">  
+	<surrender  chance="0.7" min="3" max="4" load="ROCK_SHIP_SURRENDER"/>
+	<destroyed load="DESTROYED_SHIP_ROCK"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/> 
+</ship> 
+
+<ship name="ROCK_PIRATE" auto_blueprint="SHIPS_ROCK_PIRATE">
+	<destroyed load="DESTROYED_SHIP_ROCK"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/> 
+	<crew>
+		   <crewMember type="rock" prop="1"/>
+	</crew>
+</ship>
+
+<ship name="JELLY_PIRATE_WITHBOARDERS" auto_blueprint="SHIPS_PIRATE">
+	<surrender min="0" max="5" load="PIRATE_SURRENDER"/>
+	<escape chance="0.3" min="2" max="4" timer="15" load="PIRATE_ESCAPE"/>
+	<gotaway>
+		<text>The pirate jumped away in search of weaker targets.</text>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_PIRATE"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="REBEL" auto_blueprint="SHIPS_REBEL">
+	<surrender  chance="0.5" min="2" max="3" load="PIRATE_SURRENDER"/>
+	<escape  chance="0.5" min="3" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_SHIP_REBEL"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="REBEL_AUTO" auto_blueprint="SHIPS_AUTO">
+	<escape chance="0.5" min="3" max="4">
+		<text load="AUTO_SUICIDE_START_TEXT"/>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>Your crew reports: "Enemy FTL charge complete."</text>
+		<choice req="AE_ADV_THRUSTERS" hidden="true"> 
+			<text>(Advanced Proximity Navigation) Brace for impact!</text>
+			<event>
+				<text>Your advanced navigation takes over automatically. Within a split second, it fires the boosters and brings the ship in the optional position to withstand the explosion. The shields barely hold, but your ship remains undamaged. Nothing remains of the automated vessel.</text>
+			</event>
+		</choice>
+		<choice hidden="true"> 
+			<text>Continue...</text>
+			<event>
+				<text load="AUTO_SUICIDE_SUCCESS_TEXT"/>
+				<damage amount="4"/>
+			</event>
+		</choice>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_AUTO"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+<textList name="AUTO_SUICIDE_START_TEXT">
+	<text>The auto ship activates its self-destruction sequence. The resulting explosion will be quite hazardous.</text>
+	<text>Your receive a hail: "This is an automated message. Be advised: Rebel tech will never be left to the enemy. FTL overload activated." The AI will detonate it's core.</text>
+	<text>The scanners show high energy spikes in the auto ships main reactor. Seems it will try to suicide in order to deal some damage to your ship.</text>
+</textList>
+<textList name="AUTO_SUICIDE_SUCCESS_TEXT">
+	<text>As the auto ships FTL core is fully charged it immediately disengages the internal core shielding. The resulting explosion is substantial and a plasma spike scorches your ships hull.</text>
+	<text>The auto scouts FTL core overloads and heavily distorts space around it. The final implosion compresses the vessel to the size of a sugar cube and the gravity anomaly deforms your hull as well.</text>
+	<text>The vidscreen activates the radiation blends as your ship is caught in the massive explosion that completely annihilates the AI ship.</text>
+	<text>As the auto ships FTL core ignites, it jumps into higher space, only to immediately reappear right behind your ship! You put full power to the engines but cannot evade the following explosion. Debris parts smash through your shields and damage the ship.</text>
+</textList>
+
+<ship name="ENGI_SHIP" auto_blueprint="SHIPS_CIRCLE">
+	<destroyed load="DESTROYED_SHIP_ENGI"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="MANTIS_FIGHT" auto_blueprint="SHIPS_MANTIS">
+	<destroyed load="DESTROYED_SHIP_MANTIS"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+	<crew>
+		<crewMember type="mantis" prop="0.80"/>
+		<crewMember type="engi" prop="0.20"/>
+	</crew>
+</ship>
+
+<ship name="JELLY" auto_blueprint="SHIPS_JELLY">
+	<surrender  chance="0.5" min="3" max="4" load="SLUG_SURRENDER"/>
+	<escape  chance="0.5" min="3" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_SHIP_SLUG"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="JELLY_UNLOCK1" auto_blueprint="SHIPS_JELLY">
+	<surrender  chance="0" min="3" max="4" load="SLUG_UNLOCK_SURRENDER"/>
+	<escape  chance="0.5" min="3" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_SHIP_SLUG"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="ZOLTAN_SHIP" auto_blueprint="SHIPS_ZOLTAN">   <!-- JUSTIN - MAKE A SURRENDER!!-->
+	<destroyed load="DESTROYED_SHIP_ZOLTAN"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="ZOLTAN_PIRATE" auto_blueprint="SHIPS_ZOLTAN_PIRATE">
+	<surrender  chance="0.5" min="3" max="4" load="PIRATE_SURRENDER"/>
+	<escape  chance="0.5" min="2" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_SHIP_PIRATE"/>
+	<gotaway>
+		<text>The pirate jumped away.</text>
+	</gotaway>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="CRYSTAL_SHIP" auto_blueprint="SHIPS_CRYSTAL">   
+	<surrender  chance="0.6" min="3" max="4">
+		<text load="CRYSTAL_SHIP_SURRENDER"/>
+		<choice hidden="true">
+			<text>Accept their surrender.</text>
+			<event load="CRYSTAL_SHIP_SURRENDER"/>
+		</choice>
+		<choice hidden="true">
+			<text>Ignore them.</text>
+			<event>
+				<text>You cut off communications and prepare to finish them off.</text>
+			</event>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_SHIP_CRYSTAL"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship> 
+
+<ship name="CRYSTAL_SHIP_NO_SURRENDER" auto_blueprint="SHIPS_CRYSTAL">   
+	<destroyed load="DESTROYED_SHIP_CRYSTAL"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+
+<!-- END OF POLISH KIT MODIFIED VANILLA SHIP EVENTS -->
+
+<!-- BS/CE SHIP EVENTS -->
+
+<ship name="BS_FED" auto_blueprint="BS_STATIONS_FED">
+	<surrender  chance="0.5" min="3" max="6" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_CIV" auto_blueprint="BS_STATIONS_CIV">
+	<surrender  chance="0.5" min="3" max="6" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_FED_BOSS" auto_blueprint="BS_STATIONS_FED">
+	<destroyed>
+		<text>There's no time to salvage all the debris of the staion, as some of the fleets cruiser must have noticed you by now. Everyone get ready to jump!</text>
+		<autoReward level="MED">scrap_only</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>There isn't time to salvage much from the occupied station, but your crew manages to steal a shuttle loaded with military equipment. After the bay doors close everyone gets ready to jump. The enemy cruisers are closing in!</text>
+		<autoReward level="HIGH">stuff</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="BS_FED_AUTO" auto_blueprint="BS_STATIONS_FED_AUTO">
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_PIRATE" auto_blueprint="BS_STATIONS_PIRATE">
+	<surrender  chance="0.5" min="3" max="6" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_PIRATE_BLACKMARKET" auto_blueprint="BS_STATIONS_PIRATE_BLACKMARKET">
+	<surrender min="8" max="12" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_PIRATE_ASTEROID" auto_blueprint="BS_STATIONS_CIV_ASTEROID">
+	<surrender min="5" max="6" load="BS_PIRATE_SURRENDER"/>
+	<destroyed>
+		<text>The asteroid can no longer withstand the fire you dispense on it. Some instalations within it explode and the rock goes to pieces. You send a salvage crew into the few decompressed corridors that are not compleately burned out. They return with some usuable materials.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>You order your crew to double check, but also the second scan shows no more life signs on the asteroid station. You send a salvage crew into it's endless, dark corridors and they return with some valuable equipment.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="BS_PIRATE_CHOICE" auto_blueprint="BS_STATIONS_PIRATE">
+	<surrender  chance="0.5" min="4" max="8" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_PIRATE_SUICIDE" auto_blueprint="BS_STATIONS_PIRATE_SUICIDE">
+	<escape timer="20" min="5" max="6">
+		<status type="clear" target="enemy" system="engines" amount="100"/>
+		<text load="BS_PIRATE_SUICIDE_START_TEXT"/>
+		<ship hostile="true"/>
+	</escape> 
+	<gotaway>
+		<text>Your crew reports: "Enemy FTL charge complete."</text>
+		<choice req="AE_ADV_THRUSTERS" hidden="true"> 
+			<text>(Advanced Proximity Navigation) Brace for impact!</text>
+			<event>
+				<text>Your advanced navigation takes over automatically. It fires the boosters and brings the ship in the optional position to withstand the explosion within a split second. The shields barely hold, but your ship remains undamaged. Nothing remains of the station remains salvageable.</text>
+			</event>
+		</choice>
+		<choice hidden="true"> 
+			<text>Continue...</text>
+			<event>
+				<text load="BS_PIRATE_SUICIDE_SUCCESS_TEXT"/>
+				<damage amount="6"/>
+			</event>
+		</choice>
+	</gotaway>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+<textList name="BS_PIRATE_SUICIDE_START_TEXT">
+	<text>You receive a hail from a pirate general, his voice sounding dark and hollow: "If I go down I'll be taking you with me!". They start to overload an attached FTL core!</text>
+	<text>Your scanners register impressive energy spikes. The station seems to be equipped with an improvised FTL core, which has been set to overload. Multiple escape pods and tiny shuttles leave the station. Maybe you should get out of here too?</text>
+	<text>"Your are quite a worthy opponent. But we still have some aces up our sleeves. Execute plan delta!" Escape pods leave the station and it's FTL signature starts fluctuating. It's going to blow up!</text>
+	<text>They message you: "We will never surrender. My crew has made up their mind long ago. It was fun while it lasted, now go to hell!" You detect massive energy output. The station seems to have some kind of FTL bomb installed. They are going to blow themselves up!</text>
+</textList>
+<textList name="BS_PIRATE_SUICIDE_SUCCESS_TEXT">
+	<text>At first you think the whole stations is jumping away. But it suddenly fades back into real-space and collapses in a bright pink explosion. Strong energy rays bombard your ship.</text>
+	<text>The station is torn apart by a violent explosion. Dead pirates and debris parts are blasted towards your ship and you can't manage to evade all the wreckage. Your ship suffers collision damage.</text>
+	<text>The vidscreen automatically turns to safety white and shields your eyes from the bright explosion that completely annihilates the staion. Your crew braces for impact as your ship is caught in the massive blast wave. These pirates must have been completely nuts.</text>
+	<text>As the stations FTL system ignites parts of it jump into higher dimension while most of it remains in front of you and conventionally explodes. A major structure part is send flying towards you. To big to be stopped by your shields it tears a substantial hole into your hull.</text>
+</textList>
+<ship name="BS_PIRATE_STRONGHOLD" auto_blueprint="BS_STATIONS_PIRATE">
+	<surrender min="6" max="7">
+		<text>You lost contact with most of your wingmen. Occasionally you see laser fire and explosions flashing in between asteroids in the distance.</text>
+	</surrender>
+	<destroyed>
+		<text>The pirate stronghold breaks apart and the few remaining pirate ships escape deeper into the field.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Contact the civilian defenders.</text>
+			<event load="DEFENSE_OFFENSE_LIST"/>    
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>No more life signs detected on the pirate station. You proceed to salvage it's equipment.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Contact the civilian defenders.</text>
+			<event load="DEFENSE_OFFENSE_LIST"/>    
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="PIRATE_DEFENSE" auto_blueprint="SHIPS_PIRATE">
+	<destroyed>
+		<text>The stations defenders concentrate their fire on your target and the pirate ship is blown apart by multiple full salvos. The outlaws have suffered heavy losses and retreat. You salvage what remains of their ships.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Contact the civilian defenders.</text>
+			<event load="DEFENSE_SUCCESS_LIST"/>    
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>No more life signs detected on the pirate ship. You proceed to salvage it's equipment, as the outlaws have suffered heavy losses and start to retreat.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Contact the civilian defenders.</text>
+			<event load="DEFENSE_SUCCESS_LIST"/>    
+		</choice>
+	</deadCrew>
+</ship>
+
+
+<ship name="BS_AUTO_TURRET_DEFENSE_SUPPLY" auto_blueprint="BS_STATIONS_AUTO_TURRET">
+	<destroyed>
+		<text>Your crew reports: "Its breaking apart Sir!" You give out salvage orders.</text>
+		<autoReward level="MED">scrap_only</autoReward>
+		<choice hidden="true">
+			<text>Investigate the station.</text>
+			<event load="BS_EVENT_AUTO_DEFENSE_SUPPLY_RESULTS"/>
+		</choice>
+	</destroyed>
+</ship>
+
+<ship name="BS_AUTO_TURRET_SATELLITE_DEFENSE" auto_blueprint="BS_STATIONS_AUTO_SUICIDE">
+	<destroyed>
+		<text>The rest of the defense cluster is powering down as the control satellite is destroyed. The station does not seem to be too happy with your 'solution' but they still offer a reward.</text>
+		<autoReward level="MED">scrap_only</autoReward>
+	</destroyed>
+</ship>
+
+<ship name="BS_AUTO_TURRET" auto_blueprint="BS_STATIONS_AUTO_TURRET">
+	<surrender  chance="0.8" min="3" max="4" load="BS_AUTO_SURRENDER"/>
+	<destroyed load="BS_STATION_AUTO_DESTROYED"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+
+<ship name="BS_AUTO_SUICIDE" auto_blueprint="BS_STATIONS_AUTO_SUICIDE">
+	<escape timer="15" min="5" max="6">
+		<status type="clear" target="enemy" system="engines" amount="100"/>
+		<text load="BS_AUTO_SUICIDE_START_TEXT"/>
+		<ship hostile="true"/>
+	</escape> 
+	<gotaway>
+		<text>Your crew reports: "Enemy FTL charge complete."</text>
+		<choice hidden="true"> 
+			<text>Continue...</text>
+			<event>
+				<text load="BS_AUTO_SUICIDE_SUCCESS_TEXT"/>
+				<damage amount="4"/>
+			</event>
+		</choice>
+		<choice req="AE_ADV_THRUSTERS" hidden="true"> 
+			<text>(Advanced Proximity Navigation) Brace for impact!</text>
+			<event>
+				<text>Your advanced navigation takes over automatically. It fires the boosters and brings the ship in the optional position to withstand the explosion within a split seconds. The shields barely hold, but your ship remains undamaged. Nothing of the enemy remains salvageable.</text>
+			</event>
+		</choice>
+	</gotaway>
+	<destroyed load="BS_STATION_AUTO_DESTROYED"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+<textList name="BS_AUTO_SUICIDE_START_TEXT">
+	<text>The automatic structure is badly damaged and activates its self-destruction sequence. The resulting explosion will be quite hazardous.</text>
+	<text>"Simulations show high chance of terminal failure for this station. Be advised: Rebel tech will never be left to the enemy. FTL overload activated." The AI is going to blow itself up!</text>
+	<text>They AI hails you: "I failed my masters and my programming tells me to kill myself now. Have a nice day." Your ship detects an FTL charge pattern. Apparently the AI will try to detonate its core.</text>
+</textList>
+<textList name="BS_AUTO_SUICIDE_SUCCESS_TEXT">
+	<text>As the satellites FTL core is fully charged it swings around it's weapon cluster and fires a full barrage into itself. The resulting explosion is substantial and a plasma spike scorches your ships hull.</text>
+	<text>The satellites FTL core overloads and heavily distorts space around it. The final implosion compresses the satellite to the size of a sugar cube and the gravity anomaly deforms your hull as well. </text>
+	<text>The vidscreen activates the radiation blends as your ship is caught in the massive explosion that completely annihilates the satellite.</text>
+	<text>As the satellites overloaded FTL core ignites, it jump into higher space, only to immediately reappear right behind your ship! You put full power to the engines but cannot evade the following explosion. Debris parts smash through your shields and damage the ship.</text>
+</textList>
+
+
+<ship name="BS_REBEL" auto_blueprint="BS_STATIONS_REBEL">
+	<surrender  chance="0.5" min="4" max="5" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_REBEL_QUEST_SUPPLY" auto_blueprint="BS_STATIONS_REBEL_SUPPLY">
+	<destroyed>
+		<text>The station breaks apart and the fuel depot ignites, leaving the place burning in multicolored chemical fires. The asteroid barrage further obstruct your salvaging attempts, but at last your new found guerrilla friends hail you again: "Nicely done sir, we saw the whole thing."</text>
+		<choice hidden="true"> 
+			<text>Continue...</text>
+			<event>
+				<text>"This place is too exposed, we got to jump now, but you might find this useful. Good luck out here." They transmit some stolen Rebel security codes and the coordinates of an enemy weapon depot. This might be worth a look.</text>
+				<autoReward level="MED">standard</autoReward>
+				<quest event="BS_QUEST_REBEL_REWARD"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>Their station goes quiet and you crew salvages as much as possible. Solid-PXt005 hails you and again you have no idea where they are."Nicely done sir, we saw the whole thing. This place is too exposed, we got to jump now, but you might find this useful. Good luck out here." They transmit some stolen Rebel security codes and the coordinates of an enemy weapon depot. That might be worth a look.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<quest event="BS_QUEST_REBEL_REWARD"/>
+	</deadCrew>
+</ship>
+
+<ship name="BS_ROCK_TRADE" auto_blueprint="BS_STATIONS_ROCK_TRADE">
+	<surrender min="10" max="11" load="BS_ROCK_TRADE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_ROCK_OUTPOST" auto_blueprint="BS_STATIONS_ROCK_OUTPOST">
+	<surrender chance="0.5" min="5" max="7" load="BS_ROCK_OUTPOST_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_ROCK_COLONY" auto_blueprint="BS_STATIONS_ROCK_ASTEROID">
+	<surrender min="10" max="11" load="BS_ROCK_OUTPOST_SURRENDER"/>
+	<destroyed>
+		<text>The Rock colony breaks apart under the heavy pounding. It's many underground tunnels are split open and the inhabitants drift into open space, quickly suffocating. You send in a full salvage team.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The asteroid is finally emptied of enemy Rockmen. You feel little remorse slaughtering beings made mostly of inorganic materials. A full salvage teams returns with a lot of usable equipment.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="BS_ENGI_DRONE" auto_blueprint="BS_STATIONS_ENGI_DRONE">
+	<escape chance="0.5" min="5" max="6" load="BS_ENGI_ESCAPE"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<gotaway>
+		<text>The stations FTL ignites and leaves a massive ripple in real-space. The whole Engi stations jumps away.</text>
+	</gotaway>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+<textList name="BS_ENGI_ESCAPE_TEXT">
+	<text>The Engi on board the station still seem to have some sense of self-preservation. They start to charge a small FTL core to escape the engagement.</text>
+	<text>Your scanners register impressive energy spikes. The station seems to be equipped with an improvised FTL core. Are these mad beings trying to jump away with an entire station?</text>
+	<text>You suddenly receive a hail: "This engagement unlogic. We-goal: Escape." The stations seems to have rudimentary engine components and it looks like the mad crew will try to jump away with the whole thing.</text>
+</textList>
+
+<ship name="BS_ENGI_MEDICAL" auto_blueprint="BS_STATIONS_ENGI_MEDICAL">
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_ENGI_MEDICAL_MANTIS_CONTROLLED" auto_blueprint="BS_STATIONS_ENGI_MEDICAL">
+	<destroyed>
+		<text>The station structural integrity fails, it decompresses and breaks apart. Reactor leaks emit some of the highest radiation spikes you have ever seen. It is unclear how many Engi survived the battle with the Mantis, but they definitely didn't survive this. You collect some scrap and hasten to get our of here.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>Your scanners pick up no more Mantis live signs on the station, the boarding party has been defeated. You scan for surviving Engi.</text>
+		<choice hidden="true">
+			<text>Try contacting any survivors.</text>
+			<event load="BS_DISTRESS_ENGI_MEDICAL_MANTIS_CONTROLLED_SAVE"/>    
+		</choice>
+	</deadCrew>
+	<crew>
+		<crewMember type="mantis" prop="1"/>
+	</crew>
+</ship>
+
+<ship name="BS_MANTIS" auto_blueprint="BS_STATIONS_MANTIS">
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_ZOLTAN" auto_blueprint="BS_STATIONS_ZOLTAN">
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_SLUG" auto_blueprint="BS_STATIONS_SLUG">
+	<surrender  chance="0.5" min="6" max="7" load="BS_SLUG_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_JELLY_STATUS_WEAPONS" auto_blueprint="BS_STATIONS_SLUG">
+	<destroyed>
+		<text>The Slug station breaks apart and your weapon system returns to normal. You collect what you can.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="weapons"/>
+	</destroyed>
+	<deadCrew>
+		<text>With their crew dead, you quickly shut off their hacking module and your weapon system returns to normal. You strip the station.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="weapons"/>
+	</deadCrew>
+</ship>
+
+<ship name="BS_JELLY_STATUS_OXIGEN_DOORS" auto_blueprint="BS_STATIONS_SLUG">
+	<destroyed>
+		<text>The Slug station breaks apart and your life support and airlocks are functioning fully again. You collect what you can.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="oxygen" amount="100"/>
+		<status type="clear" target="player" system="doors" amount="100"/>
+	</destroyed>
+	<deadCrew>
+		<text>With their crew dead, you quickly shut off their hacking module and your live support and door systems returns to normal. You strip the station.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="oxygen" amount="100"/>
+		<status type="clear" target="player" system="doors" amount="100"/>
+	</deadCrew>
+</ship>
+
+<ship name="BS_JELLY_STATUS_SHIELDS_MEDBAY" auto_blueprint="BS_STATIONS_SLUG">
+	<destroyed>
+		<text>The Slug station breaks apart and luckily the stations effector did not permanently disrupt your shield and medbay control. You collect what you can.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="shields" amount="100"/>
+		<status type="clear" target="player" system="medbay" amount="100"/>
+	</destroyed>
+	<deadCrew>
+		<text>With their crew dead, you quickly shut off their hacking module and your shield and medbay returns to normal. You strip the station.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="shields" amount="100"/>
+		<status type="clear" target="player" system="medbay" amount="100"/>
+	</deadCrew>
+</ship>
+
+<ship name="BS_JELLY_STATUS_ENGINES_PILOT" auto_blueprint="BS_STATIONS_SLUG">
+	<destroyed>
+		<text>The Slug station breaks apart and luckily the stations effector did not permanently disrupt your ships navigation. You collect what you can.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="engines" amount="100"/>
+		<status type="clear" target="player" system="pilot" amount="100"/>
+	</destroyed>
+	<deadCrew>
+		<text>With their crew dead, you quickly shut off their hacking module and your ships engines returns to normal. You strip the station.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<status type="clear" target="player" system="engines" amount="100"/>
+		<status type="clear" target="player" system="pilot" amount="100"/>
+	</deadCrew>
+</ship>
+
+<ship name="BS_CORPORATION" auto_blueprint="BS_STATIONS_CORP">
+	<destroyed>
+		<text>The stations generator core overloads and blows the installment into bits. Mr. Johnson will probably not be to happy, but you could still meet him at the coordinates he has given you.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>Your crew reports: "FTL charged and ready, Sir!"</text>
+				<quest event="CE_JUNTA_JOB_FAIL"/>    
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You dock the station and search for any remaining Rebel Space Marines. You realize the whole squad is dead. During your sweep your crew discovers some valuable tech in one of the lab rooms.</text>
+		<choice hidden="true">
+			<text>Leave the station as it is.</text>
+			<event>
+				<text>You head out to report back to your employer.</text>
+				<quest event="CE_JUNTA_JOB_SUCCESS"/>    
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Take the tech.</text>
+			<event>
+				<text>You secure an argumentation and some scrap. You are sure one will miss it.</text>
+				<autoReward level="HIGH">augment</autoReward>
+				<quest event="CE_JUNTA_JOB_FAIL"/>
+			</event>    
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="CE_CORPORATION_CUSTOM" auto_blueprint="CE_SHIPS_CORP">
+	<destroyed>
+		<text>The Waypoint-Junta assault ship bursts into parts. Among the debris your scanners detect the remains of highly developed tec, but now it has only scrap value.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>You find Mr. Johnson with blood on his suit among his dead corporate troopers. "Well done, captain... My supervisors will not like this..." He succumbs to his wounds. The crew informs you that his custom assault class is equipped with a high tec augmentation. You order to transfer it to your ship.</text>
+		<autoReward level="LOW">augment</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="CE_CORPORATION" auto_blueprint="CE_SHIPS_CORP">
+	<surrender  chance="0.5" min="2" max="3" load="PIRATE_SURRENDER"/>
+	<escape  chance="0.5" min="3" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_FED_SCIENCE" auto_blueprint="BS_STATIONS_FED_SCIENCE">
+	<destroyed>
+		<text>Your weapons hit a critical section and the science stations supplies combust, incinerating the whole installment in chemical fires that are visible for many clicks. You scrap what little remains of it. Scanners indicate some drone tech was on board, but it remains unusualness now.</text>
+		<autoReward level="LOW">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>Your crew suits up and carefully searches the station. They make sure all the infected are dead and also discover a drone schematic in one of the labs. You order to set the stations generator core to overload and prepare to jump.</text>
+		<autoReward level="LOW">drone</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="CE_ENGI_COLLECTOR" auto_blueprint="CE_SHIPS_ENGI_COLLECTOR">
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+
+<ship name="C_REBEL_CRUISER_FLEET" auto_blueprint="C_SHIPS_REBEL_CRUISER_ELITE">
+	<destroyed>
+		<text>You did it! The cruisers weapon systems overload, ammunitions explode and the ship is torn apart. With one of their forward elite units destroyed, the Rebel Fleet will probably advance more cautiously now. But the rest of the squadron is already closing in. There's no time to salvage the huge wreck, everybody get ready to jump!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+		<modifyPursuit amount="-3"/>
+	</destroyed>
+	<deadCrew>
+		<text>The rest of the squadron is already closing in, there's no time to salvage the cruiser. You order your crew to set it's FTL to overload. The destruction of one of their elite assets will make the Rebel Fleet more cautious, you have bought yourself some time. Everybody get ready to jump!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+		<modifyPursuit amount="-3"/>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_CRUISER_FLEET_BEACON" auto_blueprint="C_SHIPS_REBEL_CRUISER_ELITE_EXIT">
+	<destroyed>
+		<text>You did it! The cruisers weapon systems overload, ammunitions explode and the ship is torn apart. With one of their forward elite units destroyed, the Rebel Fleet will probably advance more cautiously now. But the rest of the squadron is already closing in. There's no time to salvage the huge wreck, everybody get ready to jump!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+		<modifyPursuit amount="-2"/>
+	</destroyed>
+	<deadCrew>
+		<text>The rest of the squadron is already closing in, there's no time to salvage the cruiser. You order your crew to set it's FTL to overload. The destruction of one of their elite assets will make the Rebel Fleet more cautious, you have bought yourself some time. Everybody get ready to jump!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+		<modifyPursuit amount="-2"/>
+	</deadCrew>
+</ship>
+
+<ship name="REBEL_CRUISER_FLEET_FUEL" auto_blueprint="C_SHIPS_REBEL_CRUISER_ELITE_EXIT">
+	<destroyed>
+		<text>With one of their forward elite units destroyed, the Rebel Fleet will probably advance more cautiously now. You manage to retrieve a few precious fuel capsules before the rest of the Rebel cruisers start to fire.</text>
+		<item_modify>
+			<item type="fuel" min="2" max="3"/>
+		</item_modify>
+		<modifyPursuit amount="-1"/>
+	</destroyed>
+	<deadCrew>
+		<text>You order your crew to set the cruisers FTL to overload. The destruction of one of their elite assets will make the Rebel Fleet more cautious. You manage to retrieve a few precious fuel capsules before the rest of the Rebel cruisers start to fire.</text>
+		<item_modify>
+			<item type="fuel" min="2" max="3"/>
+		</item_modify>
+		<modifyPursuit amount="-1"/>
+	</deadCrew>
+</ship>
+
+
+<ship name="C_REBEL_CRUISER_AVOIDABLE" auto_blueprint="C_SHIPS_REBEL_CRUISER_ELITE">
+	<surrender  min="15" max="15">
+		<text load="C_REBEL_CRUISER_AVOIDABLE_POWERUP_TEXT"/>
+		<status type="clear" target="enemy" system="drones" amount="100"/>
+		<status type="clear" target="enemy" system="teleporter" amount="100"/>
+		<status type="clear" target="enemy" system="cloaking" amount="100"/>
+	</surrender>
+	<destroyed>
+		<text>You did it! The cruisers weapon systems overload, ammunitions explode and the ship is torn apart. With one of their forward elite units destroyed, the Rebel Fleet will probably advance more cautiously now. But the rest of the squadron is already closing in. There's no time to salvage the huge wreck, everybody get ready to jump!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+		<modifyPursuit amount="-3"/>
+	</destroyed>
+	<deadCrew>
+		<text>The rest of the squadron is already closing in, there's no time to salvage the cruiser. You order your crew to set it's FTL to overload. The destruction of one of their elite assets will make the Rebel Fleet more cautious, you have bought yourself some time. Everybody get ready to jump!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+		<modifyPursuit amount="-3"/>
+	</deadCrew>
+</ship>
+<textList name="C_REBEL_CRUISER_AVOIDABLE_POWERUP_TEXT">
+	<text>The cruiser hails you again: "You have been resisting an executive asset of the Rebel fleet. In accordance with general system law we are allowed to engage you with our full system array." You detect that additional offensive components are activating on the cruiser.</text>
+	<text>The Rebels message you: "You want to play rough?" Your scanners indicate that the cruiser is powering up additional systems.</text>
+	<text>You are hailed: "Alright, lets stop playing around. We will show you what a cruiser of the Rebel fleet really is capable of now." The cruiser activates it's backup systems.</text>
+</textList>
+
+<ship name="C_REBEL_BATTLESHIP_FLEET" auto_blueprint="C_SHIPS_REBEL_BATTLESHIP_ELITE">
+	<destroyed>
+		<text>Your crew bursts into loud cheering as the Rebel battleship finally is blown apart by a bright explosion. The destruction of one of their elite assets will make the Rebel fleet more cautious, you have bought yourself some time.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>Unfortunately there is no time for celebration: Multiple cruisers are closing in. If you want to tell the tale of what you just accomplished here you will have to jump now.</text>
+				<item_modify>
+					<item type="fuel" min="1" max="1"/>
+				</item_modify>
+				<modifyPursuit amount="-4"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>The battleships crew of highly trained space marines lies dead in the cold corridors. The odds where heavily stacked against you, but you still managed to disabled one of the mightiest ship classes in the galaxy. You order your crew to set it's FTL to overload. The destruction of one of their elite assets will make the Rebel Fleet more cautious, you have bought yourself some time.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>Unfortunately there is no time for celebration: Multiple cruisers are closing in. If you want to tell the tale of what you just accomplished here you will have to jump now.</text>
+				<item_modify>
+					<item type="fuel" min="1" max="1"/>
+				</item_modify>
+				<modifyPursuit amount="-4"/>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_GUNBOAT_FLEET" auto_blueprint="C_SHIPS_REBEL_GUNBOATS_ELITE">
+	<destroyed>
+		<text>There's no time to salvage the enemy ship... You must jump away before the capital ships get in firing range!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+	</destroyed>
+	<deadCrew>
+		<text>There's no time to salvage the enemy ship... You must jump away before the capital ships get in firing range!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_CRUISER_BOSS_RESCUE" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<escape min="4" max="5" >
+		<text>They cruiser took heavy damage and prepares to retreat.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The Rebel cruiser jumps away, leaving a massive ripple in the fabric of space-time. You can contact their would-be victim.</text>
+		<choice hidden="true"> 
+			<text>Contact the survivors.</text>
+			<event load="C_REBEL_CRUISER_BOSS_RESCUE_LIST"/>
+		</choice>
+	</gotaway>
+	<destroyed>
+		<text>You did it! With the Rebel cruiser destroyed you are free to contact their would-be victim.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true"> 
+			<text>Contact the survivors.</text>
+			<event load="C_REBEL_CRUISER_BOSS_RESCUE_LIST"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You did it! With the Rebel cruiser defeated you quickly salvage what you can and move to contact their prey.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true"> 
+			<text>Contact the survivors.</text>
+			<event load="C_REBEL_CRUISER_BOSS_RESCUE_LIST"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+
+<ship name="C_FED_CRUISER_RESCUE" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<escape  min="6" max="7" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The Rebel cruiser jumps away, leaving a massive ripple in the fabric of space-time. They  must be contacting fleet command right now, informing every ship in the sector of your whereabouts. At last you can contact their would-be victim.</text>
+		<modifyPursuit amount="1"/>
+		<choice hidden="true"> 
+			<text>Contact the survivors.</text>
+			<event load="C_FED_CRUISER_RESCUE_LIST"/>
+		</choice>
+	</gotaway>
+	<destroyed>
+		<text>You did it! With the Rebel cruiser destroyed you are free to contact their would-be victim.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true"> 
+			<text>Contact the survivors.</text>
+			<event load="C_FED_CRUISER_RESCUE_LIST"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You did it! With the Rebel cruiser defeated you quickly salvage what you can and move to contact their prey.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true"> 
+			<text>Contact the survivors.</text>
+			<event load="C_FED_CRUISER_RESCUE_LIST"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_CRUISER_BOSS" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<destroyed>
+		<text>The cruisers hull integrity fails and the crew is sucked into vacuum tough multiple hull breaches. That was a tough one. You salvage some parts and prepare to further pursue the Rebel flagship.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>These Rebels aren't so tough after all. With the cruisers crew eliminated you quickly salvage what you can and prepare to further pursue the Rebel flagship.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_GUNBOAT_BOSS" auto_blueprint="C_SHIPS_REBEL_GUNBOATS">
+	<destroyed>
+		<text>The ship breaks apart. You move in to salvage what remains usable.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The patro crafts crew is dead and the ship goes quiet. You send in a salvage crew and let them strip the ship of anything useful.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_CRUISER" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<escape min="5" max="6" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The Rebel cruiser jumps away, leaving a massive ripple in the fabric of space-time. They will probably inform the fleet of your position, but at last you managed to survive this vicious battle.</text>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<text>You did it, the cruiser breaks apart! Several major explosions only leave a slowly drifting debris field behind. You collect what usable material floats near by, but the wreckage is so big that more time would be necessary to salvage everything. You run a quick debris-drift analysis to see what you could gather.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice>
+			<text>Spend more time to collect the additional materials.</text>
+			<event>
+				<text>You slowly circle around the beacon a few times and have your crew keep track of all the drifting parts that seem valuable. The stuff you collect isn't bad, but if you gained any time by destroying this Rebel capital ship than you already lost most of it.</text>
+				<modifyPursuit amount="-1"/>
+				<autoReward level="RANDOM">standard</autoReward>
+			</event>
+		</choice>
+		<choice>
+			<text>Ignite the FTL drive and leave to the next beacon.</text>
+			<event>
+				<text>The unexpected destruction of one of their capital ships here will surely worry the Rebels and make tham approach more cautiously. You gained an advantage for now.</text>
+				<modifyPursuit amount="-2"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You did it, the cruiser crew is dead! You send in a salvage crew and let them strip the ship of anything useful. The team also manages to access the ships long range com systems. You send a message with Rebel encryption, claiming that you have been captured. The investigation will surly slow down the Rebel fleet quite a bit.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<modifyPursuit amount="-3"/>
+	</deadCrew>
+</ship>
+
+
+<ship name="C_REBEL_CRUISER_FED" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<escape  chance="0.5" min="4" max="5" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The Rebel cruiser jumps away, leaving a massive ripple in the fabric of space-time. They will probably inform the fleet of your position, but at last you managed to survive this vicious battle.</text>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<text>You did it, the cruiser breaks apart! Several major explosions leave only scrap behind. You collect what usable material floats near by. The destruction of one of their capital ships will surely be taken seriously by the Rebels. You gained an advantage for now.</text>
+		<autoReward level="MED">standard</autoReward>
+		<modifyPursuit amount="-1"/>
+	</destroyed>
+	<deadCrew>
+		<text>You did it, the cruiser crew is dead! You send in a salvage crew and let them strip the ship of anything useful. You order your crew to set it's FTL to overload. The destruction of one of their forward assets will make the Rebel fleet more cautious. You have bought the Federation fleet and yourself some time.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<modifyPursuit amount="-1"/>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_CRUISER_FEDERATION_BASE" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<escape min="4" max="5" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The Rebel cruiser jumps away, leaving a massive ripple in the fabric of space-time. They will probably inform the fleet of your position, but at last you managed to survive this vicious battle.</text>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<text>You did it, the cruiser breaks apart! Several major explosions only leave a slowly drifting debris field behind. You collect what usable material floats near by, but the wreckage is so big that more time would be necessary to salvage everything. You run a quick debris-drift analysis to see what you could gather.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice>
+			<text>Spend more time to collect the additional materials.</text>
+			<event>
+				<text>You slowly circle around the beacon a few times and have your crew keep track of all the drifting parts that seem valuable. The stuff you collect isn't bad, but if you gained any time by destroying this Rebel capital ship than you already lost most of it.</text>
+				<modifyPursuit amount="-1"/>
+				<autoReward level="RANDOM">standard</autoReward>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event>
+						<text>You contact the station during the salvaging operation. A lone survivor responds, "This base is no longer safe. Let me join your crew and we'll have the station's drones patch up your ship."</text>
+						<crewMember amount="1"/>
+						<damage amount="-10"/>
+					</event>
+				</choice>
+			</event>
+		</choice>
+		<choice>
+			<text>Prepare the FTL drive anc scan for suvivors.</text>
+			<event>
+				<text>The unexpected destruction of one of their capital ships here will surely worry the Rebels and make them approach more cautiously. You gained an advantage for now. A lone survivor responds to your hails: This base is no longer safe. Let me join your crew and we'll have the station's drones patch up your ship."</text>
+				<modifyPursuit amount="-2"/>
+				<crewMember amount="1"/>
+				<damage amount="-10"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You did it, the cruiser crew is dead! You send in a salvage crew and let them strip the ship of anything useful. The team also manages to access the ships long range com systems. You send a message with Rebel encryption, claiming that you have been captured. The investigation will surly slow down the Rebel fleet quite a bit.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<modifyPursuit amount="-3"/>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>While your crew is busy on the cruiser you contact the the station. A lone survivor responds: "This base is no longer safe. Let me join your crew and we'll have the station's drones patch up your ship."</text>
+				<crewMember amount="1"/>
+				<damage amount="-10"/>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_GUNBOAT" auto_blueprint="C_SHIPS_REBEL_GUNBOATS">
+	<escape min="4" max="5" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The patrol craft jumps away. They will certainly inform the fleet of your location.</text>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains usable.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The patro crafts crew is dead and the ship goes quiet. You send in a salvage crew and let them strip the ship of anything useful.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="C_CIVILIAN_TRANSPORT" auto_blueprint="C_SHIPS_CIVILIAN_TRANSPORT">
+	<escape timer="40" min="20" max="20" >
+		<text>They cargo ship is trying to escape.</text>
+		<ship hostile="true"/>
+	</escape>
+	<surrender chance="0.5" min="2" max="3">
+		<text load="PIRATE_SURRENDER_TEXT"/>
+		<choice hidden="true">
+			<text>Simply let them go.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. After a time the ship slowly limps away. They refuse all communications. You feel somewhat guilty but are also glad that you didn't went through with this.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event load="C_PIRACY_SUCCESS_LOOT_CIVILIAN"/>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_PIRACY_CIVILIAN"/>
+	<deadCrew load="DEAD_CREW_PIRACY_CIVILIAN"/>
+</ship>
+
+<ship name="C_ENGI_TRANSPORT" auto_blueprint="SHIPS_CIRCLE_TRANSPORT">
+	<escape timer="30" min="20" max="20" >
+		<text>They engi ship is trying to escape.</text>
+		<ship hostile="true"/>
+	</escape>
+	<surrender chance="0.5" min="2" max="3">
+		<text load="C_ENGI_SURRENDER_TEXT"/>
+		<choice hidden="true">
+			<text>Simply let them go.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. After a time the ship slowly limps away. They refuse all communications. You feel somewhat guilty but are also glad that you didn't went through with this.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event load="C_PIRACY_SUCCESS_LOOT_ENGI"/>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_PIRACY_ENGI"/>
+	<deadCrew load="DEAD_CREW_PIRACY_ENGI"/>
+</ship>
+
+<ship name="C_ZOLTAN_TRANSPORT" auto_blueprint="SHIPS_ZOLTAN_TRANSPORT">
+	<escape timer="30" min="20" max="20" >
+		<text>They engi ship is trying to escape.</text>
+		<ship hostile="true"/>
+	</escape>
+	<surrender chance="0.5" min="2" max="3">
+		<text load="ZOLTAN_SURRENDER_TEXT"/>
+		<choice hidden="true">
+			<text>Simply let them go.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. After a time the ship slowly limps away. They refuse all communications. You feel somewhat guilty but are also glad that you didn't went through with this.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event load="C_PIRACY_SUCCESS_LOOT_ZOLTAN"/>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_PIRACY_ZOLTAN"/>
+	<deadCrew load="DEAD_CREW_PIRACY_ZOLTAN"/>
+</ship>
+
+<ship name="CE_UNION_PIRATE_1" auto_blueprint="SHIPS_PIRATE">
+	<escape  chance="0.5" min="2" max="4" load="PIRATE_ESCAPE"/>
+	<gotaway>
+		<text>The pirate jumped away. They must have realized that their position has been tracked, because a little time later you loose the signal. Seems they will continue to terrorize the trade unions caravans and there is nothing you can do about it now.</text>
+	</gotaway>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains usable. Then you track down the position of the second pirate.</text>
+		<autoReward level="MED">standard</autoReward>
+		<quest event="CE_EVENT_PIRATE_2"/>
+	</destroyed>
+	<deadCrew>
+		<text>The patrol pirates are dead and the ship goes quiet. You send in a salvage crew and let them strip the ship of anything useful. Then you proceed to hunt down the second pirate.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<quest event="CE_EVENT_UNION_PIRATE_2"/>
+	</deadCrew>
+</ship>
+<ship name="CE_UNION_PIRATE_2" auto_blueprint="SHIPS_PIRATE">
+	<escape min="2" max="4" load="PIRATE_ESCAPE"/>
+	<gotaway>
+		<text>The pirate jumped away. They must have realized that their position has been tracked, because a little time later you loose the signal. Seems they will continue to terrorize the trade unions caravans and there is nothing you can do about it now.</text>
+	</gotaway>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains. Then you track down the position of the third pirate.</text>
+		<autoReward level="MED">standard</autoReward>
+		<quest event="CE_EVENT_PIRATE_3"/>
+	</destroyed>
+	<deadCrew>
+		<text>The patrol pirates are dead and the ship goes quiet. You send in a salvage crew and let them strip the ship of anything useful. Then you proceed to hunt down the third pirate.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<quest event="CE_EVENT_UNION_PIRATE_3"/>
+	</deadCrew>
+</ship>
+
+<ship name="CE_UNION_PIRATE_3" auto_blueprint="SHIPS_PIRATE">
+	<escape min="4" max="6" load="PIRATE_ESCAPE"/>
+	<gotaway>
+		<text>The pirate jumped away. They must have realized that their position has been tracked, because a little time later you loose the signal. Seems they will continue to terrorize the trade unions caravans and there is nothing you can do about it now.</text>
+	</gotaway>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains usable. The crew congratulates you on a mission well accomplished.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Send a burst message and wait for your trade union contact to arrive.</text>
+			<event>
+				<text>You send an FTL package to the closes trade union station. A cargo ship with a scout escort jumps in a few cycles later. You are hailed: "Let us scan your combat logs please... I see, everything in order. Well done captain, we will transmit the cargo now."</text>
+				<modifyPursuit amount="1"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event load="TE_LOOT_GOODS_UNION"/>
+				</choice>
+			</event>
+		</choice>
+		<choice>
+			<text>We don't have time and we don't need a reward for this. Let's move on.</text>
+			<event>
+				<text>You prefer space combat over haggling with traders. The union will surely be happy that you helped them for free. You prepare to move onwards towards new adventures.</text>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>The pirates are dead and the ship goes quiet. You send in a salvage crew and let them strip the ship of anything useful. The crew congratulates you on a mission well accomplished.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Send a burst message and wait for your trade union contact to arrive.</text>
+			<event>
+				<text>You send an FTL package to the closes trade union station. A cargo ship with a scout escort jumps in a few cycles later. You are hailed: "Let us scan your combat logs please... I see, everything in order. Well done captain, we will transmit the cargo now."</text>
+				<modifyPursuit amount="1"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event load="TE_LOOT_GOODS_UNION"/>
+				</choice>
+			</event>
+		</choice>
+		<choice>
+			<text>We don't have time and we don't need a reward for this. Let's move on.</text>
+			<event>
+				<text>You prefer space combat over haggling with traders. The union will surely be happy that you helped them for free. You prepare to jump on to new adventures.</text>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="CE_CIV_REPAIR" auto_blueprint="BS_STATIONS_CIV_REPAIR">
+	<surrender min="3" max="4">
+		<text>The station sends surrender codes and contacts your ship. The personal looks quite scared. "Alright ah, we got the message. Maybe... you are interested in some free repairs?"</text>
+		<choice hidden="true">
+			<text>Leave them alone.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. They refuse all further communications. You feel somewhat guilty but are also glad that you didn't went through with this.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event>
+				<text>They send out some of their remaining repair drones to patch up your ship. "There you go, now please leave."</text>
+				<ship hostile="false"/>
+				<damage amount="-10"/>
+				<choice>
+					<text>Continue...</text>
+					<event load="C_PIRACY_SUCCESS"/>
+				</choice>
+			</event>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed>
+		<text>The repair drones can't keep up with patching up the damage you cause. The stations drone control fails and the structure breaks apart. As you scrap the wreckage you find one of the drones still operational.</text>
+		<choice hidden="true"> 
+			<text>Continue...</text>
+			<event>
+				<text>You send it out to work on your ship but it soon ceases functioning.</text>
+				<damage amount="-3"/>
+				<autoReward level="LOW">standard</autoReward>
+				<choice hidden="true"> 
+					<text>Continue...</text>
+					<event load="C_PIRACY_SUCCESS"/>
+				</choice>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>The stations crew is dead. You size control of the repair drone systems.</text>
+		<choice hidden="true"> 
+			<text>Continue...</text>
+			<event>
+				<text>While you strip the station, you also send some of the drones out to work on your ship.</text>
+				<damage amount="-5"/>
+				<autoReward level="MED">standard</autoReward>
+				<choice hidden="true"> 
+					<text>Continue...</text>
+					<event load="C_PIRACY_SUCCESS"/>
+				</choice>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="CE_CIV_REFEUL" auto_blueprint="BS_STATIONS_CIV_OUTPOST">
+	<surrender  chance="1.0" min="12" max="13">
+		<text>The stations personal informs you that they want to surrender. They offer some of their fuel if you let them go.</text>
+		<choice hidden="true">
+			<text>Simply leave them alone.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. They refuse all further communications. You feel somewhat guilty but are also glad that you didn't went through with this.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event>
+				<text>They transfer the fuel containers. This was easy.</text>
+				<ship hostile="false"/>
+				<item type="fuel" min="3" max="5"/>
+				<choice>
+					<text>Continue...</text>
+					<event load="C_PIRACY_SUCCESS"/>
+				</choice>
+			</event>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed>
+		<text>The fuel depot is hit and the entire station is incinerated within seconds. A few containers go blasted away and you take them aboard along with some of the scrap.</text>
+		<autoReward level="LOW">fuel</autoReward>
+		<choice>
+			<text>Continue...</text>
+			<event load="C_PIRACY_SUCCESS"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>The stations crew lies dead int the corridors. You strip everything that looks useful and plunder their fuel supply.</text>
+		<autoReward level="MED">fuel</autoReward>
+		<choice>
+			<text>Continue...</text>
+			<event load="C_PIRACY_SUCCESS"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+
+<ship name="REBEL_AUTO_STORM_DELAY" auto_blueprint="SHIPS_AUTO">
+	<surrender  min="2" max="3">
+		<text>While fighting the scout, environmental conditions worsened in this part of the nebula. A plasma storm breaks loose!</text>
+		<environment type="storm"/>
+	</surrender>
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="CE_INFILTRATOR" auto_blueprint="SHIPS_INFILTRATOR">
+	<escape timer="22" min="3" max="4" >
+		<status type="clear" target="enemy" system="cloaking" amount="100"/>
+		<text>They infiltrator activates it's cloaking and powers up the FTL drive, it is trying to slip away! It's scouting mission seems to be more important than skirmishing with you.</text>
+		<ship hostile="true"/>
+	</escape>
+	<destroyed>
+		<text>The ship suffers critical damage and breaks apart. You salvage what remains of it.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew load="DEAD_CREW_INFILTRATOR"/>
+</ship>
+
+<ship name="CE_INFILTRATOR_AUTO" auto_blueprint="SHIPS_AUTO_INFILTRATOR">
+	<escape timer="25" min="3" max="4" >
+		<status type="clear" target="enemy" system="cloaking" amount="100"/>
+		<text>They infiltrator activates it's cloaking and powers up the FTL drive, it is trying to slip away! It's scouting mission seems to be more important than skirmishing with you.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The infiltrator jumps away. It will certainly have informed the fleet of your position. At last you know that your aren't follower any more. For now.</text>
+	</gotaway>
+	<destroyed>
+		<text>The infiltrator suffers critical damage and breaks apart. You salvage what remains of it and make sure to look out for this sneaky scouts some more in the future.</text>
+		<autoReward level="MED">standard</autoReward>
+		<modifyPursuit amount="-1"/>
+	</destroyed>
+</ship>
+
+<ship name="MILITIA_SHIP" auto_blueprint="SHIPS_MILITIA">
+	<surrender  chance="0.5" min="3" max="4" load="PIRATE_SURRENDER"/>
+	<escape  chance="0.5" min="2" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<gotaway>
+		<text>The militia ship jumped away.</text>
+	</gotaway>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_MILITIA" auto_blueprint="BS_STATIONS_CIV">
+	<surrender  chance="0.5" min="3" max="6" load="BS_PIRATE_SURRENDER"/>
+	<destroyed load="BS_STATION_DESTROYED_DEFAULT"/>
+	<deadCrew load="BS_DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="BS_CIV_TRADE_STATION" auto_blueprint="BS_STATIONS_CIV_TRADE">
+	<surrender chance="1.0" min="3" max="4">
+		<text>The stations personal informs you that they want to surrender. They offer some of their goods.</text>
+		<choice hidden="true">
+			<text>Cease fire.</text>
+			<event>
+				<text>You power down your weapons and tell them that you made a mistake. They station refuses all communications. Soon several militia scouts jump in. Time to get out of here.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Accept their offer.</text>
+			<event load="C_PIRACY_SUCCESS_LOOT_CIVILIAN"/>
+		</choice>
+		<choice>
+			<text>We will not accept surrender!</text>
+			<event/>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_PIRACY_CIVILIAN_STATION"/>
+	<deadCrew load="DEAD_CREW_PIRACY_CIVILIAN_STATION"/>
+</ship>
+
+<ship name="CE_TEST" auto_blueprint="CE_SHIPS_TEST">
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="GANG_WARNING" auto_blueprint="SHIPS_MILITIA_PIRATE">
+	<escape timer="30" min="20" max="20" >
+		<text>The gang ship is trying to get away. If they manage to escape they will most likely inform the fleet of your whereabouts.</text>
+		<ship hostile="true"/>
+	</escape>
+	<surrender  chance="0.5" min="3" max="4" load="PIRATE_SURRENDER"/>
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="GANG_SHIP" auto_blueprint="SHIPS_MILITIA_PIRATE">
+	<surrender  chance="0.5" min="3" max="4" load="PIRATE_SURRENDER"/>
+	<escape  chance="0.5" min="2" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed load="DESTROYED_DEFAULT"/>
+	<gotaway>
+		<text>The militia ship jumped away.</text>
+	</gotaway>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="QUEST_FED_BATTLE_1_SHIP_CRUISER" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<surrender min="14" max="15">
+		<text>You and the lead-cruiser take potshots at each other while the battle continues around you. Both sides take heavy loses. A Rebel fighter squadron tries to flank you, but is intercepted by a Federation assault class.</text>
+	</surrender>
+	<escape min="5" max="6">
+		<text>The lead-cruiser took heavy damage and the entire Rebel squadron prepares to retreat. Looks like you have won!</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<fleet>fed</fleet>
+		<text>The Rebel squadrons jumps away one after each, there are so many jumps that the ship computer is unable to distinguish the individual FTL signatures. The battle-group commander contacts you again: "Well done! We got them on the run for a change. We will intercept them at [encrypted]. Join up with us there again."</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>They transmit the coordinates for the next engagement. After the fleet jumped out you stay behind a little to scrap from the many wreckages.</text>
+				<autoReward level="HIGH">standard</autoReward>
+				<quest event="QUEST_FED_BATTLE_2"/>
+			</event>
+		</choice>
+	</gotaway>
+	<destroyed>
+		<text>The lead-ship fires a final barrage before it's FTL core detonate. The vessel is torn into two pieces, on smashing onto the rear section of a nearby Federation Cruiser. The rest of the Rebels jump away one by one and the combat dies down.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>fed</fleet>
+				<text>The battle-group commander contacts you again: "Well done! We got them on the run for a change. We will intercept them at [encrypted]. Join up with us there again." They transmit the coordinates for the next engagement. After the fleet jumped out you stay behind to scrap from the many wreckages.</text>
+				<autoReward level="HIGH">standard</autoReward>
+				<quest event="QUEST_FED_BATTLE_2"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>The Rebel squadron commanders are all dead and the rest of the ships decide to retreat. There are so many jumps that the computer is unable to distinguish the individual FTL signatures.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<fleet>fed</fleet>
+			<event>
+				<text>The battle-group commander contacts you again: "Well done! We got them on the run for a change. We will intercept them at [encrypted]. Join up with us there again." They transmit the coordinates for the next engagement. After the fleet jumped out you stay behind to scrap from the many wreckages.</text>
+				<autoReward level="HIGH">standard</autoReward>
+				<quest event="QUEST_FED_BATTLE_2"/>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="QUEST_FED_BATTLE_1_SHIP_FIGHTER" auto_blueprint="SHIPS_REBEL_FIGHTER">
+	<surrender min="5" max="6">
+		<text>As you pursue the Fighter the Rest of it's squadron takes heavy losses. Two of the crafts are disabled at the same time by a single, well aimed vindicator-beam blast of a nearby Federation cruiser.</text>
+	</surrender>
+	<destroyed>
+		<text>You managed to take out the fighter. Around you, the fighting has died down by now. Seems some of the Rebel cruiser already retreated. The rest of the Rebel ships also jump away one by one.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>fed</fleet>
+				<text>The battle-group commander contacts you again: "Well done! We got them on the run for a change. We will intercept them at [encrypted]. Join up with us there again." They transmit the coordinates for the next engagement. After the fleet jumped out you stay behind to scrap from the many wreckages.</text>
+				<autoReward level="HIGH">standard</autoReward>
+				<quest event="QUEST_FED_BATTLE_2"/>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You managed to take out the fighters crew. Around you, the fighting has died down by now. Seems some of the Rebel cruiser already retreated. The rest of the Rebel ships also get away one by one. There are so many jumps that the computer is unable to distinguish the individual FTL signatures.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>fed</fleet>
+				<text>The battle-group commander contacts you again: "Well done! We got them on the run for a change. We will intercept them at [encrypted]. Join up with us there again." They transmit the coordinates for the next engagement. After the fleet jumped out you stay behind to scrap from the many wreckages.</text>
+				<autoReward level="HIGH">standard</autoReward>
+				<quest event="QUEST_FED_BATTLE_2"/>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="QUEST_FED_BATTLE_1_SHIP_SUPPORT" auto_blueprint="SHIPS_REBEL_SUPPORT">
+	<surrender min="5" max="6">
+	<text planet="PLANET_POPULATED_SMALL">As you try to pick off the support craft your wingmen take heavy damage. One of the cruisers FTL control malfunctions. They short-jump into the lower orbit of a planet and crash into a densely populated area. You try to focus on the battle.</text>
+	</surrender>
+	<destroyed>
+		<text>You and your wingmen managed to take out the support crafts. The Federation fleet has taken heavy losses though. "All Federation crafts, this is battle-group command. Simulations show no possible positive outcome for this engagement. All crafts scatter and retreat. Regroup at Federation high command."</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>rebel</fleet>
+				<text>This did not went well. Seems there is no stopping the Rebel fleet. You quickly scrap some of the wreckage and prepare to jump before the cruiser spot you.</text>
+				<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You managed to take out the support crafts crew. The Federation fleet has taken heavy losses though. "All Federation crafts, this is battle-group command. Simulations show no possible positive outcome for this engagement. All crafts scatter and retreat. Regroup at Federation high command."</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>rebel</fleet>
+				<text>This did not went well. Seems there is no stopping the Rebel fleet. You quickly scrap some of the wreckage and prepare to jump before the cruiser spot you.</text>
+				<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="QUEST_FED_BATTLE_1_SHIP_TROOPSHIP" auto_blueprint="SHIPS_REBEL_TROOPSHIP">
+	<surrender min="5" max="6">
+		<text>While you fight two other troopships managed to deliver their boarding parties. A disabled Federation cruiser sends a distress call, pulse-rifle fire is heard in the background: "This is the RS [encrypted]. We have been boarded, requesting..." Communication is cut.</text>
+	</surrender>
+	<destroyed>
+		<text>You managed to take out the troopship. The Federation fleet has taken heavy losses though. "All Federation crafts, this is battle-group command. Simulations show no possible positive outcome for this engagement. All crafts scatter and retreat. Regroup at Federation high command."</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>rebel</fleet>
+				<text>This did not go well. Seems there is no stopping the Rebel fleet. You quickly scrap some of the wreckage and prepare to jump before the cruiser spot you.</text>
+				<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You managed to take out the Rebel marines. The Federation fleet has taken heavy losses though. "All Federation crafts, this is battle-group command. Simulations show no possible positive outcome for this engagement. All crafts scatter and retreat. Regroup at Federation high command."</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<fleet>rebel</fleet>
+				<text>This did not go well. Seems there is no stopping the Rebel fleet. You quickly scrap some of the wreckage and prepare to jump before the cruiser spot you.</text>
+				<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+
+<ship name="C_REBEL_CRUISER_FED_QUEST_END" auto_blueprint="C_SHIPS_REBEL_CRUISER">
+	<escape  chance="0.5" min="4" max="5" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The Rebel cruiser jumps away, leaving a massive ripple in the fabric of space-time. They will probably inform the fleet of your position, but at last you managed to survive this vicious battle.</text>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<fleet>rebel</fleet>
+		<text>You did it, the cruisers breaks apart! Several major explosions only leave a slowly drifting debris field behind. You collect what usable material floats near by, but a large fleet detachment jumps in and interrupts your salvaging. You have to leave immediately.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<fleet>rebel</fleet>
+		<text>You did it, the cruiser crew is dead! You send in a salvage crew and let them strip the ship of anything useful. You order your crew to set it's FTL to overload. A large fleet detachment jumps in, you have to leave immediately.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="C_BOUNTYHUNTER_EFFECTOR" auto_blueprint="SHIPS_AUTO_HUNTER">
+	<escape timer="30" min="6" max="7">
+		<text>As you attack the Auto-Ship it spins up it's FTL drive. Seems this is the bounty hunters automated escape plan.</text>
+		<ship hostile="true"/>
+		<status type="clear" target="enemy" system="weapons" amount="100"/>
+		<status type="clear" target="enemy" system="cloaking" amount="100"/>
+	</escape>
+	<gotaway>
+		<text>The automated ship jumps away and your systems return to normal. The Rebels will probably be inform about what happened here soon.</text>
+		<status type="clear" target="player" system="oxygen" amount="100"/>
+		<status type="clear" target="player" system="doors" amount="100"/>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<text>You managed to disable the bounty hunter craft and your life support comes back on. The ships high tech equipment will make good salvaging.</text>
+		<status type="clear" target="player" system="oxygen" amount="100"/>
+		<status type="clear" target="player" system="doors" amount="100"/>
+		<autoReward level="HIGH">standard</autoReward>
+	</destroyed>
+</ship>
+
+<ship name="C_BOUNTYHUNTER" auto_blueprint="SHIPS_AUTO_HUNTER">
+	<escape timer="30" min="6" max="7">
+		<text>As you attack the Auto-Ship spins up it's FTL drive. Seems this is the bounty hunters automated escape plan.</text>
+		<ship hostile="true"/>
+		<status type="clear" target="enemy" system="weapons" amount="100"/>
+		<status type="clear" target="enemy" system="cloaking" amount="100"/>
+	</escape>
+	<gotaway>
+		<text>The automated ship jumps away. The Rebels will probably be informed about what happened here soon.</text>
+		<modifyPursuit amount="1"/>
+	</gotaway>
+	<destroyed>
+		<text>You managed to disable the bounty hunter craft. The ships high tech equipment will make good salvaging.</text>
+		<autoReward level="HIGH">stuff</autoReward>
+	</destroyed>
+</ship>
+
+<ship name="ROCK_PIRATE_ESCAPE" auto_blueprint="SHIPS_ROCK_PIRATE">
+	<surrender min="4" max="5">
+		<text>The fighting maneuvers brought your ships near to a small asteroid field. Having suffered heavy damage, the Rock pirates decide to abandon the attack. They activate their backup thrusters and try to escape into the hazard zone. "Should we pursue them into the field to finish them off captain?"</text>
+		<choice hidden="true">
+			<text>Go after them.</text>
+			<event>
+				<text>You order evasive maneuvers and follow them into the field.</text>
+				<environment type="asteroid"/>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Let them escape.</text>
+			<event>
+				<text>The ship disappears into the field. Maybe they get crushed by asteroids, but you have to assume they know the terrain and will live to harass other vessels. The weapon engineer powers down the guns and you return to the beacon.</text>
+				<ship hostile="false"/>
+			</event>
+		</choice>
+		<choice hidden="true" req="engines" lvl="7">
+			<text>(Improved Engines) Intercept them before they get to the asteroid field!</text>
+			<event>
+				<text>You are pushed deep into your seat as you pilot puts full power to the engine. You easily get ahead of the ship. No one escapes you!</text>
+			</event>
+		</choice>
+	</surrender>
+	<destroyed load="DESTROYED_SHIP_ROCK"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+	<crew>
+		<crewMember type="rock" prop="1"/>
+	</crew>
+</ship>
+
+<ship name="C_REBEL_GUNBOAT_TRAITOR" auto_blueprint="C_SHIPS_REBEL_GUNBOATS">
+	<escape  chance="0.5" min="4" max="5" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The patrol craft jumps away and the traitor escapes with it.</text>
+	</gotaway>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains usable. You ex-crewmember surely died with his Rebel friends.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The patrol crafts goes quiet. You send in a salvage crew and let them strip the ship of anything useful. They find the traitor among his dead Rebel friends. He is still breathing. "Im sorry captain." He coughs and passes out.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="C_REBEL_GUNBOAT_TRAITOR_REWARD" auto_blueprint="C_SHIPS_REBEL_GUNBOATS">
+	<escape  chance="0.5" min="4" max="5" load="C_CRUISER_ESCAPE"/>
+	<gotaway>
+		<text>The patrol craft jumps away. The traitor already has relaid your position to the Rebels. You have to get out of here.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>You order an investigation of the incident. It turns out you ex-crewmen had stored away some of your supplies in a shuttle. Probably for an escape plan. You put the scrap back in your cargo bay.</text>
+			<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</gotaway>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains usable.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>You order an investigation of the incident. It turns out the traitor had stored away some of your supplies in a shuttle. Probably an escape plan. You put the scrap back in your cargo bay.</text>
+			<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>The patrol crafts crew is dead and the ship goes quiet. You send in a salvage crew and let them strip the ship of anything useful.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>You order an investigation of the incident. It turns out the traitor had stored away some of your supplies in a shuttle. Probably an escape plan. You put the scrap back in your cargo bay.</text>
+			<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</deadCrew>
+</ship>
+
+<ship name="PIRATE_PERFECT_STORM" auto_blueprint="SHIPS_PIRATE">
+	<escape  chance="0.5" min="2" max="4" load="PIRATE_ESCAPE"/>
+	<destroyed>
+		<text>The ship breaks apart, you move in to salvage what remains usable and prepare to get out of here as quickly as possible.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</destroyed>
+	<gotaway>
+		<text>The pirate jumped away. The storm has not lost any of its intensity. You try to fiddle enough power into the engines to get out of here.</text>
+	</gotaway>
+	<deadCrew>
+		<text>The pirates are all dead and the ship goes quiet, while the storm continues to roars around you. You send in a salvage crew and let them strip the ship of anything useful.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="GHOST_AI_SHIP" auto_blueprint="SHIPS_GHOST">
+	<destroyed>
+		<text>The strange ship is destroyed. It won't be able to trouble future travelers.</text>
+		<autoReward level="LOW">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>Your findings on board verify your suspicion: Logs show the advanced ship AI went insane after several hundred years of isolation out here. Luckily, it's deranged avatars have all been eliminated now. You salvage everything useful.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<crew>
+		<crewMember class="ghost" prop="2"/>
+	</crew>
+</ship>
+
+<ship name="ZOLTAN_RIFT_CRYSTAL" auto_blueprint="SHIPS_CRYSTAL">
+	<destroyed>
+		<text>You salvage the remains and contact the wise man.</text>
+		<autoReward level="MED">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="ZOLTAN_RIFT_SUCCESS"/>
+		</choice>
+	</destroyed>
+	<deadCrew>
+		<text>You salvage the ship and contact the wise man.</text>
+		<autoReward level="HIGH">standard</autoReward>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="ZOLTAN_RIFT_SUCCESS"/>
+		</choice>
+	</deadCrew>
+</ship>
+
+
+<ship name="CE_SPOTTER_REBEL_FLEET" auto_blueprint="SHIPS_REBEL_DEFENDER_ELITE">
+	<destroyed>
+		<text>The spotter unit ceases functioning under the fire of your weapons, but the Rebel fleet has already acquired you. There is no time to lose, you have to jump away!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+	</destroyed>
+	<weaponOverride count="1">
+		<name>CE_FLEET_ARTILLERY_1</name>
+		<name>CE_FLEET_ARTILLERY_2</name>
+		<name>CE_FLEET_ARTILLERY_3</name>
+	</weaponOverride>
+</ship>
+
+<ship name="CE_SPOTTER_REBEL_FLEET_NO_FUEL" auto_blueprint="SHIPS_REBEL_DEFENDER_ELITE">
+	<destroyed>
+		<text>The spotter unit ceases functioning under the fire of your weapons, but the Rebel fleet has already acquired you. There is no time to lose, you have to jump away with the little fuel you can gather from the wreckage.</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+	</destroyed>
+	<weaponOverride count="1">
+		<name>CE_FLEET_ARTILLERY_1</name>
+		<name>CE_FLEET_ARTILLERY_2</name>
+		<name>CE_FLEET_ARTILLERY_3</name>
+	</weaponOverride>
+</ship>
+
+<ship name="CE_SPOTTER_REBEL_BEAM" auto_blueprint="SHIPS_REBEL_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>Seems the Rebel spotter ship considers it's job done. It prepares to short-jump back into orbit.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The automated ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The planetary defense ship is finaly shot down by heavy fire from your weapon arrays. You quickly salvage some of it's valuable tech and hasten to get out of here.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>After the crew has been taken care of you sweep past the defense ship and quickly gather some of it's advanced tech. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<weaponOverride count="1">
+		<name>CE_PLANETARY_BEAM_1</name>
+		<name>CE_PLANETARY_BEAM_2</name>
+		<name>CE_PLANETARY_BEAM_3</name>
+	</weaponOverride>
+</ship>
+
+<ship name="CE_SPOTTER_REBEL_ARTILLERY" auto_blueprint="SHIPS_REBEL_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>Seems the Rebel spotter ship considers it's job done. It prepares to short-jump back into orbit.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The automated ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The planetary defense ship is finaly shot down by heavy fire from your weapon arrays. You quickly salvage some of it's valuable tech and hasten to get out of here.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>After the crew has been taken care of you sweep past the defense ship and quickly gather some of it's advanced tech. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<weaponOverride count="1">
+		<name>CE_PLANETARY_ARTILLERY_1</name>
+		<name>CE_PLANETARY_ARTILLERY_2</name>
+		<name>CE_PLANETARY_ARTILLERY_3</name>
+		<name>CE_PLANETARY_ARTILLERY_4</name>
+	</weaponOverride>
+</ship>
+
+<ship name="CE_SPOTTER_MANTIS_ARTILLERY" auto_blueprint="SHIPS_MANTIS_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Mantis crew seems to think that it has allready fought brave enough. The spotter ship prepares to retreat.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The spotter ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The blue mantis spotter ship is consumed in deep red flames. You quickly salvage some parts of it's wreckage and hasten to leave.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The last remaining Mantis defender realizes that continue fighting is pointless but it decides to jettison itself into open space rather than surrendering. You quickly approach the ship to salvage some of it's advanced tech. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<weaponOverride count="1">
+		<name>CE_PLANETARY_ARTILLERY_1</name>
+		<name>CE_PLANETARY_ARTILLERY_2</name>
+		<name>CE_PLANETARY_ARTILLERY_3</name>
+		<name>CE_PLANETARY_ARTILLERY_4</name>
+	</weaponOverride>
+	<crew>
+		   <crewMember type="mantis" prop="0.75"/>
+		   <crewMember type="engi" prop="0.25"/>
+	</crew>
+</ship>
+
+<ship name="CE_SPOTTER_ROCK_ARTILLERY" auto_blueprint="SHIPS_ROCK_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Rock crew considers a retreat. They surely hope that the artillery will finish you off.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The garrison ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The defense ship armored hull bursts open under your last salvo. Rock garrison forces don't seem to be as tough as one might think, but you have to leave before they send in more ships.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The mighty Rock defenders have been slain and their ship drifts dead in space. You quickly approach it to salvage some of it's equipment. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<weaponOverride count="1">
+		<name>CE_PLANETARY_ARTILLERY_1</name>
+		<name>CE_PLANETARY_ARTILLERY_2</name>
+		<name>CE_PLANETARY_ARTILLERY_3</name>
+		<name>CE_PLANETARY_ARTILLERY_4</name>
+	</weaponOverride>
+</ship>
+
+
+<ship name="CE_SPOTTER_ZOLTAN_BEAM" auto_blueprint="SHIPS_ZOLTAN_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Zoltan defenders shields have failed and it sustained heavy damage. It charges up it's FTL and prepares to jump back to it's garrison planet.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The defender class jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The defense ship armored hull bursts open under your last salvo. Rock garrison forces don't seem to be as tough as one might think, but you have to leave before they send in more ships.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The mighty Rock defenders have been slain and their ship drifts dead in space. You quickly approach it to salvage some of it's equipment. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<weaponOverride count="1">
+		<name>CE_PLANETARY_BEAM_1</name>
+		<name>CE_PLANETARY_BEAM_2</name>
+		<name>CE_PLANETARY_BEAM_3</name>
+	</weaponOverride>
+</ship>
+
+
+<ship name="CE_SPOTTER_CIV_BEAM" auto_blueprint="SHIPS_CIV_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Zoltan defenders shields have failed and it sustained heavy damage. It charges up it's FTL and prepares to jump back to it's garrison planet.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The defender class jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The defense ship armored hull bursts open under your last salvo. Rock garrison forces don't seem to be as tough as one might think, but you have to leave before they send in more ships.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The mighty Rock defenders have been slain and their ship drifts dead in space. You quickly approach it to salvage some of it's equipment. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+	<weaponOverride count="1">
+		<name>CE_PLANETARY_BEAM_1</name>
+		<name>CE_PLANETARY_BEAM_2</name>
+		<name>CE_PLANETARY_BEAM_3</name>
+	</weaponOverride>
+</ship>
+
+
+<ship name="CE_SPOTTER_REBEL_FLEET_SUPERSHIELD" auto_blueprint="SHIPS_REBEL_DEFENDER_ELITE">
+	<destroyed>
+		<text>The spotter unit ceases functioning under the fire of your weapons, but the Rebel fleet has already acquired you. There is no time to lose, you have to jump away!</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+	</destroyed>
+</ship>
+
+<ship name="CE_SPOTTER_REBEL_FLEET_NO_FUEL_SUPERSHIELD" auto_blueprint="SHIPS_REBEL_DEFENDER_ELITE">
+	<destroyed>
+		<text>The spotter unit ceases functioning under the fire of your weapons, but the Rebel fleet has already acquired you. There is no time to lose, you have to jump away with the little fuel you can gather from the wreckage.</text>
+		<item_modify>
+			<item type="fuel" min="1" max="1"/>
+		</item_modify>
+	</destroyed>
+</ship>
+
+<ship name="CE_SPOTTER_REBEL_BEAM_SUPERSHIELD" auto_blueprint="SHIPS_REBEL_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>Seems the Rebel spotter ship considers it's job done. It prepares to short-jump back into orbit.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The automated ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The planetary defense ship is finaly shot down by heavy fire from your weapon arrays. You quickly salvage some of it's valuable tech and hasten to get out of here.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>After the crew has been taken care of you sweep past the defense ship and quickly gather some of it's advanced tech. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="CE_SPOTTER_REBEL_ARTILLERY_SUPERSHIELD" auto_blueprint="SHIPS_REBEL_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>Seems the Rebel spotter ship considers it's job done. It prepares to short-jump back into orbit.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The automated ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The planetary defense ship is finaly shot down by heavy fire from your weapon arrays. You quickly salvage some of it's valuable tech and hasten to get out of here.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>After the crew has been taken care of you sweep past the defense ship and quickly gather some of it's advanced tech. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="CE_SPOTTER_MANTIS_ARTILLERY_SUPERSHIELD" auto_blueprint="SHIPS_MANTIS_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Mantis crew seems to think that it has allready fought brave enough. The spotter ship prepares to retreat.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The spotter ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The blue mantis spotter ship is consumed in deep red flames. You quickly salvage some parts of it's wreckage and hasten to leave.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The last remaining Mantis defender realizes that continue fighting is pointless but it decides to jettison itself into open space rather than surrendering. You quickly approach the ship to salvage some of it's advanced tech. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+<ship name="CE_SPOTTER_ROCK_ARTILLERY_SUPERSHIELD" auto_blueprint="SHIPS_ROCK_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Rock crew considers a retreat. They surely hope that the artillery will finish you off.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The garrison ship jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The defense ship armored hull bursts open under your last salvo. Rock garrison forces don't seem to be as tough as one might think, but you have to leave before they send in more ships.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The mighty Rock defenders have been slain and their ship drifts dead in space. You quickly approach it to salvage some of it's equipment. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+
+<ship name="CE_SPOTTER_ZOLTAN_BEAM_SUPERSHIELD" auto_blueprint="SHIPS_ZOLTAN_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Zoltan defenders shields have failed and it sustained heavy damage. It charges up it's FTL and prepares to jump back to it's garrison planet.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The defender class jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The defense ship armored hull bursts open under your last salvo. Rock garrison forces don't seem to be as tough as one might think, but you have to leave before they send in more ships.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The mighty Rock defenders have been slain and their ship drifts dead in space. You quickly approach it to salvage some of it's equipment. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+
+<ship name="CE_SPOTTER_CIV_BEAM_SUPERSHIELD" auto_blueprint="SHIPS_CIV_DEFENDER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Zoltan defenders shields have failed and it sustained heavy damage. It charges up it's FTL and prepares to jump back to it's garrison planet.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The defender class jumps away. You should probably do the same quick.</text>
+	</gotaway>
+	<destroyed>
+		<text>The defense ship armored hull bursts open under your last salvo. Rock garrison forces don't seem to be as tough as one might think, but you have to leave before they send in more ships.</text>
+		<autoReward level="MED">standard</autoReward>
+	</destroyed>
+	<deadCrew>
+		<text>The mighty Rock defenders have been slain and their ship drifts dead in space. You quickly approach it to salvage some of it's equipment. Then you hasten to jump away.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</deadCrew>
+</ship>
+
+
+<ship name="CE_MINELAYER_ROCK_HAZARD" auto_blueprint="CE_SHIPS_ROCK_MINELAYER_HAZARD">
+	<escape chance="0.5" min="3" max="4">
+		<text>The minelayer seems ill equiped for direct combat and prepares to make a hasty retreat.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The minelayer jumps away and you find yourself alone in the hazard field.</text>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_ROCK"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+	<weaponOverride count="1">
+		<name>BA_MINES_SMALL_HAZARD_1</name>
+		<name>BA_MINES_SMALL_HAZARD_2</name>
+		<name>BA_MINES_SMALL_HAZARD_3</name>
+		<name>BA_MINES_SMALL_HAZARD_4</name>
+		<name>BA_MINES_SMALL_HAZARD_5</name>
+		<name>BA_MINES_SMALL_HAZARD_6</name>
+	</weaponOverride>
+</ship>
+
+<ship name="CE_MINELAYER_ROCK" auto_blueprint="CE_SHIPS_ROCK_MINELAYER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The minelayer seems ill equiped for direct combat and prepares to make a hasty retreat.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The minelayer jumps away and you find yourself alone in the hazard field.</text>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_ROCK"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+
+<ship name="CE_MINELAYER_MANTIS_HAZARD" auto_blueprint="CE_SHIPS_MANTIS_MINELAYER_HAZARD">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Mantis crew seems to favor setting traps as opposed to open fighting. The minelayer prepares to jump away.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The minelayer jumps away and you find yourself alone in the hazard field.</text>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_MANTIS"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+	<crew>
+		<crewMember type="mantis" prop="0.80"/>
+		<crewMember type="engi" prop="0.20"/>
+	</crew>
+	<weaponOverride count="1">
+		<name>BA_MINES_SMALL_HAZARD_1</name>
+		<name>BA_MINES_SMALL_HAZARD_2</name>
+		<name>BA_MINES_SMALL_HAZARD_3</name>
+		<name>BA_MINES_SMALL_HAZARD_4</name>
+		<name>BA_MINES_SMALL_HAZARD_5</name>
+		<name>BA_MINES_SMALL_HAZARD_6</name>
+	</weaponOverride>
+	<crew>
+		   <crewMember type="mantis" prop="0.75"/>
+		   <crewMember type="engi" prop="0.25"/>
+	</crew>
+</ship>
+
+
+<ship name="CE_MINELAYER_MANTIS" auto_blueprint="CE_SHIPS_MANTIS_MINELAYER">
+	<escape chance="0.5" min="3" max="4">
+		<text>The Mantis crew seems to favor setting traps as opposed to open fighting. The minelayer prepares to jump away.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The minelayer jumps away and you find yourself alone in the hazard field.</text>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_MANTIS"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+	<crew>
+		   <crewMember type="mantis" prop="0.75"/>
+		   <crewMember type="engi" prop="0.25"/>
+	</crew>
+</ship>
+
+<ship name="CE_ROCK_MILITARY_CRUISER" auto_blueprint="CE_SHIPS_ROCK_MILITARY">
+	<escape chance="0.7" min="6" max="7">
+		<text>Seems the Rock military has found it's master for once. The ship engages it's FTL drive and prepares to retreat.</text>
+		<ship hostile="true"/>
+	</escape>
+	<gotaway>
+		<text>The Rock military vessel jumps away. You can just hope they don't track down again, with more ships.</text>
+	</gotaway>
+	<destroyed load="DESTROYED_SHIP_ROCK"/>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+<ship name="CE_ROCK_MILITARY_RAMSHIP" auto_blueprint="CE_SHIPS_ROCK_RAMSHIP">
+	<surrender chance="0.5" min="15" max="15">
+		<text>The ship that is dispatched against you seems eager to engage in combat. It actually heads for you on a direct collision course!</text>
+		<choice hidden="true">
+			<text>Attempt to alter trajectory.</text>
+			<event load="CE_ROCK_RAMSHIP_EVASION_1"/>
+		</choice>
+		<choice hidden="true" req="engines" lvl="4">
+			<text>(Improved Engines) Divert power to navigation thrusters!</text>
+			<event load="CE_ROCK_RAMSHIP_EVASION_2"/>
+		</choice>
+		<choice hidden="true" req="engines" lvl="6">
+			<text>(Advanced Engines) Full power to engines!</text>
+			<event load="CE_ROCK_RAMSHIP_EVASION_3"/>
+		</choice>
+		<choice hidden="true" req="engines" lvl="8">
+			<text>(Highly Advanced Engines) Evasive maneuvers!</text>
+			<event>
+				<text>The Rock ship seems to be unable to match your speed and you easily outmaneuver it. You turn to attack again.</text>
+			</event>
+		</choice>
+		<choice req="AE_ADV_THRUSTERS" hidden="true"> 
+			<text>(Advanced Proximity Navigation) Complex evasive maneuvers!</text>
+			<event>
+				<text>Your navigation AI tricks the Rock captain by heading straight towards him as well. The computer fires the thrusters in the very last moment, the ships scratch each other at high speed, but you hull remains undamaged.</text>
+			</event>
+		</choice>
+	</surrender>
+	<gotaway>
+		<text>The Rock military vessel jumps away. You can just hope they don't track down again, with more ships.</text>
+	</gotaway>
+	<destroyed>
+		<text>The Rock ship sustained heavy damage and it's hard to believe that anything onboard it can still be allive and intact. The Rock captain seems unwilling to give up. He ignites the Backup thrusters and the ship heads directly for yours on full speed.</text>
+		<choice hidden="true">
+			<text>Attempt to alter trajectory.</text>
+			<event load="CE_ROCK_RAMSHIP_EVASION_1_REWARD"/>
+		</choice>
+		<choice hidden="true" req="engines" lvl="4">
+			<text>(Improved Engines) Divert power to navigation thrusters!</text>
+			<event load="CE_ROCK_RAMSHIP_EVASION_2_REWARD"/>
+		</choice>
+		<choice hidden="true" req="engines" lvl="6">
+			<text>(Advanced Engines) Full power to engines!</text>
+			<event load="CE_ROCK_RAMSHIP_EVASION_3_REWARD"/>
+		</choice>
+		<choice hidden="true" req="engines" lvl="8">
+			<text>(Highly Advanced Engines) Evasive maneuvers!</text>
+			<event>
+				<text>The Rock ship seems to be unable to match your speed and you easily outmaneuver it. You turn and fire a final volley. The FTL core is hit and the brave Rock captains military career is brought to a quick end.</text>
+			<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+		<choice req="AE_ADV_THRUSTERS" hidden="true"> 
+			<text>(Advanced Proximity Navigation) Complex evasive maneuvers!</text>
+			<event>
+				<text>Your navigation AI easily outmaneuvers the completely wracked military vessel. You feel almost sorry for the Rock captain, but never the less you end him with a final volley.</text>
+			<autoReward level="MED">standard</autoReward>
+			</event>
+		</choice>
+	</destroyed>
+	<deadCrew load="DEAD_CREW_DEFAULT"/>
+</ship>
+
+
+
+<!-- END OF BS/CE SHIP EVENTS -->
