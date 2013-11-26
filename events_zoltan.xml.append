@@ -1,6 +1,5 @@
 
 
-
 <eventList name="HOSTILE_ZOLTAN">
 	<event load="ZOLTAN_FIGHT"/>
 	<event load="ZOLTAN_PIRATE"/>
@@ -111,7 +110,7 @@
 	<choice req="AE_BEACON_KIT" hidden="true">
 		<text>(Beacon Access Kit) Cover your tracks in the FTL network to delay the Rebel fleet.</text>
 		<event>
-			<text>The access kit codes work well on the beacon and allow you to remotely delete your arrival logs. Neither Zoltan border patrol nor the Rebels will have any idea where you entered Zoltan space.</text>
+			<text>The access codes work well on the beacon and allow you to remotely delete your arrival logs. Neither the Zoltan border patrol nor the Rebels will have any idea where you entered Zoltan space.</text>
 			<modifyPursuit amount="-1"/>
 		</event>
 	</choice>
@@ -135,14 +134,14 @@
 </textList>
 <eventList name="CE_ZOLTAN_MINEFIELD_LIST">
 	<event>
-		<text>You ignore the hails and threads of the local Zoltan as you lay a small minefield around the beacon. The Rebel forces will have to avoid this area, clear the minefield or suffer heavy damage. All possibilities will considerably delay their fleet.</text>
+		<text>You ignore the hails and threats of a local Zoltan as you lay a small minefield around the beacon. The Rebel forces will have to avoid this area, clear the minefield or suffer heavy damage. All possibilities will considerably delay their fleet.</text>
 		<item_modify>
 			<item type="missiles" min="-4" max="-4"/>
 		</item_modify>
 		<modifyPursuit amount="-1"/>
 	</event>
 	<event>
-		<text>Just after you lay the first mine a Zoltan military ship jumps in. They hail: "By deploying military grade proximity explosives in Zoltan space, you are in violation of the Interstelar Space-Mine Ban Treaty. Your weaponry will be confiscated and you will be brought to trial." You don't have time for this.</text>
+		<text>Just after you lay the first mine, a Zoltan military ship jumps in. They hail: "By deploying military grade proximity explosives in Zoltan space, you are in violation of the Interstellar Space-Mine Ban Treaty. Your weaponry will be confiscated and you will be brought to trial." You don't have time for this.</text>
 		<item_modify>
 			<item type="missiles" min="-1" max="-1"/>
 		</item_modify>
@@ -2254,9 +2253,9 @@
 				<event load="C_PIRACY_RESULTS"/>
 			</choice>
 			<choice req="ROCK_ARMOR" hidden="true"> 
-				<text>(Rock Ship) You command a vessel of the brutal Rock people. Your crew knew what they where signing on for a moral joyride here.</text>
+				<text>(Rock Ship) You command a vessel of the brutal Rock people. Your crew knew what they where signing on for here.</text>
 				<event>
-					<text>Your crew indeed expected you might handle things harsh like this. The mission is paramount after all, the Federation has to be reestablished!</text>
+					<text>Your crew indeed expected you might handle things harshly like this. The mission is paramount; the Federation must be reestablished!</text>
 					<ship hostile="true"/>
 		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
 			<text>Targeting Jammer) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
@@ -2311,9 +2310,9 @@
 				</event>
 			</choice>
 			<choice req="CREW_STIMS" hidden="true"> 
-				<text>(Mantis Ship) You command a vessel of the most vicious creatures in the galaxy. You crew almost expected things like this.</text>
+				<text>(Mantis Ship) You command a vessel of the most vicious creatures in the galaxy. Piracy is practically a Mantis hobby.</text>
 				<event>
-					<text>None of your crew members is really surprised by your disrespect for Federation rules and individual lives. You engage the ship.</text>
+					<text>None of your crew members are really surprised by your disrespect for Federation law and individual lives. You engage the ship.</text>
 					<ship hostile="true"/>
 		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
 			<text>Targeting Jammer) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
@@ -2368,9 +2367,9 @@
 				</event>
 			</choice>
 			<choice req="SLUG_GEL" hidden="true"> 
-				<text>(Slug Ship) You command a vessel of the sly and treacherous Slugs. You crew new this mission wouldn't go that clean.</text>
+				<text>(Slug Ship) You command a vessel of sly and treacherous Slugs. Your crew won't mind a little piracy.</text>
 				<event>
-					<text>Desperate times call for desperate measures. Your crew agrees that sometimes individual lives mean nothing. We need to get the Federation base at any cost.</text>
+					<text>Your crew agrees that desperate times call for desperate measures. We need to get to the Federation base at any cost.</text>
 					<ship hostile="true"/>
 		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
 			<text>Targeting Jammer) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
@@ -2429,27 +2428,27 @@
 	<choice>
 		<text>Ignore the ship.</text>
 		<event>
-			<text>They ship remains at the beacon until you eventually jump away.</text>
+			<text>The ship remains at the beacon until you eventually jump away.</text>
 		</event>
 	</choice>
 </event>
 <textList name="C_EVENT_ZOLTAN_TRANSPORT_TEXT">
 	<text>You spot a civilian transport ship nearby. Passive scans indicate they are transporting locally produced goods.</text>
-	<text>An only lightly armed Zoltan transport ship jumps in shortly after you. They refuse all hails, so you just quietly recharge your FTL's besides each other.</text>
-	<text>An Zoltan transport hails: "In according to the merchant security legislation act we officially request that you remain in safety distance and keep you weapon targeting off line." The refuse any further communication.</text>
-	<text>A civilian Zoltan ship recharges it's FTL at this beacon. They hail you: "Greetings captain. It's a long time since we saw a Federation ship here. We transport goods for the Zoltan peace synod. Where are you heading?" After a little chat they prepare to jump.</text>
-	<text>A Zoltan transport ship is performing maintenance at this beacon. They send a message: "Military vessel. We have no reason to think ill of you, but with the amount of pirates terrorizing our borders we expect you to keep your distance. In case of aggression we will make full use of our right to self defense according to GSL Paragraph 23412, Section VII, part D."</text>
+	<text>A lightly armed Zoltan transport ship jumps in shortly after you. They refuse all hails, so you just quietly recharge your FTL beside them.</text>
+	<text>A Zoltan transport hails: "In accordance with the Merchant Security Act we request that you remain outside combat range and keep your weapons systems offline." The refuse any further communication.</text>
+	<text>A Zoltan civilian ship recharges its FTL at this beacon. They hail you: "Greetings captain. It's been a long time since we saw a Federation ship here. We are transporting supplies for the Zoltan Peace Synod." After a short chat they prepare to jump.</text>
+	<text>A Zoltan transport ship is performing maintenance at this beacon. They send a message: "Military vessel - We have no reason to think ill of you, but with the number of pirates terrorizing our borders we expect you to keep your distance. In case of aggression we will make full use of our right to self-defense according to GSL Paragraph 23412, Section VII, part D."</text>
 </textList>
 <textList name="C_ZOLTAN_SURRENDER_TEXT">
-	<text>The ship sends white flag codes. The Zolatan want to surrender.</text>
-	<text>They send surrender signals and hail: "We where only defending ourselves. Let us be reasonable. No more damage has to be caused. We agree to comply with any of your demands". They offer everything they have if you let them go.</text>
-	<text>The ship shows heavy damage. You receive a hail: "Stop shooting, we can't bear this violence. Take our goods and leave us."</text>
-	<text>"This disturbance of galactic harmony is unnecessary and has to end. Worldly possessions can never be as valuable as sentient lives, so we agree to give up our cargo." They offer to transfer a bounty.</text>
+	<text>The ship sends white flag codes. The Zoltan want to surrender.</text>
+	<text>They send surrender signals and hail: "We were only defending ourselves. Let us be reasonable; no more damage has to be done. We agree to comply with any of your demands." They offer everything they have if you let them go.</text>
+	<text>The ship shows heavy damage. You receive a hail: "Stop shooting! We can't bear this violence; take our goods and leave us in peace."</text>
+	<text>"This disturbance of galactic harmony is unnecessary and must end immediately. Worldly possessions can never be as valuable as sentient lives, so we agree to give up our cargo."</text>
 </textList>
 
 <eventList name="C_PIRACY_SUCCESS_LOOT_ZOLTAN">
 	<event>					
-		<text>They transmit the prices.</text>
+		<text>They transmit the supplies.</text>
 		<ship hostile="false"/>
 		<autoReward level="RANDOM">stuff</autoReward>
 		<choice>
@@ -2494,7 +2493,7 @@
 		</choice>
 	</event>
 	<event>
-		<text>hey where carrying spare parts for FTL beacons and agree to give up their cargo. This makes you just another space pirate, but your don't even have these fancy markings.</text>
+		<text>They were carrying spare parts for FTL beacons, which you commandeer. This makes you a space pirate, minus the fancy paintjob.</text>
 		<ship hostile="false"/>
 		<augment name="TE_GOODS_ZOLTAN_BEACONS"/>
 		<choice>
@@ -2503,7 +2502,7 @@
 		</choice>
 	</event>
 	<event>
-		<text>They where carrying a copy of the Zoltan legal codex. You could research what the current punishment for piracy is.</text>
+		<text>They were carrying a copy of the Zoltan legal codex. You could look up the current punishment for piracy, if you felt like it.</text>
 		<ship hostile="false"/>
 		<augment name="E_GOODS_ZOLTAN_CODEX"/>
 		<choice>
@@ -2512,7 +2511,7 @@
 		</choice>
 	</event>
 	<event>
-		<text>They where carrying valuable shield system parts and agree to give up their cargo. This makes you just another space pirate, but your don't even have these fancy markings.</text>
+		<text>They were carrying valuable shield system parts, which you commandeer. This makes you a space pirate, minus the fancy paintjob.</text>
 		<ship hostile="false"/>
 		<augment name="TE_GOODS_ZOLTAN_SHIELDS"/>
 		<choice>
@@ -2524,21 +2523,21 @@
 
 <eventList name="DEAD_CREW_PIRACY_ZOLTAN">
 	<event>	
-		<text>There are no more life-signs remaining on the civilian vessel. You murdered these poor Zoltan pretty well and this constitutes an act of piracy. Your crew might be disturbed.</text>
+		<text>There are no life-signs remaining on the civilian vessel. You murdered those poor Zoltan while carrying out an act of piracy. Your crew might be disturbed.</text>
 		<choice hidden="true"> 
 			<text>See how the crew reacts.</text>
 			<event load="DEAD_CREW_PIRACY_ZOLTAN_RESULTS"/>
 		</choice>
 		<choice req="ROCK_ARMOR" hidden="true"> 
-			<text>(Rock Ship) You command a vessel of the brutal Rock people. Your crew knew what they where signing on for a joyride here.</text>
+			<text>(Rock Ship) You command a vessel of the brutal Rock people. Your crew knew what they were signing on for.</text>
 			<event load="DEAD_CREW_PIRACY_ZOLTAN_RESULTS_RISKLESS"/>
 		</choice>
 		<choice req="CREW_STIMS" hidden="true"> 
-			<text>(Mantis Ship) You command a vessel of the most vicious creatures in the galaxy. You crew almost expected things like this.</text>
+			<text>(Mantis Ship) You command a vessel of the most vicious creatures in the galaxy. Your crew isn't exactly averse to violence.</text>
 			<event load="DEAD_CREW_PIRACY_ZOLTAN_RESULTS_RISKLESS"/>
 		</choice>
 		<choice req="SLUG_GEL" hidden="true"> 
-			<text>(Slug Ship) You command a vessel of the sly and treacherous Slugs. You crew new this mission wouldn't go that clean.</text>
+			<text>(Slug Ship) You command a vessel of the sly and treacherous Slugs. Your crew must be prepared to do whatever it takes.</text>
 			<event load="DEAD_CREW_PIRACY_ZOLTAN_RESULTS_RISKLESS"/>
 		</choice>
 	</event>
@@ -2546,7 +2545,7 @@
 
 <eventList name="DEAD_CREW_PIRACY_ZOLTAN_RESULTS">
 	<event>
-		<text>The crew is unusually quite. A salvage team strips the ship of useful materials and checks it's cargo.</text>
+		<text>The crew is unusually quiet. A salvage team strips the ship of useful materials and checks its cargo.</text>
 		<autoReward level="LOW">scrap_only</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>
@@ -2554,7 +2553,7 @@
 		</choice>
 	</event>
 	<event>
-		<text>Your crew accuses you of betraying everything the Federation stands for. A salvage team is send in to strip the ship of useful materials and report on its cargo.</text>
+		<text>Your crew accuses you of betraying everything the Federation stands for. Meanwhile, a salvage team goes in to strip the ship of useful materials and checks its cargo.</text>
 		<autoReward level="LOW">scrap_only</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>
@@ -2562,20 +2561,20 @@
 		</choice>
 	</event>
 	<event>
-		<text>A heated discussion among your crew, concerning your moral integrity, leads to one of your crewmen pulling a blaster on you. You draw faster and your crew-member slumps dead to the cold metal floor. No one on the bridge says a word, everyone is just returning to their stations. You go to your quarters and wonder how it has come to this.</text>
+		<text>A heated discussion among your crew, concerning your moral integrity, leads to one of your crewmen pulling a blaster on you. You draw faster and your crewman slumps dead to the cold metal floor. The others silently return to their stations. You go to your quarters and wonder how it has come to this.</text>
 		<crewMember amount="-1"/>
 		<autoReward level="MED">scrap_only</autoReward>
 	</event>
 	<event>
-		<text>You strip the ship of useful materials. Several crew-member file in formal complains on how you handle things. Do you feel guilty?</text>
+		<text>You strip the ship of useful materials. Several crew members file formal complaints about your recent actions. Do you feel guilty?</text>
 		<autoReward level="HIGH">standard</autoReward>
 	</event>
 	<event>
-		<text>So many individuals died by your hand during your mission, so the death of this civilians doesn't't matter, right? The crew seems to think otherwise. You are able to take the fuel out of the ships storage. You also take all the scrap you can manage.</text>
+		<text>So many have already died by your orders during this mission; what's a few more? The crew seems to think otherwise. You take all the fuel and scrap you can manage.</text>
 		<autoReward level="HIGH">fuel</autoReward>
 	</event>
 	<event>
-		<text>You keep telling yourself this was necessary for the mission, but can't help to feel guilty. The looks your crew gives you don't help either. You are able to take the fuel out of the ships storage. You also take all the scrap you can manage and request a report on the ships cargo.</text>
+		<text>You keep telling yourself this was necessary for the mission, but can't help feeling guilty. The looks your crew gives you don't help either. You take all the fuel and scrap you can manage, and you request a report on the ship's cargo.</text>
 		<autoReward level="LOW">fuel</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>
@@ -2583,19 +2582,19 @@
 		</choice>
 	</event>
 	<event>
-		<text>There are no more life-signs remaining on the ship and you send in a salvage team. One of your crew members sends a formal complain over the coms, arguing that this operation was unnecessary and against Federation protocols. He decides to desert you mission and stay on-board the civilian ship.</text>
+		<text>You send in a salvage team to the lifeless vessel. One of your salvage crew sends a formal complaint over the comms, arguing that this operation was unnecessary and against Federation protocols. He decides to desert your mission and stay on board the civilian ship.</text>
 		<crewMember amount="-1"/>
 		<autoReward level="MED">scrap_only</autoReward>
 	</event>
 	<event>
-		<text>Your crew much more silent during the salvage operation than usual, no one talks to you anymore unless given orders. They find a weapon system on their ship. With all the civilians slaughtered, you can take it for your ship.</text>
+		<text>The crew is unusually quiet. A salvage team finds a weapon aboard the civilian ship.  Now that its previous owners are dead, it's all yours.</text>
 		<autoReward level="MED">weapon</autoReward>
 	</event>
 </eventList>
 
 <eventList name="DEAD_CREW_PIRACY_ZOLTAN_RESULTS_RISKLESS">
 	<event>
-		<text>Your crew has no problems with resorting to piracy. A salvage team strips the ship of useful materials and checks it's cargo.</text>
+		<text>Your crew has no problems with resorting to piracy. A salvage team strips the ship of useful materials and checks its cargo.</text>
 		<autoReward level="LOW">scrap_only</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>
@@ -2603,7 +2602,7 @@
 		</choice>
 	</event>
 	<event>
-		<text>Your crew has no problems with resorting to piracy. A salvage team is send in to strip the ship of useful materials and report on its cargo.</text>
+		<text>Your crew has no problems with resorting to piracy. A salvage team is sent in to strip the ship of useful materials and report on its cargo.</text>
 		<autoReward level="LOW">scrap_only</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>
@@ -2611,15 +2610,15 @@
 		</choice>
 	</event>
 	<event>
-		<text>You strip the ship of useful materials. Your crew follows their orders.</text>
+		<text>You strip the ship of useful materials. Your crew follows their orders without complaint.</text>
 		<autoReward level="HIGH">standard</autoReward>
 	</event>
 	<event>
-		<text>Your crew agrees this was ugly, but necessary. You are able to take the fuel out of the ships storage. You also take all the scrap you can manage.</text>
+		<text>Your crew agrees this was ugly, but necessary. You take all the fuel and scrap you can manage.</text>
 		<autoReward level="HIGH">fuel</autoReward>
 	</event>
 	<event>
-		<text>Your crew does not question your course of action. You are able to take the fuel out of the ships storage. You also take all the scrap you can manage and request a report on the ships cargo.</text>
+		<text>Your crew does not question your course of action. You take all the fuel and scrap you can manage, and you request a report on the ships cargo.</text>
 		<autoReward level="LOW">fuel</autoReward>
 		<choice hidden="true">
 			<text>Continue...</text>
@@ -2627,7 +2626,7 @@
 		</choice>
 	</event>
 	<event>
-		<text>Your crew doesn't care more then you about this civilians. They throw bodies out of the airlock and later find a weapon system on their ship. With all the civilians slaughtered, you can take it for your ship.</text>
+		<text>Your crew cares little for the civilian lives you just took. They throw corpses out the airlock and later find a weapon system on the lifeless ship. Its previous owners won't be needing it anymore.</text>
 		<autoReward level="MED">weapon</autoReward>
 	</event>
 </eventList>
