@@ -1,0 +1,2075 @@
+<eventList name="HOSTILE_MANTIS">
+	<event load="MANTIS_FIGHT"/>
+	<event load="MANTIS_FIGHT"/>
+	<event load="MANTIS_SUN_FIGHT"/>
+	<event load="DONOR_MANTIS_CHASE"/>
+	
+	<event load="REBEL"/>
+	<event load="AUTO_ASTEROID"/>
+	<event load="AUTO_WARNING"/>
+
+	<event load="BS_EVENT_MANTIS"/>
+	<event load="BS_EVENT_MANTIS"/>
+	<event load="BS_EVENT_MANTIS"/>
+	<event load="BS_EVENT_AUTO"/>
+	<event load="BS_EVENT_AUTO_SUICIDE"/>
+	<event load="CE_PDS_MANTIS"/>
+	<event load="CE_MINEFIELD_MANTIS"/>
+</eventList>
+
+
+<eventList name="NEUTRAL_MANTIS">
+	<event load="MANTIS_FIGHT_CHOICE"/>
+	<event load="MANTIS_CIVILIAN"/>
+	<event load="MANTIS_CREW"/>
+	
+	<event load="REBEL_TRANSPORT"/>
+	<event load="BROKEN_REBEL_DRONE"/>
+	
+	<event load="ALISON_MANTIS_CREW"/> <!-- new alison written event -->
+	<event load="CE_MANTIS_GAMBLE"/>
+	<event load="BS_EVENT_PIRATE_BLACKMARKET_ASTEROID"/>
+</eventList>
+
+<eventList name="DISTRESS_BEACON_MANTIS">
+	<event load="ESCORT_BEACON"/>
+	<event load="FRIENDLY_BEACON"/>
+	<event load="TRAP_BEACON"/>
+	<event load="DISTRESS_TRAPPED_MINER"/>
+	<event load="DISTRESS_INFESTATION"/>
+	<event load="DISTRESS_SATELLITE_DEFENSE"/>
+	<event load="DISTRESS_STATION_FIRE"/>
+	<event load="DISTRESS_STATION_DISEASE"/>
+
+	<event load="CE_DISTRESS_SUN"/>
+	<event load="CE_DISTRESS_DEFENSE"/>
+	<event load="CE_DISTRESS_MELTDOWN"/>
+	<event load="CE_DISTRESS_DRONES"/>
+	<event load="CE_MANTIS_CAPTURE_COMMANDO"/>
+</eventList>
+
+<eventList name="BOARDERS_MANTIS">
+	<event load="MANTIS_BOARDERS"/>
+	<event load="MANTIS_BOARDERS_NO_ESCAPE"/>
+	<event load="BOARDERS_SUN"/>
+
+	<event load="CE_BOARDERS_BOUNTYHUNTER"/>
+</eventList>
+
+
+<eventList name="DESTROYED_SHIP_MANTIS">
+	<event>
+		<text load="MANTIS_FIGHT_DESTROYED"/>
+		<autoReward level="MED">standard</autoReward>
+	</event>
+	<event>
+		<text load="MANTIS_FIGHT_DESTROYED"/>
+		<autoReward level="MED">standard</autoReward>
+	</event>
+</eventList>
+
+<textList name="MANTIS_FIGHT_DESTROYED">  
+	<text>The red metalwork of the Mantis ship is engulfed in a similarly red explosion, bringing their attack to a conclusion. You collect what remains of their ship and move on.</text>
+	<text>These Mantis go down fighting to the very last, their end punctuated by the final volley that tears their craft apart. You scrap their ship and prepare to jump.</text>
+	<text>The violent streak of this group of Mantis has been brought to an end, in the form of an equally violent explosion throughout their ship.</text>
+	<text>These savage insectoids and their murderous intents are no more, their vessel breaking apart by the limbs, their components drift about in space as your prize.</text>
+	<text>The crew of the Mantis ship might want to continue fighting, but the last attack from your ship seals their destruction, their debris forms your prize.</text>
+</textList>
+
+<!-- CE MODIFIED VANILLA MANTIS EVENTS -->
+
+<event name="NOTHING_MANTIS">
+	<text load="NOTHING_MANTIS"/>
+	<choice hidden="true" req="human">
+		<text>(Human Crew) Chat with your human crew member while the FTL charges.</text>
+		<event>
+			<text load="CE_CONVERSATION_HUMAN_GENERIC_TEXT"/>
+		</event>
+	</choice>
+	<choice req="AE_HOLOGRAM_GENERATOR" hidden="true"> 
+		<text>(AI Avatar Generator) Bring a sentient hologram crew member into existence. [ Scrap: -15 ]</text>
+		<event load="CE_HOLOGRAM_BIRTH_LIST"/>
+	</choice>
+	<choice req="AE_FUEL_RECYCLE" hidden="true"> 
+		<text>(FTL Fuel Recycler) Recycle some FTL fuel cells.</text>
+		<event>
+			<text load="CE_FUEL_RECYCLE_TEXT"/>
+			<item_modify>
+				<item type="fuel" min="2" max="4"/>
+			</item_modify>
+		</event>
+	</choice>
+	<choice req="AE_AMMO_MANUFACTURER" hidden="true">
+		<text>(Ammo Manufacturer) Assemble some missiles while you wait for the FTL to charge. [ Scrap: -25 ]</text>
+		<event load="CE_AMMO_PRODUCTION"/>
+	</choice>
+	<choice req="AE_DRONE_MANUFACTURER" hidden="true">
+		<text>(Drone Manufacturer) Assemble some drone parts while you wait for the FTL to charge. [ Scrap: -15 ]</text>
+		<event load="CE_DRONE_PRODUCTION"/>
+	</choice>
+	<choice req="AE_REPAIR_KIT" hidden="true">
+		<text>(Hull Repair Kit) Repair some hull damage.</text>
+		<event load="CE_SHIP_MAINTENANCE"/>
+	</choice>
+	<choice req="AE_BEACON_KIT" hidden="true">
+		<text>(Beacon Access Kit) Cover your tracks in the FTL network to delay the Rebel fleet.</text>
+		<event>
+			<text load="CE_BEACON_KIT_REBEL_DELAY_TEXT"/>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice req="WEAPONS_MINES" hidden="true"> 
+		<text>(Minelauncher) Lay a minefield to delay the Rebel fleet. [ Missiles: -4 ]</text>
+		<event>
+			<text>You quickly place some mines arround the beacon while the FTL charges. The Rebel forces will have to avoid this beacon, clear the minefield or suffer heavy damage. All possibilities will considerably delay their fleet.</text>
+			<item_modify>
+				<item type="missiles" min="-4" max="-4"/>
+			</item_modify>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice hidden="true"> 
+		<text>Continue...</text>
+		<event/>
+	</choice>
+</event>
+<textList name="NOTHING_MANTIS">
+	<text>At this point you almost expect a fight with the Mantis, but this beacon appears to be entirely devoid of other ships.   You take the time to catch your breath and double check the ship's systems.</text>
+	<text>The only thing this beacon offers is a view of deep space and a brief respite from battles. For some this must be a welcome refuge. </text>
+	<text>A nearby Mantis mining operation is clearly using heavy Engi slave labor.  You briefly consider the possibility of emancipating the slaves, but the Mantis presence is too formidable.  You decide to lay low.</text>
+	<text>There aren't so many parts of Mantis space that aren't dotted by the wrecks of battles past, but this is one of them. You take a deep breath and prepare to move on.</text>
+	<text>There's nothing here but space debris and some uninhabitable planetoids.</text>
+	<text>You fancy you see something moving in the shadow of the beacon, but all remains still.</text>
+</textList>
+
+
+<event name="START_BEACON_MANTIS">
+	<text load="START_BEACON_MANTIS_TEXT"/>
+	<choice hidden="true" req="human">
+		<text>(Human Crew) Chat with your human crew member while the FTL charges.</text>
+		<event>
+			<text load="CE_CONVERSATION_HUMAN_GENERIC_TEXT"/>
+		</event>
+	</choice>
+	<choice req="AE_HOLOGRAM_GENERATOR" hidden="true"> 
+		<text>(AI Avatar Generator) Bring a sentient hologram crew member into existence. [ Scrap: -15 ]</text>
+		<event load="CE_HOLOGRAM_BIRTH_LIST"/>
+	</choice>
+	<choice req="AE_FUEL_RECYCLE" hidden="true"> 
+		<text>(FTL Fuel Recycler) Recycle some FTL fuel cells.</text>
+		<event>
+			<text>You are undisturbed here can recycle some fuel while the FTL charges. The recylcer device removes fuel residue from spent fuel cells and refills some empty capsules with it. It's not much, but it will last a few jumps.</text>
+			<item_modify>
+				<item type="fuel" min="2" max="4"/>
+			</item_modify>
+		</event>
+	</choice>
+	<choice req="AE_AMMO_MANUFACTURER" hidden="true"> 
+		<text>(Ammo Manufacturer) Assemble some missiles while you wait for the FTL to charge. [ Scrap: -25 ]</text>
+		<event load="CE_AMMO_PRODUCTION"/>
+	</choice>
+	<choice req="AE_REPAIR_KIT" hidden="true">
+		<text>(Hull Repair Kit) Repair some hull damage.</text>
+		<event load="CE_SHIP_MAINTENANCE"/>
+	</choice>
+	<choice req="AE_BEACON_KIT" hidden="true">
+		<text>(Beacon Access Kit) Cover your tracks in the FTL network to delay the Rebel fleet.</text>
+		<event>
+			<text load="CE_BEACON_KIT_REBEL_DELAY_TEXT"/>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice req="WEAPONS_MINES" hidden="true"> 
+		<text>(Minelauncher) Lay a minefield to delay the Rebel fleet. [ Missiles: -4 ]</text>
+		<event>
+			<text>Undisturbed as you are here, you can lay out some mines arround the beacon while the FTL charges. You put up a hazard beacon as well to warn the Engi. The Rebel forces will have to avoid this beacon, clear the minefield or suffer heavy damage. All possibilities will considerably delay their fleet.</text>
+			<item_modify>
+				<item type="missiles" min="-4" max="-4"/>
+			</item_modify>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice hidden="true"> 
+		<text>Continue...</text>
+		<event/>
+	</choice>
+</event>
+<textList name="START_BEACON_MANTIS_TEXT">
+	<text>You've entered a poorly charted area of space that's known to be home to the Mantis.  Ensure your hull plating is up to scratch and that you have enough fuel in the tank to make it through.</text>
+	<text>You've arrived in a sector controlled by the Mantis. Their expansion to this sector has already cost many lives. You should be careful here.</text>
+	<text>You've entered a recently established Mantis hive cluster. Some civilian settlements remain, but most of the sentient individuals that lived here have been murdered or made their way out of the sector.</text>
+	<text>You've entered one of the many Mantis hive clusters. Traveling through this areas of space is no joke. You should be vigilant.</text>
+</textList>
+
+<event name="CE_MANTIS_CAPTURE_COMMANDO" unique="true">
+	<text>You come across an Engi wreck with one life-sign aboard; it turns out to be the sole survivor of the Mantis boarding party that wiped out the ship's crew. He's in no state to fight and he's brought aboard.</text>
+	<distressBeacon/>
+	<ship load="ENGI_SHIP" hostile="false"/>
+	<choice hidden="true">
+		<text>Release him.</text>
+		<event load="MANTIS_CAPTURE_COMMANDO_RELEASE"/>
+	</choice>
+	<choice hidden="true">
+		<text>Kill him.</text>
+		<event load="MANTIS_CAPTURE_COMMANDO_KILL"/>
+	</choice>
+	<choice req="mantis" hidden="true">
+		<text>(Mantis Crew Member) Interrogate him.</text>
+		<event load="MANTIS_CAPTURE_COMMANDO_TALK"/>
+	</choice>
+	<choice req="slug" hidden="true">
+		<text>(Slug Crew Member) Screen his intentions.</text>
+		<event load="MANTIS_CAPTURE_COMMANDO_SLUG"/>
+	</choice>
+</event>
+<eventList name="MANTIS_CAPTURE_COMMANDO_SLUG">
+	<event>
+		<text>"I sense embarrassment, but gratefulnesses in him captain." You decide to help patch up the Engi ship and the Mantis takes off. "Grr, you take the bounty, I take the ship. Next time we see each other, we fight!" He jumps away without another word.</text>
+		<augment name="TE_GOODS_MANTIS_BOUNTY"/>
+	</event>
+	<event>
+		<text>"I sense embarrassment in him captain, but he just want's to get away from here." You help patch up the Engi ship and the Mantis takes off without another word. You Slug senses that he is greatefull though. He leaves some supplies behind.</text>
+		<autoReward level="MED">stuff</autoReward>
+	</event>
+	<event>
+		<text>"I sense embarrassment, and a lot of hate captain. He thinks you are weak and he will attemt to destroy you." Good to know. The Mantis commando shows no fear as the airlock doors are sealed. You press the switch and he's whisked out into the great black. The crew watches his body spiral away while salvaging from the ship</text>
+		<autoReward level="MED">stuff</autoReward>
+	</event>
+</eventList>
+<eventList name="MANTIS_CAPTURE_COMMANDO_RELEASE">
+	<event>
+		<text>You help patch up the Engi ship and he takes off. "Grr, you take the bounty, I take the ship. Next time we see each other, we fight!" He jumps away without another word.</text>
+		<augment name="TE_GOODS_MANTIS_BOUNTY"/>
+	</event>
+	<event>
+		<text>You help patch up the Engi ship and he takes off without another word. You have to guess that he is greatefull though, he leaves some supplies behind.</text>
+		<autoReward level="MED">stuff</autoReward>
+	</event>
+	<event>
+		<text>He takes your mercy as a sign of weakness and rigged up a small timed explosive before making off in the Engi vessel.</text>
+		<damage amount="3"/>
+	</event>
+</eventList>
+<eventList name="MANTIS_CAPTURE_COMMANDO_KILL">
+	<event>
+		<text>The Mantis commando shows no fear as the airlock's inner doors are sealed and space prepares to take him. You press the switch and then he's gone, whisked out into the great black. You send the crew in to salvage from the ship.</text>
+		<autoReward level="MED">stuff</autoReward>
+	</event>
+	<event>
+		<text>You strip the Engi ship before preparing to deal with the Mantis.  However, the commando immediately realises your intentions and attacks!</text>
+		<autoReward level="MED">stuff</autoReward>
+		<boarders min="1" max="1" class="mantis"/>
+	</event>
+</eventList>
+<eventList name="MANTIS_CAPTURE_COMMANDO_TALK">
+	<event>	
+		<text>It's not clear what occurs between the two Mantis behind the locked door, but when they emerge the commando is prepared to provide telemetry on the local sector.  He then leaves on the Engi ship.  Your map has been updated.</text>
+		<reveal_map/>
+	</event>
+	<event>
+		<text>After a short time alone with the commando, you are told he wishes to join the crew. Although you are surprised at the commandos willingness to swap allegiances, you trust your crew members' judgement about him.</text>
+		<crewMember amount="1" class="mantis"/>  
+		<autoReward level="MED">stuff</autoReward>
+	</event>
+</eventList>
+
+
+<event name="CE_MANTIS_GAMBLE" unique="true">
+	<text>This node is currently home to a Mantis leisure ship: a place of brothels and combat arenas for warriors to release steam. When they scan your inventory they indicate that you're eligible to engage in a grand game of chance.</text>
+	<choice hidden="true">
+		<text>You don't gamble with crooks.  Prepare to jump.</text>
+		<event/>
+	</choice>
+	<choice hidden="true">
+		<text>Bet 50 scrap on the warrior with blue paint.</text>
+		<event>
+			<text>You watch over the view-screen as two Mantis juveniles are pitched at one another in combat.</text>
+			<item_modify>
+				<item type="scrap" min="-50" max="-50"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="MANTIS_GAMBLE_BLUE"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Bet 50 scrap on the warrior with red paint.</text>
+		<event>
+			<text>You watch over the view-screen as two Mantis juveniles are pitched at one another in combat.</text>
+			<item_modify>
+				<item type="scrap" min="-50" max="-50"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="MANTIS_GAMBLE_RED"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="slug">
+		<text>(Slug Crew) Bet 50 scrap and cheat.</text>
+		<event>
+			<text>Your Slug crew member at your side, you watch over the view-screen as two Mantis juveniles get ready for combat. "Any good guess who is going to win?"</text>
+			<item_modify>
+				<item type="scrap" min="-50" max="-50"/>
+			</item_modify>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="MANTIS_GAMBLE_CHEAT"/>
+			</choice>
+		</event>
+	</choice>
+</event>
+<eventList name="MANTIS_GAMBLE_CHEAT">
+	<event>
+		<text>"I can not forssee the future captain. But the blue Mantiss sssemss far more determined and viciouss." You make the bet. The fight starts and the Mantis in blue gets pressed into a corner soon, but he lashes out at the last moment, decapitating his opponent.  You claim your winnings!</text>
+		<item_modify>
+			<item type="scrap" min="100" max="100"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>"I can not forssee the future captain. But the red Mantiss sssemss to posses far more self controlled and experience." You make the bet and the fight starts. The blue Mantis seems assure to win, scoring numerous hits on his enemy.  However the one in red ends the fight with a single key swipe. You claim your winnings!</text>
+		<item_modify>
+			<item type="scrap" min="100" max="100"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>"I can not forssee the future captain. But the red Mantiss sssemss to posses far more self controlled and experience." You make the bet and the fight starts. The blue Mantis seems assure to win, scoring numerous hits on his enemy.  However the one in red ends the fight with a single key swipe. You claim your winnings!</text>
+		<item_modify>
+			<item type="scrap" min="100" max="100"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>"I can not forssee the future captain. But the blue Mantiss sssemss far more determined and viciouss." You make the bet. The fight starts and the blue Mantis seems assure to win, scoring numerous hits on his enemy.  However the one in red ends the fight with a single key swipe.</text>
+		<choice hidden="true">
+			<text>Pay what you owe.</text>
+			<event>
+				<text>You transfer over the scrap that you bet and quit while you still have a ship to sail off in.</text>
+			</event>
+		</choice>
+		<choice req="engines" lvl="4" hidden="true">
+			<text>(Adv. Engines) Dodge the debt and power up the engines.</text>
+			<event>
+				<text>You are able to get out of firing range of the cruiser before they can react.  However a smaller ship breaks off from a patrol and moves in to engage.</text>
+				<ship load="MANTIS_FIGHT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+			</event>
+		</choice>
+	</event>
+	<event>
+		<text>"I can not forssee the future captain. But the blue Mantiss sssemss far more determined and viciouss." You make the bet. The fight starts and the Mantis in blue gets pressed into a corner soon. Suddenly the vidio transmission is interupted.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event>
+				<text>Your receive a hail: "Our scanners show squishy telepaths on board your ship. That is against the rules. You tried to cheat us and will face our wrath!" A nearby fighter craft starts targeting you.</text>
+				<ship load="MANTIS_FIGHT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+			</event>
+		</choice>
+	</event>
+</eventList>
+<eventList name="MANTIS_GAMBLE_BLUE">
+	<event>
+		<text>The one in blue gets pressed into a corner, but he lashes out at the last moment, decapitating his opponent.  You claim your winnings!</text>
+		<item_modify>
+			<item type="scrap" min="100" max="100"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>The blue Mantis seems assure to win, scoring numerous hits on his enemy.  However the one in red ends the fight with a single key swipe.</text>
+		<choice hidden="true">
+			<text>Pay what you owe.</text>
+			<event>
+				<text>You transfer over the scrap that you bet and quit while you still have a ship to sail off in.</text>
+			</event>
+		</choice>
+		<choice req="engines" lvl="4" hidden="true">
+			<text>(Adv. Engines) Dodge the debt and power up the engines.</text>
+			<event>
+				<text>You are able to get out of firing range of the cruiser before they can react.  However a smaller ship breaks off from a patrol and moves in to engage.</text>
+				<ship load="MANTIS_FIGHT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+			</event>
+		</choice>
+	</event>
+</eventList>
+<eventList name="MANTIS_GAMBLE_RED">
+	<event>
+		<text>The blue Mantis seems assure to win, scoring numerous hits on his enemy.  However the one in red ends the fight with a single key swipe.   You claim your winnings!</text>
+		<item_modify>
+			<item type="scrap" min="100" max="100"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>The one in blue gets pressed into a corner, but he lashes out at the last moment, decapitating his opponent.</text>
+		<choice hidden="true">
+			<text>Pay what you owe.</text>
+			<event>
+				<text>You transfer over the scrap that you bet and quit while you still have a ship to sail off in.</text>
+			</event>
+		</choice>
+		<choice req="engines" lvl="4" hidden="true">
+			<text>(Adv. Engines) Dodge the debt and power up the engines.</text>
+			<event>
+				<text>You recall the scrap you prepared to send and are able to get out of the cruiser's firing range before they can react.  However a smaller ship breaks off from a patrol and moves in to engage.</text>
+				<item_modify>
+					<item type="scrap" min="50" max="50"/>
+				</item_modify>
+				<ship load="MANTIS_FIGHT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+			</event>
+		</choice>
+	</event>
+</eventList>
+
+<event name="MANTIS_FIGHT" unique="false">   
+	<text load="MANTIS_FIGHT"/>
+	<ship load="MANTIS_FIGHT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+
+
+<event name="MANTIS_FIGHT_CHOICE" unique="false">   
+	<text load="MANTIS_FIGHT_CHOICE"/>
+	<ship load="MANTIS_FIGHT" hostile="false"/>
+	<choice hidden="true">
+		<text>Attack the ship.</text>
+		<event>
+		<text load="CE_PRE_FIGHT_TEXT"/>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Attempt to remain concealed.</text>
+		<event load="MANTIS_FIGHT_CHOICE_AVOID"/>
+	</choice>
+	<choice hidden="true" req="cloaking" lvl="1">
+		<text>(Cloaking) Cloak to stay hidden.</text>
+		<event load="MANTIS_FIGHT_CHOICE_CLOAK"/>
+	</choice>
+</event>
+
+<eventList name="MANTIS_FIGHT_CHOICE_AVOID">
+	<event>
+		<text>You power down non-essential systems and wait for the FTL drive to charge.  They either don't want to fight or have failed to notice your ship, the later being more likely.</text>
+	</event>
+	<event>
+		<text>Before you have a chance to slink away the Mantis ship notices you and powers up their weapons.</text>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+	<event>
+		<text>You power down non-essential systems in an attempt to remain unnoticed.  It looks like they are about to leave when suddenly they turn and set course toward you, weapons powered.</text>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+<eventList name="MANTIS_FIGHT_CHOICE_CLOAK">
+	<event>
+		<text>You quickly cloak the ship and move out of immediate scanning range.  You appear to have gotten away undetected.</text>
+	</event>
+	<event>
+		<text>You cloak and shut down non-essential systems.  In a short time the Mantis ship jumps away, no doubt in search of prey.</text>
+	</event>
+	<event>
+		<text>You quickly cloak the ship, but not quickly enough.  They spot you and move in to engage.</text>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+
+<event name="MANTIS_CIVILIAN" unique="false">   
+	<text load="MANTIS_CIVILIAN"/>
+	<ship load="MANTIS_CIVILIAN" hostile="false"/>
+	<choice hidden="true">
+		<text>Aid the civilian ship.</text>
+		<event>
+			<text>You frown, power up the weapons and prepare to engage the Mantis ship. Not today.</text>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Stay out of it.</text>
+		<event>
+			<text load="MANTIS_CIVILIAN_AVOID"/>
+		</event>
+	</choice>
+</event>
+
+<event name="MANTIS_SUN_FIGHT" unique="false">   
+	<text>Who knows why the Mantis would venture so close to a sun. Perhaps it makes for more of a challenge?</text>
+	<environment type="sun"/>
+	<ship load="MANTIS_FIGHT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+
+<event name="MANTIS_NAMED_THIEF" unique="true"> <!-- NOTE - make globally unique  -->
+	<ship load="MANTIS_NAMED_THIEF" hostile="false"/>
+	<text>You cross paths with a Mantis ship that looks to have had dozens of layers of armor-plating added over what must have been a hundred year career. Its captain is legendary thief KazaaakplethKilik. Your crew look frightened.</text>
+	<choice hidden="true" req="mantis">
+		<text>(Mantis crew member) Attempt to hail him.</text>
+		<event>
+			<text>Your Mantis crew-member steps forward. He and KazaaakplethKilik perform a weird kind of alien haka. You, meanwhile, charge the battle systems.</text>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Prepare to fight</text>
+		<event>
+		<text load="CE_PRE_FIGHT_TEXT"/>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+</event>
+
+
+<event name="MANTIS_BOARDERS" unique="true">
+	<text>A derelict and still smoking Mantis vessel floats by. The battle must have been recent; its teleporters activate.</text>
+	<choice req="AE_TELEPORTER_JAMMER" hidden="true">
+		<text>(Teleporter Disruptor) Not today.</text>
+		<event>
+			<text>With the disruptor field online, the Mantis won't go no where. A well prepared salvo blasts the derelict vessels to pieces.</text>
+		</event>
+	</choice>
+	<choice>
+		<text>Continue...</text>
+		<event>
+			<text>The surviving crew beam aboard. Prepare for a fight!</text>
+			<boarders min="2" max="4" class="mantis"/>
+		</event>
+	</choice>
+</event>
+
+<event name="MANTIS_BOARDERS_NO_ESCAPE" unique="true"> 
+	<text load="MANTIS_BOARDERS"/>
+	<boarders min="2" max="4" class="mantis"/>
+</event>
+<textList name="MANTIS_BOARDERS">
+	<text>Your world, all of a sudden, changes. The Mantis are on board your ship.</text>
+	<text>You hear a grating rattle and a soft clicking. You reach for your pistol.</text>
+</textList>
+
+<event name="MANTIS_CREW" unique="true">
+	<text>You detect and retrieve an escape pod floating nearby. You consider returning it to space when you learn it's Mantis.</text>
+	<choice>
+		<text>Jettison the pod.</text>
+		<event>
+			<text>You send the pod back out the airlock. You're not stupid.</text>
+		</event>
+	</choice>
+	<choice>
+		<text>Pry it open.</text>
+		<event load="MANTIS_CREW_LIST"/>
+	</choice>
+	<choice req="slug" hidden="true">
+		<text>(Slugman Crew Member) Can you sense if there is someone in the pod?</text>
+		<event load="MANTIS_CREW_SLUG_LIST"/>
+	</choice>
+</event>
+<eventList name="MANTIS_CREW_SLUG_LIST">	
+	<event>
+		<text>Your Slug concentrates for a second. "I indeed sssense a Mantisss insside. It'ss alive, confussed and very ssscared. I can not foressee it's intentionss."</text>
+		<choice>
+			<text>Jettison the pod.</text>
+			<event>
+				<text>You send the pod back out the airlock. You're not stupid.</text>
+			</event>
+		</choice>
+		<choice>
+			<text>Pry it open.</text>
+			<event load="MANTIS_CREW_SLUG_MANTIS_RESULTS"/>
+		</choice>
+	</event>
+	<event>
+		<text>Your Slug concentrates for a second. "I indeed sssensse a Mantisss insside. It'ss alive, confussed and very ssscared. I can not foressee it's intentionss."</text>
+		<choice>
+			<text>Jettison the pod.</text>
+			<event>
+				<text>You send the pod back out the airlock. You're not stupid.</text>
+			</event>
+		</choice>
+		<choice>
+			<text>Pry it open.</text>
+			<event load="MANTIS_CREW_SLUG_MANTIS_RESULTS"/>
+		</choice>
+	</event>
+	<event>
+		<text>Your Slug concentrates for a second. "Interessting! I senss a human inssside." The slug shivers. "He iss in a deep sstate of sshock sssir. Maybe we sshould help him?" You free the human and sedate him immediately. A rare survivor of Mantis captivity.  Once he wakes up in the medbay, he offers to join your crew for a time.</text>
+		<crewMember amount="1" class="human"/>
+	</event>
+</eventList>
+<eventList name="MANTIS_CREW_SLUG_MANTIS_RESULTS">	
+	<event>
+		<text>The Mantis inside is FURIOUS. He cuts the closest person in half with a single swipe.  Kill it before anyone else is hurt.</text>
+		<boarders min="1" max="1" class="mantis"/>
+		<crewMember amount="-1"/>
+	</event>
+	<event>
+		<text>The Mantis inside considers you a messenger from the god of mercy and demands to join your crew.</text>
+		<crewMember amount="1" class="mantis"/> 
+	</event>
+</eventList>
+
+<!-- END OF CE MODIFIED VANILLA MANTIS EVENTS -->
+
+
+<event name="BS_EVENT_MANTIS">
+	<text load="BS_EVENT_MANTIS_TEXT"/>
+	<ship load="BS_MANTIS" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+<textList name="BS_EVENT_MANTIS_TEXT">
+	<text>A Mantis military station appears on the screen. Alongside it drift the remains of several ships from different factions. Your crew is determined not to be their next victim!</text>
+	<text>A Mantis military outpost hails your ship. "Disgusting aliens! Your federation is weak, you shall fall victim to our claws!"</text>
+	<text>You detect a small military outpost close to the beacon and a few freighters nearby. This mineral rich planet in an isolated location would be perfect for an illegal Mantis mining operation. As you consider your options, the ships jump away and the station starts a targeting sequence. Prepare for a tough fight.</text>
+	<text>You discover yet another unlicensed and uncharted Mantis colony. They certainly waste no time expanding their claims. A Mantis station is guarding the beacon and tries to prevent you from escaping. They don't want you to tell the story.</text>
+	<text>A fully weaponized Mantis station hails you and about five Mantis appear on your screen. "We control this sector now. All federation sympathizers will be executed by blade. Prepare to die!"</text>
+	<text planet="PLANET_POPULATED">A Mantis station adorned with ceremonial and functional weapons guards this planet and opens fire. This will not be easy.</text>
+</textList>
+
+
+<!-- MANTIS PDS EVENT -->
+
+<event name="CE_PDS_MANTIS">
+	<text load="CE_PDS_MANTIS_TEXT"/>
+	<img planet="NONE" back="BG_WARNING_TARGETING_MANTIS"/>
+	<choice req="ENERGY_SHIELD" hidden="true">
+		<text>(Zoltan Shield) Reconfigure the shield frequencies to scramble the enemy artillery targeting.</text>
+	<event>
+		<text>Your advanced shield technlogy prevents the hostile artillery weapons from locking on to your vessel. The spotter ship will get no support fire.</text>
+		<ship load="CE_SPOTTER_MANTIS_ARTILLERY_SUPERSHIELD" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+	</choice>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="CE_PDS_MANTIS_LIST"/>
+	</choice>
+</event>
+<textList name="CE_PDS_MANTIS_TEXT">
+	<text planet="NONE" back="BG_WARNING_TARGETING_MANTIS">You ventured deep into Mantis space and discover what must be one of the main hivecluster in this sector. The planetary hatcheries are so densly populated that the computer can not calculate how many of the aliens are actually bred here.</text>
+	<text planet="NONE" back="BG_WARNING_TARGETING_MANTIS">You arrive in close vicinity of yet another newly established Mantis colony. Hatcheries are build, warships are constructed in orbit and the insectoid beings have already set up planetary defenses. You wonder if these creatures might actually be a greater threat to the Galaxy than the Rebels.</text>
+	<text planet="NONE" back="BG_WARNING_TARGETING_MANTIS">You drop into realspace and have to mark another unlicenced Mantis colony on the star chart. This clearly violates the Post Federation-Mantis War treaty. If the Federation survives the Rebelion, it will have to bring down the hammer on these insectoid beeings once more.</text>
+	<text planet="NONE" back="BG_WARNING_TARGETING_MANTIS">A major Mantis settlement hails you and a unformed officer in appears on your receiver.  "What is the meaning of this foolish transgression? You invaded our domain and will be punished!"</text>
+</textList>
+
+<eventList name="CE_PDS_MANTIS_LIST">
+	<event>
+		<text>The local planetary defense force immidieately responds to you arrival. A Mantis spotter is heading right for you, it surely will try to mark your ship for a planetary artillery strike.</text>
+		<ship load="CE_SPOTTER_MANTIS_ARTILLERY" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+
+<event name="CE_MINEFIELD_MANTIS" unique="true">
+	<img planet="NONE" back="BG_WARNING_MINES"/>
+	<text planet="NONE" back="BG_WARNING_MINES">The ship drops below FTL speed and warning signs immediately fill up the mainscreen. You jumped right into a huge minefield the Mantis must have put up here.</text>
+	<choice req="AE_ADV_THRUSTERS" hidden="true"> 
+		<text>(Advanced Proximity Navigation) Plot a safe course through the field.</text>
+	<event>
+		<text>You navigation computer calculates a complex course the let's you avoid triggering any mines. A nearby Mantis minelayer crew seems to be disappointed about the invectiveness of their trap and charges after you.</text>
+		<ship load="CE_MINELAYER_MANTIS" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+	</choice>
+	<choice hidden="true">
+		<text>Continue...</text>
+	<event>
+		<text>You try to slowly maneuver out of the field, but a Mantis minelayer starts to take potshots at you and a few mines nearby activate their homing magnets.</text>
+		<ship load="CE_MINELAYER_MANTIS_HAZARD" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+	</choice>
+</event>
+
+
+<!-- END OF MANTIS PDS EVENTS -->
+
+<!-- TE MANTIS EVENTS -->
+
+<event name="STORE_MANTIS">
+	<text load="STORE_MANTIS"/>
+	<choice req="AE_TRADE_BOOSTER" hidden="true">
+		<text>(Cargo Teleporter) Prepare to quickly transfer cargo and have a look at the goods.</text>
+		<event load="TE_STORE_MANTIS_LIST_BOOSTED"/>
+	</choice>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="TE_STORE_MANTIS_LIST"/>
+	</choice>
+	<store/>
+</event>
+<textList name="STORE_MANTIS">
+	<text>Upon arriving at the beacon, you're hailed by a well-spoken Mantis, "Hail, traveler. These are dangerous times. Perhaps you find yourself in need of our services?" He appears to be a trader.</text>
+	<text>Uncertain about what you'll discover at this beacon, you scan the surroundings. You detect several warnings on wide-band channels discouraging any violence in protected trade-space. Perhaps you can find some wares nearby.</text>
+	<text>Merchants are not highly respected among the Mantis race, so few undertake the profession.  You're mildly surprised to receive an advertisement from a nearby space dock. You decide to see what they have to offer.</text>
+	<text>Identifying a Mantis trading post ahead, you signal them so that your approach won't be taken as a threat. The leader hails you: "You have scrap? Quickly, come dock before the warriors see you."</text>
+	<text>A struggling Mantis cargo ship headed for the node raises what's left of shields as you jump in. You power up your weapons as a show of force, and they reluctantly agree to offload some of their cargo to you - for a price.</text>
+	<text planet="PLANET_POPULATED">Mantis industrial installations manufacture invasion ships en masse near this planet. You passively scan the factories. Hundreds of Engi-slaves are working in them. A corrupt Mantis clan lord contacts you and offers to sell some of the excess production.</text>
+</textList>
+
+<eventList name="TE_STORE_MANTIS_LIST">
+	<event>
+		<text>You consider making a deal here. This might take some time.</text>
+<!-- BUYING -->
+		<choice>
+			<text>Buy some random Mantis loot.</text>
+			<event>
+				<text load="STORE_MANTIS_BUY_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="-20" max="-16"/>
+				</item_modify>
+				<augment name="TE_GOODS_MANTIS_BOUNTY"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Buy some mass produced ship engines.</text>
+			<event>
+				<text load="STORE_MANTIS_BUY_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="-28" max="-22"/>
+				</item_modify>
+				<augment name="TE_GOODS_MANTIS_ENGINES"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Buy an assortment of weapon parts.</text>
+			<event>
+				<text load="STORE_MANTIS_BUY_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="-37" max="-27"/>
+				</item_modify>
+				<augment name="TE_GOODS_MANTIS_WEAPONS"/>
+			</event>
+		</choice>
+<!-- SELLING -->
+		<choice req="TE_GOODS_SLUG_ANIMALS" hidden="true">
+			<!-- best deal -->
+			<text>A small Mantis scout contacts you: "We have been informed you carry alien game. We could take your cargo by force for sure, but then the animals might die before the hunt... Do you want to sell this prey to us?" [Sell Alien Livestock for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="70" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_BEACONS" hidden="true">
+			<!-- best deal -->
+			<text>The trader enquirers: "Do you have beacon parts? The Mantis armada always need beacon parts for their expansion..." [Sell Beacon Parts for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="75" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MACHINES" hidden="true">
+			<!-- best deal -->
+			<text>The Mantis are known for not being good with machines and repairs. You could get a good price for your pre-assembled industrial equipment here. [Sell Industrial Machinery for about 50 Scrap]</text>
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="40" max="50"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_ELECTRONICS" hidden="true">
+			<!-- best deal -->
+			<text>The trader notices: "Ship Electronics? They sell well here. The Mantis can't handle repairs and like to replace with new parts. Can we make a deal?" [Sell Ship Electronics for about 85 Scrap]</text>
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="55" max="65"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_FOOD" hidden="true">
+			<!-- best deal -->
+			<text>The Mantis can't produce enough food on their own to supply their ever expanding colonies. The rations could strike a good price here. [Sell Space Rations for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="70" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_CONSUMER" hidden="true">
+			<text>[Sell Consumer Goods for about 35 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_LUXURY" hidden="true">
+			<text>[Sell Luxury Goods for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MEDICINE" hidden="true">
+			<text>[Sell Pharmaceuticals for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+
+		<choice req="TE_GOODS_ZOLTAN_CODEX" hidden="true">
+			<text>[Sell the Zoltan Legal Codex for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="20" max="25"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_SHIELDS" hidden="true">
+			<text>[Sell Shield Components for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_LITERATURE" hidden="true">
+			<text>[Sell Religious Rock Scriptures for about 50 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="30"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_ORE" hidden="true">
+			<text>[Sell Raw Asteroid Ore for about 30 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="18" max="22"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_HULLS" hidden="true">
+			<text>[Sell Ship Hull Panels for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_DRUGS" hidden="true">
+			<text>[Sell Slug Hallucinogens for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_ART" hidden="true">
+			<text>[Sell Eccentric Artworks for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="45"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_PIRATE_ARMS" hidden="true">
+			<text>[Sell Small Arms for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_REBEL_CONTRABAND" hidden="true">
+			<text>[Sell Federation Contraband for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="22" max="28"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_NEBULA_GAS" hidden="true">
+			<text>[Sell Compressed Nebula Gas for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CRYSTAL_ARTIFACTS" hidden="true">
+			<text>[Sell Crystal Artifacts for about 70 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_MANTIS_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="50"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Just quickly check the available ship equipment.</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+
+<textList name="STORE_MANTIS_BUY_TEXT">
+	<text>You transfer the scrap. The cargo is loaded under heavy security, which makes the process take quite some time. You have time to look at their ship gear ads.</text>
+	<text>After transferring the scrap a Mantis start to argue with the trader in the kliktish language. You don't understand a word but you have to assume it's about ripping you off. The argument ends when the trader suddenly beheads his colleague with a single swipe. He politely apologizes for the inconvenience and lets you see some reserved wares.</text>
+	<text>The Mantis have no cargo drones here and the goods have to be transfered via a time consuming docking maneuver. While waiting you get a chance to check the ship equipment they offer here.</text>
+	<text>A small Mantis shuttle slowly ferries the goods to your ship. You fear they might try to somehow cheat you but after some time the complete freight has arrived. You had a look at the ship gear they offer in the meantime.</text>
+</textList>
+
+<textList name="STORE_MANTIS_SELL_TEXT">
+	<text>It takes a while to negotiate a good price. After receiving some scrap in advance you are asked to unload the cargo at the shop to get the rest of your payment. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>You try to negotiate a good price. After receiving some scrap in advance you are asked to unload the cargo at the shop to get the rest of your payment. This all took really long. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>After time-consuming haggling you reach an agreement. The Mantis bluntly explains: "You only get an advance. Transfer the cargo to our shop now, then you get the rest." [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>When Mantis haggle with each other this usually involves some kind of macho-insectoid swordplay. The trader seems kind of lost when negotiating with other species. After long talks, he only reluctantly agrees to transfer an advance. He orders you: "Unload the goods at the shop now!" [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+</textList>
+
+
+<eventList name="TE_STORE_MANTIS_LIST_BOOSTED">
+	<event>
+		<text>You consider making a deal here. Your equipment will allow you to exvhange goods quickely.</text>
+<!-- BUYING -->
+		<choice>
+			<text>Buy some random Mantis loot.</text>
+			<event>
+				<text load="STORE_BUY_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="-20" max="-16"/>
+				</item_modify>
+				<augment name="TE_GOODS_MANTIS_BOUNTY"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Buy some mass produced ship engines.</text>
+			<event>
+				<text load="STORE_BUY_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="-28" max="-22"/>
+				</item_modify>
+				<augment name="TE_GOODS_MANTIS_ENGINES"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Buy an assortment of weapon parts.</text>
+			<event>
+				<text load="STORE_BUY_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="-37" max="-27"/>
+				</item_modify>
+				<augment name="TE_GOODS_MANTIS_WEAPONS"/>
+			</event>
+		</choice>
+<!-- SELLING -->
+		<choice req="TE_GOODS_SLUG_ANIMALS" hidden="true">
+			<!-- best deal -->
+			<text>A small Mantis scout contacts you: "We have been informed you carry alien game. We could take your cargo by force for sure, but then the animals might die before the hunt... Do you want to sell this prey to us?" [Sell Alien Livestock for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="70" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_BEACONS" hidden="true">
+			<!-- best deal -->
+			<text>The trader enquirers: "Do you have beacon parts? The Mantis armada always need beacon parts for their expansion..." [Sell Beacon Parts for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="75" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MACHINES" hidden="true">
+			<!-- best deal -->
+			<text>The Mantis are known for not being good with machines and repairs. You could get a good price for your pre-assembled industrial equipment here. [Sell Industrial Machinery for about 50 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="40" max="50"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_ELECTRONICS" hidden="true">
+			<!-- best deal -->
+			<text>The trader notices: "Ship Electronics? They sell well here. The Mantis can't handle repairs and like to replace with new parts. Can we make a deal?" [Sell Ship Electronics for about 85 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="55" max="65"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_FOOD" hidden="true">
+			<!-- best deal -->
+			<text>The Mantis can't produce enough food on their own to supply their ever expanding colonies. The rations could strike a good price here. [Sell Space Rations for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="70" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_CONSUMER" hidden="true">
+			<text>[Sell Consumer Goods for about 35 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_LUXURY" hidden="true">
+			<text>[Sell Luxury Goods for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MEDICINE" hidden="true">
+			<text>[Sell Pharmaceuticals for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+
+		<choice req="TE_GOODS_ZOLTAN_CODEX" hidden="true">
+			<text>[Sell the Zoltan Legal Codex for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="20" max="25"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_SHIELDS" hidden="true">
+			<text>[Sell Shield Components for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_LITERATURE" hidden="true">
+			<text>[Sell Religious Rock Scriptures for about 50 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="30"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_ORE" hidden="true">
+			<text>[Sell Raw Asteroid Ore for about 30 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="18" max="22"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_HULLS" hidden="true">
+			<text>[Sell Ship Hull Panels for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_DRUGS" hidden="true">
+			<text>[Sell Slug Hallucinogens for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_ART" hidden="true">
+			<text>[Sell Eccentric Artworks for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="45"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_PIRATE_ARMS" hidden="true">
+			<text>[Sell Small Arms for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_REBEL_CONTRABAND" hidden="true">
+			<text>[Sell Federation Contraband for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="22" max="28"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_NEBULA_GAS" hidden="true">
+			<text>[Sell Compressed Nebula Gas for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CRYSTAL_ARTIFACTS" hidden="true">
+			<text>[Sell Crystal Artifacts for about 70 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="50"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Just quickly check the available ship equipment.</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+<!-- END OF TE MATNIS EVENTS -->
