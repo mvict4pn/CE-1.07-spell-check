@@ -8,7 +8,7 @@ A community effort to completely spell check the FTL Captain's Edition mod for t
 
 House rules:
 
-1. Only spell check things within <text> </text> tags. Everything else might mess up the mod structure.
+1. Only spell check things within text tags. Everything else might mess up the mod structure.
 
 2. If you rephrase things, do not exeed the number of characters the text originally had. 
 Specially when the text was allready pretty long. Too long texts can cause the game to crash on text load.
