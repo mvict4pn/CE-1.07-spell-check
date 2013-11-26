@@ -1,0 +1,3183 @@
+
+<eventList name="HOSTILE_REBEL">
+	<event load="REBEL"/>
+	<event load="REBEL_AUTO"/>
+	<event load="AUTO_ASTEROID"/>
+	<event load="AUTO_WARNING"/>
+	<event load="SQUAT_WARNING"/>
+
+	<event load="BS_EVENT_AUTO"/>
+	<event load="BS_EVENT_AUTO_SUICIDE"/>
+	<event load="BS_EVENT_REBEL"/>
+	<event load="BS_EVENT_REBEL"/>
+	<event load="C_EVENT_CRUISER_REBEL"/>
+	<event load="C_EVENT_CRUISER_REBEL"/>
+	<event load="C_EVENT_REBEL_GUNBOAT"/>
+	<event load="CE_PDS_REBEL"/>
+	<event load="CE_PDS_REBEL"/>
+</eventList>
+
+<eventList name="NEUTRAL_REBEL">
+	<event load="AUTO_CIVILIAN"/>
+	<event load="SQUAT_REFUEL_STATION"/>
+	<event load="AUTO_DEFENSE_MAP"/>
+	<event load="AUTO_DEFENSE_ITEM"/>
+	<event load="AUTO_DEFENSE_RADAR"/>
+	<event load="REBEL_TRANSPORT"/>
+	<event load="BROKEN_REBEL_DRONE"/>
+	<event load="ALISON_DEFECTOR"/>
+
+	<event load="CE_LONE_SHUTTLE"/>
+	<event load="CE_DERELICT_TREASURE"/>
+	<event load="BS_EVENT_AUTO_DEFENSE_SUPPLY"/>
+</eventList>
+
+<eventList name="NEBULA_REBEL">
+	<event load="NEBULA_EMPTY"/>
+	<event load="NEBULA_REBEL"/>  
+	<event load="NEBULA_AUTO"/>
+	<event load="NEBULA_AUTO_WARNING"/>
+	<event load="NEBULA_AUTO_DEFENSE_ITEM"/>
+	<event load="NEBULA_TRADER"/>
+	<event load="STORM_REBEL"/>
+	<event load="STORM_AUTO"/>
+	<event load="STORM_ITEMS"/>
+	<event load="NEBULA_REBEL_UNDETECTED"/>  
+	<event load="NEBULA_LOST_SHIP"/>  
+	<event load="NEBULA_REBEL_BOARDING"/>
+
+	<event load="BS_EVENT_AUTO_NEBULA"/>
+	<event load="BS_EVENT_AUTO_NEBULA"/>
+	<event load="BS_EVENT_AUTO_NEBULA"/>
+	<event load="BS_EVENT_AUTO_SUICIDE_NEBULA"/>
+	<event load="BS_EVENT_AUTO_SUICIDE_NEBULA"/>
+	<event load="BS_EVENT_AUTO_SUICIDE_NEBULA"/>
+</eventList>
+
+<eventList name="QUESTS_REBEL">
+	<event load="MERCHANT_REQUEST"/>
+	<event load="FEDERATION_PLANET_SIGNAL"/>
+
+	<event load="BS_QUEST_REBEL_START"/>
+	<event load="CE_DINER"/>
+</eventList>
+
+<eventList name="BOARDERS_REBEL">
+	<event load="BOARDERS_SUN"/>
+	<event load="BOARDERS_REBEL_SHIP"/>
+
+	<event load="CE_BOARDERS_TRAITOR"/>
+</eventList>
+
+<eventList name="DISTRESS_BEACON_REBEL">
+	<event load="CIVILIAN_ASTEROIDS_BEACON"/>  
+	<event load="REBEL_VS_FEDERATION"/> 
+	<event load="ESCORT_BEACON"/>
+	<event load="FRIENDLY_BEACON"/>
+	<event load="TRAP_BEACON"/>
+	<event load="DISTRESS_STATION_FIRE"/>
+
+	<event load="CE_DISTRESS_SUN"/>
+	<event load="CE_DISTRESS_DEFENSE"/>
+	<event load="CE_DISTRESS_MELTDOWN"/>
+	<event load="CE_DISTRESS_OXYGEN"/>
+	<event load="CE_DISTRESS_DRONES"/>
+</eventList>
+
+
+<eventList name="DESTROYED_SHIP_REBEL">
+	<event>
+		<text load="REBEL_FIGHT_DESTROYED"/>
+		<autoReward level="MED">standard</autoReward>
+	</event>
+	<event>
+		<text load="REBEL_FIGHT_DESTROYED"/>
+		<autoReward level="MED">standard</autoReward>
+	</event>
+</eventList>
+
+<textList name="REBEL_FIGHT_DESTROYED">  
+	<text>Your crew breathes a sigh of relief as you successfully repel and destroy this Rebel pursuer. You salvage their wreckage and prepare to move on.</text>
+	<text>Another group of Rebel officers meets their end by the hand of their prime target, their wreckage only further fueling your escape.</text>
+	<text>The familiar markings of this Rebel ship char as the insides explode into flames. You collect what you can from their remains and ready the FTL drive.</text>
+	<text>As their vessel is torn apart from final assault, you wonder why the Rebels became like this as you move in to scrap their ship.</text>
+	<text>One more Rebel ship bites the dust from your efforts. You salvage what you can and prepare for the next battle.</text>
+</textList>
+
+<eventList name="DESTROYED_SHIP_AUTO">
+	<event>
+		<text load="AUTO_FIGHT_DESTROYED"/>
+		<autoReward level="MED">standard</autoReward>
+	</event>
+	<event>
+		<text load="AUTO_FIGHT_DESTROYED"/>
+		<autoReward level="MED">standard</autoReward>
+	</event>
+</eventList>
+
+<textList name="AUTO_FIGHT_DESTROYED">  
+	<text>Another automated ship is sent to the scrapyard as it breaks apart. You salvage what looks usable from its remains before pressing onwards.</text>
+	<text>The AI of the automated scout remains online for a brief moment after its host ship explodes before shutting down for good, unconscious as its remains are looted.</text>
+	<text>One more of the masses of automated Rebels is shot down, its corpse scattering useful scrap materials before your recovery arms.</text>
+	<text>These sentient nuisances just keep on coming; with each one you destroy there is sure to be many to replace it. You quickly scrap the ship and prepare to jump.</text>
+	<text>This AI wasn't smart enough to outwit your more natural instincts, its destruction a sign of that discovery. You collect what seems useful from its remains before leaving.</text>
+</textList>
+
+<!-- CE MODIFIED VANILLA REBEL EVENTS -->
+
+<event name="NOTHING_REBEL">
+	<text load="NOTHING_REBEL"/>
+	<choice hidden="true" req="human">
+		<text>(Human Crew) Chat with your human crew member while the FTL charges.</text>
+		<event>
+			<text load="CE_CONVERSATION_HUMAN_GENERIC_TEXT"/>
+		</event>
+	</choice>
+	<choice req="AE_HOLOGRAM_GENERATOR" hidden="true"> 
+		<text>(AI Avatar Generator) Bring a sentient hologram crew member into existence. [ Scrap: -15 ]</text>
+		<event load="CE_HOLOGRAM_BIRTH_LIST"/>
+	</choice>
+	<choice req="AE_FUEL_RECYCLE" hidden="true"> 
+		<text>(FTL Fuel Recycler) Recycle some FTL fuel cells.</text>
+		<event>
+			<text load="CE_FUEL_RECYCLE_TEXT"/>
+			<item_modify>
+				<item type="fuel" min="2" max="4"/>
+			</item_modify>
+		</event>
+	</choice>
+	<choice req="AE_AMMO_MANUFACTURER" hidden="true">
+		<text>(Ammo Manufacturer) Assemble some missiles while you wait for the FTL to charge. [ Scrap: -25 ]</text>
+		<event load="CE_AMMO_PRODUCTION"/>
+	</choice>
+	<choice req="AE_DRONE_MANUFACTURER" hidden="true">
+		<text>(Drone Manufacturer) Assemble some drone parts while you wait for the FTL to charge. [ Scrap: -15 ]</text>
+		<event load="CE_DRONE_PRODUCTION"/>
+	</choice>
+	<choice req="AE_REPAIR_KIT" hidden="true">
+		<text>(Hull Repair Kit) Repair some hull damage.</text>
+		<event load="CE_SHIP_MAINTENANCE"/>
+	</choice>
+	<choice req="AE_BEACON_KIT" hidden="true">
+		<text>(Beacon Access Kit) Cover your tracks in the FTL network to delay the Rebel fleet.</text>
+		<event>
+			<text load="CE_BEACON_KIT_REBEL_DELAY_TEXT"/>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice req="WEAPONS_MINES" hidden="true"> 
+		<text>(Minelauncher) Lay a minefield to delay the Rebel fleet. [ Missiles: -4 ]</text>
+		<event>
+			<text>You quickly drop some mines as you circle around the beacon. The Rebel forces will have to avoid this area, clear the minefield or suffer heavy damage. All possibilities will considerably delay their fleet.</text>
+			<item_modify>
+				<item type="missiles" min="-4" max="-4"/>
+			</item_modify>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice hidden="true"> 
+		<text>Continue...</text>
+		<event/>
+	</choice>
+</event>
+<textList name="NOTHING_REBEL">
+	<text>You enter a system bustling with Rebel activity.  Supply freighters and re-supply stations are dwarfed by a few heavy warships.  Luckily, no one seems to be paying attention to small cruisers.  No ships are scanning or messaging you.</text>
+	<text>You arrive near a small Rebel refueling depot.  Your ship is being scanned multiple times so they must recognize you, but there appears to be no combat-ready ships in the vicinity.  The only message you receive is a denial to your request to dock at the depot.</text> 
+	<text>There is not much of interest nearby.   A small sun in the distance with a few orbiting planets in nearby space provide little of interest.</text>
+	<text planet="NONE">There are no other ships near this beacon, however you detect a small communication relay.  You tap into it without a problem; there are no encryptions.  Most of the chatter revolves around troop and fleet movements, not particularly interesting.</text>
+	<text planet="PLANET_POPULATED_SMALL">There is a small planet nearby with scattered settlements.  A small Rebel fleet is in orbit with many ships ferrying back and forth.  It must be a more recently 'liberated' planet.</text>
+</textList>
+
+
+<event name="START_BEACON_REBEL">
+	<text load="START_BEACON_REBEL"/>
+	<choice hidden="true" req="human">
+		<text>(Human Crew) Chat with your human crew member while the FTL charges.</text>
+		<event>
+			<text load="CE_CONVERSATION_HUMAN_GENERIC_TEXT"/>
+		</event>
+	</choice>
+	<choice req="AE_HOLOGRAM_GENERATOR" hidden="true"> 
+		<text>(AI Avatar Generator) Bring a sentient hologram crew member into existence. [ Scrap: -15 ]</text>
+		<event load="CE_HOLOGRAM_BIRTH_LIST"/>
+	</choice>
+	<choice req="AE_FUEL_RECYCLE" hidden="true"> 
+		<text>(FTL Fuel Recycler) Recycle some FTL fuel cells.</text>
+		<event>
+			<text load="CE_FUEL_RECYCLE_TEXT"/>
+			<item_modify>
+				<item type="fuel" min="2" max="4"/>
+			</item_modify>
+		</event>
+	</choice>
+	<choice req="AE_AMMO_MANUFACTURER" hidden="true">
+		<text>(Ammo Manufacturer) Assemble some missiles while you wait for the FTL to charge. [ Scrap: -25 ]</text>
+		<event load="CE_AMMO_PRODUCTION"/>
+	</choice>
+	<choice req="AE_DRONE_MANUFACTURER" hidden="true">
+		<text>(Drone Manufacturer) Assemble some drone parts while you wait for the FTL to charge. [ Scrap: -15 ]</text>
+		<event load="CE_DRONE_PRODUCTION"/>
+	</choice>
+	<choice req="AE_REPAIR_KIT" hidden="true">
+		<text>(Hull Repair Kit) Repair some hull damage.</text>
+		<event load="CE_SHIP_MAINTENANCE"/>
+	</choice>
+	<choice req="AE_BEACON_KIT" hidden="true">
+		<text>(Beacon Access Kit) Cover your tracks in the FTL network to delay the Rebel fleet.</text>
+		<event>
+			<text>The access kit allows your to hack the beacon and disable it completely. You are right under the Rebels nose, but they will have no possibility to know that you came here. This should give you an advantage for now.</text>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice req="WEAPONS_MINES" hidden="true"> 
+		<text>(Minelauncher) Lay a minefield to delay the Rebel fleet. [ Missiles: -4 ]</text>
+		<event>
+			<text>You quickly drop some mines as you circle around the beacon. The Rebel forces will have to avoid this area, clear the minefield or suffer heavy damage. All possibilities will considerably delay their fleet.</text>
+			<item_modify>
+				<item type="missiles" min="-4" max="-4"/>
+			</item_modify>
+			<modifyPursuit amount="-1"/>
+		</event>
+	</choice>
+	<choice hidden="true"> 
+		<text>Continue...</text>
+		<event/>
+	</choice>
+</event>
+<textList name="START_BEACON_REBEL">
+	<text>This sector was bustling with activity just a few years ago.  Now, more than half of the jump beacons have been destroyed, many settlements have been abandoned and the Rebels patrol constantly.</text>
+	<text>This sector was hit hard by the rebellion.   The many alien settlements and stations located here are now watched over by almost an equal number of Rebel bases, heavy-handedly 'keeping the peace'.</text>
+	<text>Once the Federation forces were scattered, the Rebels came down hard on the locals here.  Between the 'tax collectors' and military bases, the Rebel presence in this sector is high.</text>
+	<text>At one point this was one of the most commonly traveled sectors.  Knowing that, the Rebels have stationed a number of fleets here.  Be careful.</text>
+	<text>You will have to be very cautious in this sector.  The Rebels have full control and are no doubt looking for you.</text>
+</textList>
+
+
+
+<event name="REBEL_AUTO">
+	<text load="REBEL_AUTO"/>
+	<ship load="REBEL_AUTO" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+
+<event name="AUTO_WARNING" unique = "true">
+	<text load="REBEL_AUTO"/>
+	<ship load="REBEL_AUTO_WARNING" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+
+<event name="REBEL">
+	<text load="REBEL"/>
+	<ship load="REBEL" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+
+<event name="SQUAT_WARNING" unique="true">
+	<text>You stumble across a forward scout of the Rebel fleet.</text>
+	<ship load="SQUAT_WARNING" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+
+
+<event name="AUTO_CIVILIAN" unique="false">
+	<text>You come across a Rebel automated scout ship pursuing a civilian ship, weapons engaged.</text>
+	<choice>
+		<text>Aid the civilian ship.</text>
+		<event>
+			<text>Power up your weapons and engage the automated ship.</text>
+			<ship load="REBEL_AUTO_CIVILIAN" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Stay out of it.</text>
+		<event>
+			<text>The fight brings them out of your immediate scanning range.</text>
+		</event>
+	</choice>
+</event>
+
+<event name="SQUAT_REFUEL_STATION" unique="true">  
+	<img planet="PLANET_POPULATED_SMALL"/>
+	<text>You detect a Rebel scout on an attack approach to a small refueling outpost. Their weapons are charged, but they're not firing yet.</text>
+	<ship load="SQUAT_REFUEL_STATION" hostile="false"/>
+	<choice>
+		<text>Intervene to defend the outpost.</text>
+		<event>
+			<ship hostile="true"/>
+			<text>The rebel responds to your threat, "I don't know who you are, but no one defies the Rebel Fleet!"  They move in to engage.</text>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid the conflict.</text>
+		<event>
+			<text>The Rebel ship fires some warning shots but eventually powers down their weapons. The outpost seems to have given them what they demanded.</text> 
+		</event>
+	</choice>
+</event>
+
+<event name="AUTO_REFUEL_STATION" unique="true">  
+	<img planet="PLANET_POPULATED_SMALL"/>
+	<text>You detect an automated Rebel scout attacking a small re-fueling outpost. </text>
+	<ship load="REBEL_AUTO_REFUEL" hostile="false"/>
+	<choice>
+		<text>Intervene to defend the outpost.</text>
+		<event>
+			<text>Detecting the higher threat, the automated ship moves in to engage your ship.</text> 
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid the conflict.</text>
+		<event>
+			<text>You steer clear of the conflict. The outpost receives a beating but the ship stops its attack before it's destroyed.</text> 
+		</event>
+	</choice>
+</event>
+
+<event name="AUTO_DEFENSE_MAP" unique="true">
+	<img planet="PLANET_POPULATED"/>
+	<text>You detect a Rebel automated ship nearby. It does not engage and seems to be patrolling around a long-range sensor station.</text>
+	<ship load="REBEL_AUTO_MAP" hostile="false"/>
+	<choice>
+		<text>Attack the automated ship to get to the sensor station.</text>
+		<event>
+			<text load="CE_PRE_FIGHT_TEXT"/>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid provoking the ship.</text>
+		<event/>
+	</choice>
+	<choice req="sensors" lvl="3" hidden="true">
+		<text>(Sensors) Use your sensors to attempt to access the data.</text>
+		<event load="AUTO_DEFENSE_MAP_SENSORS"/>
+	</choice>
+	<choice req="teleporter" hidden="true">
+		<text>(Teleporter) Beam directly onto the station to try to avoid detection.</text>
+		<event>
+			<text>Once on board, your crew is able to access and download the long-range scanner's archived information. Your map has been updated.</text>
+			<reveal_map/>
+		</event>
+	</choice>
+</event>
+<eventList name="AUTO_DEFENSE_MAP_SENSORS">
+	<event>
+		<text>Your improved sensors are able to remotely access and download the public radar station's local map data.</text>
+		<reveal_map/>
+	</event>
+	<event>
+		<text>The automated ship must be remotely connected to the station; as soon as you attempt to log on, the ship activates and charges you.</text>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+
+
+<event name="AUTO_DEFENSE_ITEM" unique="true">
+	<text>An advanced Rebel automated ship remains stationed near a small Rebel space-station. Sensors indicate it's a storage vessel for military goods.</text>
+	<ship load="REBEL_AUTO_ITEM" hostile="false"/>
+	<choice>
+		<text>Attack the automated ship to get to the storage cache.</text>
+		<event>
+		<text load="CE_PRE_FIGHT_TEXT"/>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid provoking the ship.</text>
+		<event/>
+	</choice>
+	<choice req="cloaking" hidden="true">
+		<text>(Cloaking) Attempt to cloak and access the cache.</text>
+		<event load="AUTO_DEFENSE_ITEM_CLOAK"/>
+	</choice>
+</event>
+<eventList name="AUTO_DEFENSE_ITEM_CLOAK">
+	<event>
+		<text>The ship patrols wide around the area, successfully approaching the station while avoiding detection.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="DEFENSE_ITEM_LIST"/>
+		</choice>
+	</event>
+	<event>
+		<text>Before you can get close enough to scan the station, the automated ship detects you and moves in to attack!</text>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+
+<event name="AUTO_DEFENSE_RADAR" unique="true">
+	<text>A Rebel automated ship sits dormant near a Rebel forward radar station.</text>
+	<ship load="REBEL_AUTO_RADAR" hostile="false"/>
+	<choice>
+		<text>Approach the station.</text>
+		<event>
+			<text>The ship powers up and targets you.</text>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Keep your distance and wait for the FTL to charge.</text>
+		<event/>
+	</choice>
+	<choice req="COMBAT" hidden="true">
+		<text>(Anti-Ship Drone) Send a drone to distract the automated ship.</text>
+		<event load="AUTO_DEFENSE_RADAR_COMBAT"/>
+	</choice>
+</event>
+<eventList name="AUTO_DEFENSE_RADAR_COMBAT">
+	<event>
+		<text>Your combat drone attacks the automated ship and then retreats, luring it away. You quickly move up to the radar station to access it.</text>
+		<choice>
+			<text>Continue...</text>
+			<event load="DEFENSE_RADAR_LIST"/>
+		</choice>
+		<item_modify>
+			<item type="drones" min="-1" max="-1"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>Your combat drone repeatedly fires at the automated ship. It can't break through its shields, but is at least enough of a distraction to allow you to access the radar station.</text>
+		<choice>
+			<text>Continue...</text>
+			<event load="DEFENSE_RADAR_LIST"/>
+		</choice>
+		<item_modify>
+			<item type="drones" min="-1" max="-1"/>
+		</item_modify>
+	</event>
+	<event>
+		<text>Before your drone has a chance to attack, the automated ship activates and shoots it down. It then detects your ship and moves in on your position.</text>
+		<item_modify>
+			<item type="drones" min="-1" max="-1"/>
+		</item_modify>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+<event name="NEBULA_REBEL_BOARDING" unique="true">
+	<environment type="nebula"/>
+	<text>There appears to be a number of small stations nearby.  Before you have time to scan them, warnings go off.  A Rebel teleporter activates in one of the stations.</text>
+	<choice req="AE_TELEPORTER_JAMMER" hidden="true">
+		<text>(Teleporter Disruptor) Activate your disrupter field.</text>
+		<event>
+			<text>With the disrupter active the Rebels here can't do anything. They call in reinforcements on all channels but there seem to be no combat ready ships in the system. You charge your FTL with a grin on your face.</text>
+		</event>
+	</choice>
+	<choice>
+		<text>Continue...</text>
+		<event>
+			<text> We've been boarded!</text>
+			<boarders min="3" max="4" class="human"/>
+		</event>
+	</choice>
+</event>
+
+<event name="BOARDERS_REBEL_SHIP">
+	<text load="BOARDERS_REBEL_SHIP"/>
+	<ship load="REBEL" hostile="false"/>
+	<choice req="AE_TELEPORTER_JAMMER" hidden="true">
+		<text>(Teleporter Disruptor) There is still time to activate the disruption field.</text>
+		<event>
+			<text>You successfully defend yourself against the boarding attempt.</text>
+			<ship load="REBEL" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Continue...</text>
+		<event>
+			<text>We've been boarded!</text>
+			<boarders min="2" max="3" class="human"/>
+			<ship load="REBEL" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+</event>
+<textList name="BOARDERS_REBEL_SHIP" unique="false">
+	<text>You receive a message from a nearby Rebel station, "You have a lot of guts passing through our space, I'll give you that."  He turns giving an order, "Kill their crew, I want that ship intact."</text>
+	<text>Your sensors warn of an incoming Rebel ship at the same time as the well-known computer voice of your ship AI warns you of an active enemy teleporter. You get a taunting message: "Ready to die?  I sure am ready to get a promotion!"</text>
+	<text>Incoming message, "Hello Captain," says a Rebel in an officer's garb.  "How very generous of you to turn yourself in.  Prepare to be boarded.  Come quietly and we may be lenient."</text>
+	<text>You receive a message on a low-band channel.  "You're surrounded, just like the last of your Federation friends.  Just die already."  The enemy has teleported onto our ship!</text>
+</textList>
+
+
+
+
+<event name="AUTO_HACKER" unique="true">
+	<text>Your arrival is greeted by numerous computer alerts. The nearby automated Rebel scout has deployed a virus and disrupted your shield system. Hopefully it won't cause further problems before you can destroy it.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>You program an attack vector. "Redirect power to other systems!"</text>
+			<ship load="REBEL_AUTO_HACKSHIELDS" hostile="true"/>
+			<status type="divide" target="player" system="shields" amount="2"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="WEAPONS_EFFECTOR">
+		<text>(Effector) Use your own electronic warfare equipment to counter the cyber attack.</text> 
+		<event>
+			<text>Your effector allows you to access the scouts outer data-stores and you can	eliminate the virus. Power up the shields!</text>
+			<ship load="REBEL_AUTO" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="REBEL_TRANSPORT" unique = "true">
+	<img planet="NONE"/>
+	<text>You spot a small Rebel ship nearby. It seems to have been re-fitted for transport rather than combat. It does not seem to want to engage you and your ship.</text>
+	<choice>
+		<text>Demand the surrender of their goods.</text>
+		<event>
+			<text>You prepare to secure their cargo by force.</text>
+			<ship load="SQUAT_TRANSPORT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid the ship.</text>
+		<event>
+			<text>They stay outside your weapons range, and eventually jump away.</text>
+		</event>
+	</choice>
+</event>
+
+<event name="BROKEN_REBEL_DRONE" unique="true">
+	<text>You find a Rebel automated scout floating near this beacon. Despite its pristine condition, it appears to be de-activated.</text>
+	<ship load="REBEL_AUTO" hostile="false"/>
+	<choice hidden="true">
+		<text>Attempt to download the ship's data stores.</text>
+		<event load="DOWNLOAD_DRONE_DATA"/>
+	</choice>
+	<choice>
+		<text>Don't risk activating it, and just strip the ship for any useful scrap.</text>
+		<event>
+			<autoReward level="LOW">scrap_only</autoReward>
+		</event>
+	</choice>
+	<choice req="sensors" lvl="3" hidden="true">
+		<text>(Sensors) Remotely scan the ship.</text>
+		<event load="BROKEN_REBEL_DRONE_SENSORS"/>
+	</choice>
+	<choice hidden="true" req="WEAPONS_EFFECTOR">
+		<text>(Effector) Use your electronic warfare device to hack into the scouts.</text> 
+		<event>
+			<text>Your effector turns the scouts security ruotines agains each other and the scouts computer disables itself. You upload its map data to your navigation system and strip the ship of useful materials.</text>
+			<reveal_map/>
+			<autoReward level="LOW">standard</autoReward>
+		</event>
+	</choice>
+</event>
+<eventList name="DOWNLOAD_DRONE_DATA">
+	<event>
+		<text>You are able to pull all of the ship's data about this sector. Your map has been updated.</text>
+		<reveal_map/>
+		<autoReward level="LOW">standard</autoReward>
+	</event>
+	<event>
+		<text>You accidentally reactivate the ships AI. Its weapons and shields immediately go online; prepare for a fight!</text>
+		<ship load="REBEL_AUTO" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+
+<eventList name="REBEL_TRANSPORT_DESTROYED">
+	<event>
+		<text>You search the ship and discover that its cargo was new military-grade weaponry!  It was somehow undamaged in the fight and can easily be mounted on the ship.</text>
+		<autoReward level="MED">weapon</autoReward>
+	</event>
+	<event>
+		<text>You search the remains of the ship, but only come across blueprints and debris from broken machinery. A shame, but you take what scrap you can salvage.</text>
+		<autoReward level="LOW">standard</autoReward>
+	</event>
+	<event>
+		<text>The ship was transporting weaponry. You find a piece still intact, despite the battle.</text>
+		<autoReward level="low">weapon</autoReward>
+	</event>
+	<event>
+		<text>The ship was apparently transporting weaponry; however, nothing seems to have survived the battle.</text>
+		<autoReward level="MED">scrap_only</autoReward>
+	</event>
+	<event>
+		<text>Searching the remains, you find that the cargo was military-grade Drone Schematics!  You bring them aboard to install in your ship.</text>
+		<autoReward level="MED">drone</autoReward>
+	</event>
+	<event>
+		<text>The debris implies that the ship was carrying Drone Schematics, but unfortunately nothing remains. You do find functioning Drone Parts, however.</text>
+		<autoReward level="MED">droneparts</autoReward>
+	</event>
+	<event>
+		<text>This ship's cargo was not salvageable. However, they seem to have been surveying the region; they possess detailed maps and data. You download what you can to the ship's map.</text>
+		<reveal_map/>		
+		<autoReward level="MED">scrap_only</autoReward>
+	</event>
+	<event>
+		<text>From the bits and pieces you find, you decide that this ship was gathering information. Nothing seems useful.</text>
+		<autoReward level="MED">scrap_only</autoReward>
+	</event>
+	<event>
+		<text>You detect faint life signatures from an intact piece of the hull. They were transporting prisoners, and the sole survivor offers to join your crew, as a first step on his path to get revenge.</text>
+		<crewMember amount="1"/>
+		<autoReward level="LOW">standard</autoReward>
+	</event>
+	<event>
+		<text>The ship appears to have been transporting prisoners. Unfortunately they were all killed in the battle. You salvage what you can.</text>
+		<autoReward level="LOW">standard</autoReward>
+	</event>
+	<event>
+		<text>The ship was carrying military supplies. You pick up anything that looks salvageable from the debris.</text>
+		<autoReward level="HIGH">standard</autoReward>
+	</event>
+	<event>
+		<text>The ship was apparently transporting confiscated goods. Some creates remain undamaged, you load them into your cargo holds.</text>
+		<autoReward level="LOW">scrap_only</autoReward>
+		<augment name="TE_GOODS_REBEL_CONTRABAND"/>
+	</event>
+	<event>
+		<text>The ship was apparently transporting confiscated goods. Some creates remain undamaged, you load them into your cargo holds.</text>
+		<autoReward level="LOW">scrap_only</autoReward>
+		<augment name="TE_GOODS_REBEL_CONTRABAND"/>
+	</event>
+</eventList>
+<eventList name="REBEL_TRANSPORT_CAPTURED">
+	<event>
+		<text>With the crew dead, you search the ship. You find military-grade weaponry and take what looks most useful.</text>
+		<autoReward level="MED">weapon</autoReward>
+	</event>
+	<event>
+		<text>The ship refuses to fight, but you still detect life signatures. Apparently this was a prisoner transport. The single survivor offers to join your crew in exchange for their freedom.</text>
+		<crewMember amount="1"/>
+		<autoReward level="HIGH">scrap_only</autoReward>
+	</event>
+	<event>
+		<text>This ship was apparently carrying information about the surrounding beacons. You download what you can to the ship's map, and scrap the rest of the ship.</text>
+		<reveal_map/>
+		<autoReward level="MED">scrap_only</autoReward>
+	</event>
+	<event>
+		<text>The ship was apparently transporting confiscated goods. You load them into your cargo holds.</text>
+		<autoReward level="LOW">scrap_only</autoReward>
+		<augment name="TE_GOODS_REBEL_CONTRABAND"/>
+	</event>
+</eventList>
+
+
+<!-- END OF CE MODIFIED VANILLA REBEL EVENTS -->
+
+<!-- BS REBEL EVENTS -->
+<event name="BS_EVENT_AUTO_SUICIDE">
+	<text load="BS_EVENT_AUTO_SUICIDE_TEXT"/>
+	<ship load="BS_AUTO_SUICIDE" hostile="true"/>
+	<status type="limit" target="enemy" system="engines" amount="0"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+<textList name="BS_EVENT_AUTO_SUICIDE_TEXT">
+	<text>You discover one of the Rebels' autonomous satellite turrets. The ship's AI wastes no time in engaging your ship.</text>
+	<text>Your ship is hailed: "You have been identified as a high priority target and are in range of this units weapon clusters. Engagement is the logical conclusion." This satellite seems to be controlled by an advanced Rebel combat AI.</text>
+	<text>A Rebel defense turret has been stationed here to guard this beacon. You realize that you will have to stay in its weapon range till the FTL drive is charged or it is defeated.</text>
+	<text>The AI of a nearby Rebel satellite turret immediately identifies you as a threat and engages.</text>
+	<text>A computer generated voice speaks through the coms: "I am one of 5237 identical produced Rebel defense turrets (TM). Resistance is futile. Shut down your systems and accept annihilation."</text>
+	<text>An unmanned turrets waits at this beacon. It politely sends an automated message: "Target acquired."</text>
+	<text>Another unmanned turret satellite guards this area. You prepare your ship for combat.</text>
+	<text>As you jump in a Rebel turret satellite activates. A fight seems unavoidable.</text>
+	<text>A small trade station appears on the local radar. You realize it is masking its identity, turns out it is a Rebel defense turret!</text>
+	<text>You receive a hail from a small AI run satellite: "Simulations indicate that I will win this engagement with high probability. Do you want to try your chances?"</text>
+	<text>A rebel AI satellite is guarding this beacon and hails you: "This unit has already calculated the outcome of this battle, it will not be favorable for you. How does it feel to be so inferior to an AI?" The thing loads weapons!</text>
+	<text planet="PLANET_POPULATED">Scans indicate that about 34 fully armed defense turrets are stationed around this planet. Lucky for you only one is guarding the beacon.</text>
+</textList>
+
+<event name="BS_EVENT_AUTO">
+	<text load="BS_EVENT_AUTO_TEXT"/>
+	<ship load="BS_AUTO_TURRET" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+<textList name="BS_EVENT_AUTO_TEXT">
+	<text>You discover one of the Rebels' autonomous satellite turrets. The ship's AI wastes no time in engaging your ship.</text>
+	<text>Your ship is hailed: "You have been identified as a high priority target and are in range of this units weapon clusters. Engagement is the logical conclusion." This satellite seems to be controlled by an advanced Rebel combat AI.</text>
+	<text>A Rebel defense turret has been stationed here to guard this beacon. You realize that you will have to stay in its weapon range till the FTL drive is charged or it is defeated.</text>
+	<text>The AI of a nearby Rebel satellite turret immediately identifies you as a threat and engages.</text>
+	<text>A computer generated voice speaks through the coms: "I am one of 5237 identically produced Rebel defense turrets (TM). Resistance is futile. Shut down your systems and accept annihilation."</text>
+	<text>An unmanned turrets waits at this beacon. It politely sends an automated message: "Target acquired."</text>
+	<text>Another unmanned turret satellite guards this area. You prepare your ship for combat.</text>
+	<text>As you jump in a Rebel turret satellite activates. A fight seems unavoidable.</text>
+	<text>A small trade station appears on the local radar. You realize it is masking its identity, turns out it is a Rebel defense turret!</text>
+	<text>You receive a hail from a small AI run satellite: "Simulations show that I will win this engagement with 82 percent probability. Do you want to try your chances?"</text>
+	<text>A rebel AI satellite is guarding this beacon and hails you: "This unit has already calculated the outcome of this battle, it will not be favorable for you. How does it feel to be so inferior to an AI?" The thing loads weapons!</text>
+	<text planet="PLANET_POPULATED">Scans indicate that about 34 fully armed defense turrets are stationed around this planet. Lucky for you only one is guarding the beacon.</text>
+</textList>
+
+<event name="BS_EVENT_AUTO_DEFENSE_SUPPLY" unique="true">
+	<text>An AI controlled Rebel defense turret is stationed near an unarmed Rebel supply depot. Sensors indicate it's stores military equipment.</text>
+	<ship load="BS_AUTO_TURRET_DEFENSE_SUPPLY" hostile="false"/>
+	<choice>
+		<text>Engage the turret to get to the supply station.</text>
+		<event>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Avoid provoking the turret.</text>
+		<event/>
+	</choice>
+	<choice req="cloaking" hidden="true">
+		<text>(Cloaking) Attempt to cloak and access the supply station.</text>
+		<event load="BS_EVENT_AUTO_DEFENSE_SUPPLY_CLOAK"/>
+	</choice>
+</event>
+<eventList name="BS_EVENT_AUTO_DEFENSE_SUPPLY_CLOAK">
+	<event>
+		<text>After an initial thrust you activate the ships cloak and drift towards the station. The turret seems to register that something is wrong, it broadens its scanning range, but isn't able to detect you.</text>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event load="BS_EVENT_AUTO_DEFENSE_SUPPLY_RESULTS"/>
+		</choice>
+	</event>
+	<event>
+		<text>After an initial thrust you activate the ships cloak and drift towards the station. The turret seems to register that something is wrong, it broadens its scanning range and detects faint rests of your thruster heat. It fully activates it's weapon clusters!</text>
+		<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+<eventList name="BS_EVENT_AUTO_DEFENSE_SUPPLY_RESULTS">
+	<event>
+		<text>The supply depot is completely empty. The logs show that all the equipment was loaded on a rebel ship just a few hours ago. It's beacon path is attached as well, you could track the ship down.</text>
+		<choice>
+		<text>Calculate their current position and follow them.</text>
+			<event>
+				<text>The computer calculates at which beacon they must be by now. Let's hunt some Rebels.</text>
+				<quest event="BS_QUEST_REBEL_TRANSPORT"/>
+			</event>
+		</choice>
+		<choice>
+			<text>Don't bother with them.</text>
+			<event/>
+		</choice>
+	</event>
+	<event>
+		<text>The station was apparently designed to outfit Rebel ships with Drone Systems. You find a functioning Schematic.</text>
+		<autoReward level="LOW">drone</autoReward>
+	</event>
+	<event>
+		<text>The station is a storage site for military grade weapons. You find one that can be easily attached to the ship.</text>
+		<autoReward level="LOW">weapon</autoReward>
+	</event>
+	<event>
+		<text>The station is a storage site for various resources. You salvage everything possible.</text>
+		<autoReward level="MED">stuff</autoReward>
+	</event>
+</eventList>
+<event name="BS_QUEST_REBEL_TRANSPORT" unique="true">
+	<img planet="NONE"/>
+	<text>You successfully tracked down the transport that carries equipment from the supply depot.</text>
+	<choice>
+		<text>Demand the surrender of their goods.</text>
+		<event>
+			<text>You prepare to secure their cargo by force.</text>
+			<ship load="SQUAT_TRANSPORT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Leave them be.</text>
+		<event>
+			<text>They stay outside your weapons range, and eventually jump away.</text>
+		</event>
+	</choice>
+</event>
+
+
+<event name="BS_EVENT_REBEL">
+	<text load="BS_EVENT_REBEL_TEXT"/>
+	<ship load="BS_REBEL" hostile="false"/>
+	<choice>
+		<text>Surrender.</text>
+		<event>
+			<text>Confusion breaks out among your crew as you tell them your decision. The Rebels are not exactly known for taking prisoners...</text>
+			<choice>
+				<text>This was all a crazy plan, we will never make it to the Federation sector! If we cooperate maybe they treat us fairly...</text>
+				<event>
+					<text load="BS_EVENT_REBEL_FAIL_TEXT"/>
+					<choice>
+						<text>Continue...</text>
+						<event>
+							<text>...</text>
+							<damage amount="100"/>
+						</event>
+					</choice>
+				</event>
+			</choice>
+			<choice>
+				<text>The crew is right, you should never give up. Power the weapons!</text>
+				<event>
+					<text>As you target the station it powers up its guns. You engage it with new found, desperate confidence.</text>
+					<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Power up the weapons.</text>
+		<event>
+			<text>The station begins laying down fire on you.</text>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="mantis">
+		<text>(Mantis Crew) Pretend that you want to parley and have your Mantis ambush the Rebel negotiators to facilitate an escape.</text>
+		<event>
+			<text>The Rebels agree to send an unarmed negotiator. When their shuttle docks, you aren't surprised that four fully suited up Rebel-marines exit it instead. They calmly walk up towards you, suddenly your Mantis crew member burst out of a nearby cargo-crate</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>With the element of surprise on its side, the mantis slices the boarders to pieces before they can even reach for their coms. The whole operation gave you enough time to charge the FTL drive and the Rebel station isn't't reacting yet. This is your chance to escape!</text>
+					<ship hostile="false"/>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+<textList name="BS_EVENT_REBEL_TEXT">
+	<text>Your ship is hailed. "Look who we have here! You must be incredible stupid to come to our doorstep. We give you one chance to get out of this alive. Hand over your ships control to us and surrender."</text>
+	<text>A small Rebel station orbits a nearby moon. You try to lay low but it spots you. The send threat level six surrender opting protocols and target your ship.</text>
+	<text>A Rebel station is guarding this region. As soon as you arrive they message you: "This is the first and only warning: Surrender your ship to us or we will open fire with our full weapon array."</text>
+	<text>A near by Rebel station puts a high ranking officer on the com: "Our weapon range is nearly double the jump circle of this beacon. We also outgun you. Be reasonable, you cannot prevail in a fight. Give up, it's over for you."</text>
+	<text>You receive a transmission: "Sir, you know we cannot let you go. We suggest you surrender to avoid any further unnecessary violence" The stations weapons targeting you, but don't fire yet.</text>
+	<text>A well armed Rebel station obstructs the view on the beacon, it's too late to avoid a fight. They suggest that you surrender.</text>
+	<text planet="PLANET_POPULATED">A Rebel station orbits the nearby planet. An officer is put on the comes: "I was just informed who you are. I can only assume you came here to turn yourself in, right?" The station increases weapon readiness, but isn't firing yet.</text>
+</textList>
+<textList name="BS_EVENT_REBEL_FAIL_TEXT">
+	<text>You surrender and meet the Rebels in your docking bay. They gyro-cuff you and line up the crew behind the chemical shed. You hear shots and have difficulties to realize what is going on here. How did it come to this? You just want to get home... Remote explosives are planted. A highly decorated Rebel general just stares at you with a look full of despite. They leave and let you you wait for the detonation...</text>
+	<text>You retract your weapons, lower the shields and hand over the ships controls to the Rebel station. The commanding officer is put on the coms: "Interesting, we didn't except this..." ... "Anyway... I'm sorry to bring it to you, but this was a foolish decision." The station fires a full broadside into the mid section of your defenseless ship.</text>
+	<text>You lower your shields and transfer the ships controls to the Rebels. A small shuttle docks and a marine detachment boards your ship. You hear the muffled sound of pulse-rifles on the lower decks. There is nothing left for you to do but wait for them to enter the bridge. No one comes, instead a sudden explosion that engulfs the whole ship kills you before you can even think about it.</text>
+</textList>
+
+
+<event name="BS_QUEST_REBEL_START" unique="true">
+	<text>A short while after arriving at the beacon you receive a messaged with multiple encryption layers from a ship that IDs as Federation. You can not see it around anywhere. "Greetings friendlies. This is Federation infiltrator Solid-PXt005."</text>
+	<choice hidden="true">
+		<text>"Continue..."</text>
+			<event>
+			<text>"We've been running interference and sabotage missions in this sector for months on our own now. No idea what you are doing here, but you might be sufficiently equipped to take on a Rebel prime target we identified. You are not some kind of deserter, are you? Will you accept this mission?"</text>
+			<choice hidden="true">
+				<text>"Sounds dangerous. But we can try it."</text>
+				<event>
+					<text>"Good! The target is a Rebel station that is a key part of their supply lines. We transmit coordinates, oh... hostiles incoming, we got to go!" They cease communication and you detect a faint jump signature nearby.</text>
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event>
+							<text>Immediately afterwards a Rebel ship jumps in. "Finally got you, you evasive fu... wait, who are you? A cruiser class? Fed ID hugh? Well just as good." They lock weapons on your ship."</text>
+							<quest event="BS_QUEST_REBEL_FIGHT"/>
+							<ship load="REBEL" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>"Sorry, but we got our own mission to take care of"</text>
+				<event>
+					<text>"Well we wish you luck with that then. You might want to get out of here, we detect incoming boogies." You detect a small jump signature a few clicks away and then a much bigger one right in front of you.</text>
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event>
+							<text>A Rebel ship jumps in and hails: "Hm you are not who we are looking for... I see, you are even better!". They get into an attack vector.</text>
+							<ship load="REBEL" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+<event name="BS_QUEST_REBEL_FIGHT">
+	<text>You arrive at the coordinates given and find the supply station carefully hidden in an nearby asteroid field. You program an attack pattern and start you assault.</text>
+	<environment type="asteroid"/>	
+	<ship load="BS_REBEL_QUEST_SUPPLY" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+<event name="BS_QUEST_REBEL_REWARD">
+	<text>You arrive at the location specified by the Infiltrator. A automated Rebel armory orbits a near by moon, being docked by a few Rebel Riggers. After transmitting the stolen codes you receive a docking instruction.</text>
+	<choice hidden="true">
+		<text>"Continue..."</text>
+		<event>
+			<text>You remain tense and ready to power the weapons at seconds notice, but no one bothers you as the stations drones install a weapon from the Rebels arsenal on your ship. You leave the station immediately and charge the FTL.</text>
+			<autoReward level="HIGH">weapon</autoReward>
+		</event>
+	</choice>
+</event>
+
+<!-- END OF BS REBEL EVENTS -->
+
+
+<!-- C REBEL EVENTS -->
+
+<event name="C_EVENT_CRUISER_REBEL">
+	<text load="C_EVENT_CRUISER_REBEL_TEXT"/>
+	<ship load="C_REBEL_CRUISER" hostile="false"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text> Fleeing seems to be a suitable option here... still, taking out a cruiser here would surly throw the Rebel fleet into disarray.</text>
+			<ship hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+		</event>
+	</choice>
+</event>
+<textList name="C_EVENT_CRUISER_REBEL_TEXT">
+	<text planet="PLANET_POPULATED">This planet is densely populated and orbited by several Rebel shipyards. It's hard to count all the cruisers that are manufactured here. A guard unit moves in to intercept and hails: "This is the RS "Hell And Back". We are surprised that you got here without anyone noticing you. Someone will get demoted for this. Anyway, we will deal with you now.".</text>
+	<text>Seems like your luck came to an end. You run into a fully militarized Rebel cruiser that was just passing through this system. They hail: "This is the RS rapid response unit "Conflict Diamond". We have no idea who you are, but our computer says you are a high priority target. Sorry captain, orders are orders.".</text>
+	<text>With the heavy Rebel presence in this sector it was only a matter of time till you would run into one of their cruisers. They send a short message. "This is the RS "End Of Negotiations" Our logs show you as a threat level 20 Federation sympathizer. We will open fire with our full weapon array.".</text>
+	<text planet="PLANET_POPULATED_SMALL">A cruiser is refueling on a supply-orbital near the beacon. You try to lay low but they passively scan you an immediately detach from the station to attack. A Rebel general is put on the coms: "This is the RS "Traitor, but still cute" We have been ordered to terminate you. Be ready to take full fire from our weapon clusters.".</text>
+	<text planet="PLANET_POPULATED_SMALL">There is a small planet nearby with scattered settlements.  A small Rebel fleet is in orbit with many ships ferrying back and forth.  It must be a more recently 'liberated' planet. One of the cruiser, identifying as RS "Aggressive Foreign Policy", breaks formation and moves in to intercept you..</text>
+	<text>You enter a system bustling with Rebel activity.  Supply freighters and re-supply stations are dwarfed by a few heavy warships. At first you believe no one noticed you, but then on of the cruisers changes course and gets into an attack vector. They identify as RS "Overkill"..</text>
+
+
+<text planet="PLANET_POPULATED">This planet is densely populated and orbited by several Rebel shipyards. It's hard to count all the cruisers that are manufactured here. A guard unit moves in to intercept and hails: "This is the RS "Perplexity". We are surprised that you got here without anyone noticing you. Someone will get demoted for this. Anyway, we will deal with you now.".</text>
+	<text>Seems like you luck came to an end. You run into a fully militarized Rebel cruiser that was just passing through this system. They hail: "This is the RS rapid response unit "Severe Headache". We have no idea who you are, but our computer says you are a high priority target. Sorry captain, orders are orders.".</text>
+	<text>With the heavy Rebel presence in this sector it was only a matter of time till you would run into one of their cruisers. They send a short message. "This is the RS "You Never Loved Me Anyway" Our logs show you as a threat level 20 Federation sympathizer. We will open fire with our full weapon array." Fleeing seems to be a suitable option here... still, taking out a cruiser would surly throw the Rebel fleet into disarray.</text>
+	<text planet="PLANET_POPULATED_SMALL">A cruiser is refueling on a supply-orbital near the beacon. You try to lay low but they passively scan you an immediately detach from the station to attack. A Rebel general is put on the coms: "This is the RS "Diplomatic Incident" We have been ordered to terminate you. Be ready to take full fire from our weapon clusters.".</text>
+	<text planet="PLANET_POPULATED_SMALL">There is a small planet nearby with scattered settlements.  A small Rebel fleet is in orbit with many ships ferrying back and forth.  It must be a more recently 'liberated' planet. One of the cruiser, identifying as RS "Plywood Sniper", breaks formation and moves in to intercept you..</text>
+	<text>You enter a system bustling with Rebel activity.  Supply freighters and re-supply stations are dwarfed by a few heavy warships. At first you believe no one noticed you, but then on of the cruisers changes course and gets into an attack vector. They identify as RS "Space Worm"..</text>
+
+
+<text planet="PLANET_POPULATED">This planet is densely populated and orbited by several Rebel shipyards. It's hard to count all the cruisers that are manufactured here. A guard unit moves in to intercept and hails: "This is the RS "Space Whales Death". We are surprised that you got here without anyone noticing you. Someone will get demoted for this. Anyway, we will deal with you now.".</text>
+	<text>Seems like you luck came to an end. You run into a fully militarized Rebel cruiser that was just passing through this system. They hail: "This is the RS rapid response unit "Debris Producer". We have no idea who you are, but our computer says you are a high priority target. Sorry captain, orders are orders.".</text>
+	<text>With the heavy Rebel presence in this sector it was only a matter of time till you would run into one of their cruisers. They send a short message. "This is the RS "Crush On You" Our logs show you as a threat level 20 Federation sympathizer. We will open fire with our full weapon array.".</text>
+	<text planet="PLANET_POPULATED_SMALL">A cruiser is refueling on a supply-orbital near the beacon. You try to lay low but they passively scan you an immediately detach from the station to attack. A Rebel general is put on the coms: "This is the RS "Peaceful Emissary" We have been ordered to terminate you. Be ready to take full fire from our weapon clusters.".</text>
+	<text planet="PLANET_POPULATED_SMALL">There is a small planet nearby with scattered settlements.  A small Rebel fleet is in orbit with many ships ferrying back and forth.  It must be a more recently 'liberated' planet. One of the cruiser, identifying as RS "Hull Bender", breaks formation and moves in to intercept you..</text>
+	<text>You enter a system bustling with Rebel activity.  Supply freighters and re-supply stations are dwarfed by a few heavy warships. At first you believe no one noticed you, but then on of the cruisers changes course and gets into an attack vector. They identify as RS "Ringdown"..</text>
+</textList>
+
+<event name="C_EVENT_REBEL_GUNBOAT">
+	<text load="C_EVENT_REBEL_GUNBOAT_TEXT"/>
+	<ship load="C_REBEL_GUNBOAT" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+</event>
+<textList name="C_EVENT_REBEL_GUNBOAT_TEXT">
+	<text>Your cross path with a Rebel patrol craft. "We've found you at last. Prepare to die!"</text>
+	<text>A medium Rebel patrol ship is refueled at a small depot. You try to lay low but they spots you. Power up the weapons!</text>
+	<text>A Rebel patrol boat is guarding this region. As soon as you arrive it begins its assault.</text>
+	<text>A Rebel patrol craft hails you: "Federation scum! We've waited a long time for this!"</text>
+	<text>You receive a transmission: "Sorry sir, this is nothing personal but we're under orders." The Rebel patrol craft's weapons go hot.</text>
+	<text>Rebel patrols seem to be covering the whole system. A medium sized craft detects you an starts it's strafing run.</text>
+	<text>A Rebel patrol-boat hails you: "Ah we have found you! Surrender is not an option, die Federation-scum!"</text>	
+	<text>A Rebel patrol craft was stationed at this beacon. They hail you. "We have reconstructed you flight path beacon by beacon and finally tracked you down. You journey ends here!" They spin up their weapons.</text>
+</textList>
+
+<!-- END OF C REBEL EVENTS -->
+
+
+<!-- REBEL PDS EVENT -->
+
+<event name="CE_PDS_REBEL">
+	<img planet="NONE" back="BG_WARNING_TARGETING_CIV"/>
+	<text load="CE_PDS_REBEL_TEXT"/>
+	<choice req="ENERGY_SHIELD" hidden="true">
+		<text>(Zoltan Shield) Reconfigure the shield frequencies to scramble the enemy artillery targeting.</text>
+	<event>
+		<text>Your advanced shield technlogy prevents the hostile artillery weapons from locking on to your vessel. The spotter ship will get no support fire.</text>
+		<ship load="CE_SPOTTER_REBEL_ARTILLERY_SUPERSHIELD" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+	</choice>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="CE_PDS_REBEL_LIST"/>
+	</choice>
+</event>
+<textList name="CE_PDS_REBEL_TEXT">
+	<text planet="NONE" back="BG_WARNING_TARGETING_CIV">You enter a system bustling with Rebel activity. A supply station is performing maintenance on docked auto ships. Your scanners identify a few fully powered defense weapons on the local planet. This is bad.</text>
+	<text planet="NONE" back="BG_WARNING_TARGETING_CIV">You penetrated deep into Rebel territory and find one of their newly established planetary bases. Your ship is being scanned multiple times and your sensors show reactors on the planets surface come life. Planetary defense weapons detected!</text>
+	<text planet="NONE" back="BG_WARNING_TARGETING_CIV">A friendly voice of the cruise control tha is watching the orbita space of this Rebel planet adresses your ship: "Welcome to planet... oh, ehm... let me talk to my supervisor for a second." Communication is cut. Planetary scale defense guns are powered up. Seems coming here was not a good idea.</text>
+	<text planet="NONE" back="BG_WARNING_TARGETING_CIV">While cruising around deep in Rebel space it was only a matter of time till you jump to a properly star system. The local planetary point defense artillery will shoot your ship to bits quickly if you give it enough time.</text>
+</textList>
+
+<eventList name="CE_PDS_REBEL_LIST">
+	<event>
+		<text>The Rebel must be in full control of the former Federation point defense beams. A ship of their newly established defense force is send out to mark you for the beam strike. Your 1st mate advices you to avoid the planetary fire at all cost and jump on quickly.</text>
+		<ship load="CE_SPOTTER_REBEL_BEAM" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+	<event>
+		<text>A ship of the local defense squadron is dispatched to spot for the Rebel artillery. You will have to get out of this system quickly to escape the deadly barrage.</text>
+		<ship load="CE_SPOTTER_REBEL_ARTILLERY" hostile="true"/>
+		<choice req="AE_ADV_EFFECTOR" hidden="true"> 
+			<text>(Internal Effector) Prepare for offensive cyber attack. Effectorize the hostile!</text> 
+			<event load="CE_PRE_FIGHT_EFFECTOR"/>
+		</choice>	
+		<choice req="AE_WEAPON_JAMMER" hidden="true">
+			<text>(Targeting Jammer) Jam the enemy weapon targeting.</text>
+			<event load="CE_WEAPON_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_DRONE_JAMMER" hidden="true">
+			<text>(Drone Uplink Jammer) Jam the enemy drone communication.</text>
+			<event load="CE_DRONE_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_TELEPORTER_JAMMER" hidden="true"> 
+			<text>(Teleporter Disruptor) Activate the teleporter disruption field.</text>
+			<event load="CE_TELEPORTER_JAMMING_RESULTS_1"/>
+		</choice>
+		<choice req="AE_SHIELD_JAMMER" hidden="true"> 
+			<text>(Ion Field) Activate the ion field projector to weaken the enemy shields.</text>
+			<event>
+								<text load="CE_PRE_FIGHT_ION_TEXT"/>
+				<status type="loss" target="enemy" system="shields" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_SHIELD_JAMMER"/>
+				</choice>
+			</event>
+		</choice>
+		<choice req="AE_IRRADIATOR" hidden="true"> 
+			<text>(Radiation Projector) Irradiate this ship. Let's see how long they can withstand that.</text>
+			<event>
+				<text load="CE_PRE_FIGHT_BIOWEAPON_TEXT"/>
+				<status type="loss" target="enemy" system="oxygen" amount="2"/>
+				<choice hidden="true">
+					<text>Continue...</text>
+					<event/>
+				</choice>
+				<choice req="AE_AUG_GENERATOR" hidden="true"> 
+					<text>(Internal Generator) Power up another combat augment.</text>
+					<event load="CE_PRE_FIGHT_NO_IRRADIATOR"/>
+				</choice>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Continue...</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+<!-- END OF REBEL PDS EVENTS -->
+
+<!-- TE REBEL EVENTS -->
+
+<event name="STORE_REBEL">
+	<text load="STORE_REBEL"/>
+	<choice req="AE_TRADE_BOOSTER" hidden="true">
+		<text>(Cargo Teleporter) Prepare to quickly transfer cargo and have a look at the goods.</text>
+		<event load="TE_STORE_REBEL_LIST_BOOSTED"/>
+	</choice>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="TE_STORE_REBEL_LIST"/>
+	</choice>
+	<store/>
+</event>
+<textList name="STORE_REBEL">
+	<text>You discover a re-supply station used by rebels and civilians alike.  You transmit your fake ship identification and for once, they don't seem to recognize your ship.  You try to assume the air of a local as you prepare to dock.</text>
+	<text>You arrive at a small space station that is putting out wide-band broadcasts on black-market channels. You doubt they would turn away any business, regardless of allegiances.</text>
+	<text>You receive generic advertisements from a nearby public ship-yard.  It seems they are willing to work on any ship, not only those of Rebel hue.</text>
+	<text planet="PLANET_POPULATED">A trade hub orbits this Rebel controlled planet. Propaganda is constantly broadcasted on multiple channels. No Rebel ships are detected in the system so you decide to search for a Grey-market trader.</text>
+	<text planet="PLANET_POPULATED">A trade ship sells goods in the orbit of this planet. Security is lacking, they don't even double check ship identification here.</text>
+</textList>
+
+<eventList name="TE_STORE_REBEL_LIST">
+	<event>
+		<text>You consider striking a deal here. This might take some time.</text>
+<!-- BUYING -->
+		<choice>
+			<text>Buy some confiscated goods.</text>
+			<event>
+				<text load="STORE_REBEL_BUY_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="-20" max="-16"/>
+				</item_modify>
+				<augment name="TE_GOODS_REBEL_CONTRABAND"/>
+			</event>
+		</choice>
+<!-- SELLING -->
+		<choice req="TE_GOODS_NEBULA_GAS" hidden="true">
+			<!-- best deal-->
+			<text>The trader approaches you: "The Rebels need a lot of fuel for their fleet. I could find a good buyer for this gas shipment." [Sell Compressed Nebula Gas for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="70" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_ORE" hidden="true">
+			<!-- best deal-->
+			<text>The Rebels can't mine resources fast enough to construct their monstrous fleet. They started to buy ore from all over the galaxy at insane prices. [Sell Raw Asteroid Ore for about 70 Scrap]</text>
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="50" max="60"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_MANTIS_ENGINES" hidden="true">
+			<!-- best deal-->
+			<text>A public announcement informs you: "The Rebel fleets wants you engine parts! Strip your ship or sell spare parts to support our troops!" The prices aren't that bad. [Sell Engine Parts for about 100 Scrap]</text>
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="75" max="85"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_FOOD" hidden="true">
+			<text>[Sell Space Rations for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="22" max="28"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_CONSUMER" hidden="true">
+			<text>[Sell Consumer Goods for about 35 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_LUXURY" hidden="true">
+			<text>[Sell Luxury Goods for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MEDICINE" hidden="true">
+			<text>[Sell Pharmaceuticals for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_ELECTRONICS" hidden="true">
+			<text>[Sell Ship Electronics for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="22" max="28"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MACHINES" hidden="true">
+			<text>[Sell Industrial Machinery for about 30 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="17" max="23"/> <!-- correct? -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_BEACONS" hidden="true">
+			<text>[Sell Beacon Parts for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_CODEX" hidden="true">
+			<text>[Sell the Zoltan Legal Codex for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="20" max="25"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_SHIELDS" hidden="true">
+			<text>[Sell Shield Components for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_LITERATURE" hidden="true">
+			<text>[Sell Religious Rock Literature for about 40 Scrap]</text>
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="30"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_HULLS" hidden="true">
+			<text>[Sell Ship Hull Panels for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_MANTIS_WEAPONS" hidden="true">
+			<text>[Sell Weapon Components for about 65 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="35" max="45"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_MANTIS_BOUNTY" hidden="true">
+			<text>[Sell Looted Bounty for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_DRUGS" hidden="true">
+			<text>[Sell Slug Hallucinogens for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_ART" hidden="true">
+			<text>[Sell Eccentric Artworks for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="45"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_ANIMALS" hidden="true">
+			<text>[Sell Alien Livestock for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_PIRATE_ARMS" hidden="true">
+			<text>[Sell Small Arms for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CRYSTAL_ARTIFACTS" hidden="true">
+			<text>[Sell Crystal Artifacts for about 70 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_REBEL_SELL_TEXT"/>
+				<modifyPursuit amount="1"/>
+				<item_modify>
+					<item type="scrap" min="30" max="50"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Just quickly check the available ship equipment.</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+<textList name="STORE_REBEL_BUY_TEXT">
+	<text>You transfer the scrap. While your crew loads the cargo you have a look at the ship equipment the shop also also offers. Time passes.</text>
+	<text>You write a scrap transfer order. Processing it takes a while. Loading the cargo takes even longer. You check the ship equipment catalog while waiting.</text>
+	<text>You hand over the crates with the scrap. Loading the cargo takes it's time. The cargo drones are in much less of a hurry than you. While waiting you get a chance to check the ship equipment they offer here.</text>
+	<text>To seal the deal you have to give detailed explanations on your trade license and your (fake) ship registration. Everything is double checked. Why is this taking so long? Then the cargo is finally loaded. Slowly. At last you get a chance to look at the ship gear they also offer.</text>
+</textList>
+
+<textList name="STORE_REBEL_SELL_TEXT">
+	<text>Negotiations are interupted when a Rebel inspector enters the shop. You are lucky that the trader let's you hide in an equipment closet. Later you take your advance. Better deliver the cargo to the shop and get out of here quick. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>You have to make up stuff as you go when the trader asks you about your ship and employer. He semms suspicious, but he agrees to pay some scrap as advance. You better unload the cargo at the shop and leave soon. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>Rebel marines partroll the corridors, you are nervous and it takes a while till you find a trustworthy trader. After agreeing on a price you now have to unload the cargo at the shop to receive full payment. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>After time consuming negotiations you get an advance payment. "You get the rest after you unloaded the cargo at the shop." You hope they don't realize who you are. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+	<text>You pretend that the goods are really worth that much and the trader pretends he isn't really interested. An invitation for some synth tea leads to tough negotiations, but you remain patient. After taking your scrap advance you have to transfer the cargo to the shop to seal the deal. [Reminder: Not selling off the goods at the shop breaks the trade system and means you are cheating.]</text>
+</textList>
+
+
+
+<eventList name="TE_STORE_REBEL_LIST_BOOSTED">
+	<event>
+		<text>You consider striking a deal here. This might take some time.</text>
+<!-- BUYING -->
+		<choice>
+			<text>Buy some confiscated goods.</text>
+			<event>
+				<text load="STORE_BUY_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="-20" max="-16"/>
+				</item_modify>
+				<augment name="TE_GOODS_REBEL_CONTRABAND"/>
+			</event>
+		</choice>
+<!-- SELLING -->
+		<choice req="TE_GOODS_NEBULA_GAS" hidden="true">
+			<!-- best deal-->
+			<text>The trader approaches you: "The Rebels need a lot of fuel for their fleet. I could find a good buyer for this gas shipment." [Sell Compressed Nebula Gas for about 90 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="70" max="80"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_ORE" hidden="true">
+			<!-- best deal-->
+			<text>The Rebels can't mine resources fast enough to construct their monstrous fleet. They started to buy ore from all over the galaxy at insane prices. [Sell Raw Asteroid Ore for about 70 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="50" max="60"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_MANTIS_ENGINES" hidden="true">
+			<!-- best deal-->
+			<text>A public announcement informs you: "The Rebel fleets wants you engine parts! Strip your ship or sell spare parts to support our troops!" The prices aren't that bad. [Sell Engine Parts for about 100 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="75" max="85"/>
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_FOOD" hidden="true">
+			<text>[Sell Space Rations for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="22" max="28"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_CONSUMER" hidden="true">
+			<text>[Sell Consumer Goods for about 35 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CIVILIAN_LUXURY" hidden="true">
+			<text>[Sell Luxury Goods for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MEDICINE" hidden="true">
+			<text>[Sell Pharmaceuticals for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_ELECTRONICS" hidden="true">
+			<text>[Sell Ship Electronics for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="22" max="28"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ENGI_MACHINES" hidden="true">
+			<text>[Sell Industrial Machinery for about 30 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="17" max="23"/> <!-- correct? -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_BEACONS" hidden="true">
+			<text>[Sell Beacon Parts for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_CODEX" hidden="true">
+			<text>[Sell the Zoltan Legal Codex for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="20" max="25"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ZOLTAN_SHIELDS" hidden="true">
+			<text>[Sell Shield Components for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_LITERATURE" hidden="true">
+			<text>[Sell Religious Rock Literature for about 40 Scrap]</text>
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="30"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_ROCK_HULLS" hidden="true">
+			<text>[Sell Ship Hull Panels for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_MANTIS_WEAPONS" hidden="true">
+			<text>[Sell Weapon Components for about 65 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="35" max="45"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_MANTIS_BOUNTY" hidden="true">
+			<text>[Sell Looted Bounty for about 40 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="23" max="27"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_DRUGS" hidden="true">
+			<text>[Sell Slug Hallucinogens for about 60 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_ART" hidden="true">
+			<text>[Sell Eccentric Artworks for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="45"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_SLUG_ANIMALS" hidden="true">
+			<text>[Sell Alien Livestock for about 45 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="25" max="35"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_PIRATE_ARMS" hidden="true">
+			<text>[Sell Small Arms for about 55 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="40"/>  <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice req="TE_GOODS_CRYSTAL_ARTIFACTS" hidden="true">
+			<text>[Sell Crystal Artifacts for about 70 Scrap]</text> <!-- updated -->
+			<event>
+				<text load="STORE_SELL_TEXT_BOOSTED"/>
+				<item_modify>
+					<item type="scrap" min="30" max="50"/> <!-- updated -->
+				</item_modify>
+			</event>
+		</choice>
+		<choice hidden="true">
+			<text>Just quickly check the available ship equipment.</text>
+			<event/>
+		</choice>
+	</event>
+</eventList>
+
+<!-- END OF TE REBEL EVENTS -->
